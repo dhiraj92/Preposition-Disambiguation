@@ -1,0 +1,199 @@
+<project xmlns:ac="antlib:net.sf.antcontrib"  name="poss"  basedir="..">
+
+	<!-- Import common targets for SVM building/running and compilation plus some related to the Penn Treebank-->
+	<import file="build_pos_and_parse_common.xml"/>
+	
+	<!-- Directory containing data files -->
+	<property name="DATA_DIR" value="data/possessives"/>
+	
+	<!-- Directory to place working files -->
+	<property name="WORKING_DIR" value="semdata/possdata"/>
+	
+	<property name="WFR_RULES" value="conf/poss/possessivesWFRs"/>
+	<property name="FER_RULES" value="conf/poss/possessivesFERs"/>
+	<property name="COMBO_RULES" value="conf/poss/possessivesComboRules"/>
+	
+	<property name="DATASOURCES_CONFIG" value="conf/poss/possessivesDataSources"/>
+
+	<!-- Target for building the production model -->
+	<target name="Poss_build_production_model" depends="Poss_feat_extract_production,Poss_feature_select,Poss_train_model,Poss_wrap_model"/>
+	<!-- Target for cross validation experiment -->
+	<target name="Poss_cross_validation_experiment" depends="Poss_feat_extract_train,Poss_splitToFolds,Poss_feature_select,Poss_train_model,Poss_testModel"/>
+	<!-- Target for running the training / test experiment -->
+	<target name="Poss_full_experiment" depends="Poss_feat_extract_train,Poss_feat_extract_test,Poss_feature_select,Poss_train_model,Poss_testModel"/>
+	
+		
+	<!-- Extract features from testing data -->
+	<target name="Poss_feat_extract_test" depends="compile">
+		<java classname="miacp.semantics.poss.FeatureExtractionRoutine" fork="true">
+			<classpath refid="project.classpath"/>
+			<jvmarg value="-Xmx6000m"/>
+			<arg line="-inputdir ${DATA_DIR}/instances"/>
+			<arg line="-outputfile ${WORKING_DIR}/testinstances/possessives"/>
+			<arg line="-datasources ${DATASOURCES_CONFIG}"/>
+			<arg line="-sentencereader miacp.parse.io.ConllxSentenceReader"/>
+			<arg line="-ids data/possessives/testselections.txt"/>
+			<arg line="-invertids false"/>
+			<arg line="-wndir ${WORDNET_DIR}"/>
+			<arg line="-wfr ${WFR_RULES}"/>
+			<arg line="-fer ${FER_RULES}"/>
+			<arg line="-comborules ${COMBO_RULES}"/>
+		</java>
+	</target>
+	
+	<!-- Extract features from training data -->
+	<target name="Poss_feat_extract_train" depends="compile">
+		<java classname="miacp.semantics.poss.FeatureExtractionRoutine" fork="true">
+			<classpath refid="project.classpath"/>
+			<jvmarg value="-Xmx6000m"/>
+			<arg line="-inputdir ${DATA_DIR}/instances"/>
+			<arg line="-outputfile ${WORKING_DIR}/traininstances/possessives"/>
+			<arg line="-datasources ${DATASOURCES_CONFIG}"/>
+			<arg line="-sentencereader miacp.parse.io.ConllxSentenceReader"/>
+			<arg line="-ids data/possessives/testselections.txt"/>
+			<!-- 'true' to negate the list given in 'ids' -->
+			<arg line="-invertids true"/>
+			<arg line="-wndir ${WORDNET_DIR}"/>
+			<arg line="-wfr ${WFR_RULES}"/>
+			<arg line="-fer ${FER_RULES}"/>
+			<arg line="-comborules ${COMBO_RULES}"/>
+		</java>
+	</target>
+	
+	<!-- Extract features from all the data for training a production model -->
+	<target name="Poss_feat_extract_production" depends="compile">
+		<java classname="miacp.semantics.poss.FeatureExtractionRoutine" fork="true">
+			<classpath refid="project.classpath"/>
+			<jvmarg value="-Xmx6000m"/>
+			<arg line="-inputdir ${DATA_DIR}/instances"/>
+			<arg line="-outputfile ${WORKING_DIR}/traininstances/possessives"/>
+			<arg line="-datasources ${DATASOURCES_CONFIG}"/>
+			<arg line="-sentencereader miacp.parse.io.ConllxSentenceReader"/>
+			<arg line="-ids data/possessives/testselections.txt"/>
+			<!-- 'true' to negate the list given in 'ids' -->
+			<arg line="-invertids true"/>
+			<arg line="-wndir ${WORDNET_DIR}"/>
+			<arg line="-wfr ${WFR_RULES}"/>
+			<arg line="-fer ${FER_RULES}"/>
+			<arg line="-comborules ${COMBO_RULES}"/>
+		</java>
+		<java classname="miacp.semantics.poss.FeatureExtractionRoutine" fork="true">
+			<classpath refid="project.classpath"/>
+			<jvmarg value="-Xmx6000m"/>
+			<arg line="-inputdir ${DATA_DIR}/instances"/>
+			<!-- Add to training instances file -->
+			<arg line="-outputfile ${WORKING_DIR}/traininstances/possessives"/>
+			<!-- Append test instances as additional training instances -->
+			<arg line="-append true"/>
+			<arg line="-datasources ${DATASOURCES_CONFIG}"/>
+			<arg line="-sentencereader miacp.parse.io.ConllxSentenceReader"/>
+			<arg line="-ids data/possessives/testselections.txt"/>
+			<arg line="-invertids false"/>
+			<arg line="-wndir ${WORDNET_DIR}"/>
+			<arg line="-wfr ${WFR_RULES}"/>
+			<arg line="-fer ${FER_RULES}"/>
+			<arg line="-comborules ${COMBO_RULES}"/>
+		</java>
+	</target>
+
+	<!-- Used for cross-validation -->
+	<target name="Poss_splitToFolds" depends="compile">
+		<antcall target="runSplitToFolds">
+			<param name="infile" value="${WORKING_DIR}/traininstances/possessives"/>
+			<param name="training_fold_prefix" value="${WORKING_DIR}/traininstances/fold"/>
+			<param name="test_fold_prefix" value="${WORKING_DIR}/testinstances/fold"/>
+			<param name="num_folds" value="10"/>
+			<param name="random_seed" value="0"/>
+		</antcall>
+		<delete file="${WORKING_DIR}/traininstances/possessives"/>
+	</target>
+
+	<target name="Poss_feature_select" depends="compile">		
+		<antcall target="runFeatureSelector">
+			<param name="instances" value="${WORKING_DIR}/traininstances"/>
+			<param name="output" value="${WORKING_DIR}/featuresSelected"/>
+			<param name="min_feature_frequency" value="0"/>
+		</antcall>
+		<antcall target="runSvmTrainingFileCreator">
+			<param name="max_features" value="100000000"/>
+			<param name="feature_rankings" value="${WORKING_DIR}/featuresSelected"/>
+			<param name="instances" value="${WORKING_DIR}/traininstances"/>
+			<param name="svm_training_files" value="${WORKING_DIR}/svmTrainingFiles"/>
+			<param name="alphabets" value="${WORKING_DIR}/alphabetFiles"/>
+		</antcall>
+	</target>
+
+	<!-- Trains the possessives models -->
+	<target name="Poss_train_model" depends="compile">
+		<antcall target="runSvmTrainer">
+			<param name="input" value="${WORKING_DIR}/svmTrainingFiles"/>
+			<param name="output" value="${WORKING_DIR}/models"/>
+			<param name="svmcparam" value=".02"/>
+			<param name="waitfor" value="false"/>
+		</antcall>
+		
+	</target>
+
+	<!-- Tests the possessives models -->
+	<target name="Poss_testModel" depends="compile">
+		<antcall target="runSvmTester">
+			<param name="model_dir" value="${WORKING_DIR}/models"/>
+			<param name="alphabet_dir" value="${WORKING_DIR}/alphabetFiles"/>
+			<param name="test_dir" value="${WORKING_DIR}/testinstances"/>
+			<param name="output_dir" value="${WORKING_DIR}/output"/>
+			<param name="summary_file" value="${WORKING_DIR}/possessivesPredictionSummary.txt"/>
+		</antcall>
+	</target>
+
+	<!-- Wraps the model with the feature generator -->
+	<target name="Poss_wrap_model" depends="compile">
+		<java classname="miacp.semantics.BundleModelsWithFeatureGenerator" fork="true">
+			<classpath refid="project.classpath"/>
+			<jvmarg value="-Xmx6000m"/>			
+			<arg line="-alphabets ${WORKING_DIR}/alphabetFiles/possessives"/>
+			<arg line="-models ${WORKING_DIR}/models/possessives.model"/>
+			<arg line="-trimfactor 0.0"/>
+			<arg line="-wfr ${WFR_RULES}"/>
+			<arg line="-fer ${FER_RULES}"/>
+			<arg line="-comborules ${COMBO_RULES}"/>
+			
+			<arg line="-outputfile possessivesModel.gz"/>
+		</java>
+	</target>
+
+	<!-- Create the file with the sentences for the Penn Treebank WSJ portion of the dataset (the part that can't be distributed with the project) -->
+	<target name="Create_WSJ_Datasource_File">
+		<mkdir dir="${WORKING_DIR}"/>
+		<echo message="Deleting existing combined MRG file (if it exists)"/>
+		<delete file="${WORKING_DIR}/Ptb02-22.mrgcombo"/>
+			
+		<!-- Combine MRG files together for the folds -->
+		<echo message="Combining MRG files together"/>
+		<ac:for list="02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22" param="mrgFolder">
+			<sequential>
+				<ac:for param="file">
+				    <fileset dir="${WSJ_DIR}/@{mrgFolder}" includes="*.mrg"/>
+				    <sequential>
+						<echo>@{file}</echo>
+						<exec executable="/bin/sh">
+					  		<arg value="-c" />
+					  		<arg value="cat @{file} &gt;&gt; ${WORKING_DIR}/Ptb02-22.mrgcombo" />
+						</exec>
+				    </sequential>
+				</ac:for>
+			</sequential>
+		</ac:for>
+			
+		<!-- Run modified Penn converter -->
+		<antcall target="modified_pennconverter">
+			<param name="input_file" value="${WORKING_DIR}/Ptb02-22.mrgcombo"/>
+			<param name="output_file" value="${WORKING_DIR}/Ptb02-22.converted"/>
+		</antcall>
+		<!-- Run fine converter -->
+		<antcall target="fine-grain_converter">
+			<param name="input_file" value="${WORKING_DIR}/Ptb02-22.converted"/>
+			<param name="output_file" value="${WORKING_DIR}/Ptb02-22.sentences"/>
+		</antcall>		
+	</target>
+
+</project>

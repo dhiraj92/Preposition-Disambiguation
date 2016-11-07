@@ -1,0 +1,15 @@
+#
+# Word-finding rules for possessives
+#
+
+po	Possessor	word,asynonymsN,asynonymsV,asynonymsDV,ahypernymsN,ahypernymsV,ahypernymsDV,wnTypes,linksN,linksV,linksDV,glosstermsN,glosstermsV,affix,letters,lexname1N,lexname1V,lexname1DV,lexnameAN,lexnameAV,lexnameADV	miacp.featgen.wfr.GetPossessor
+pe	Possessee	pos,word,asynonymsN,asynonymsV,asynonymsDV,ahypernymsN,ahypernymsV,ahypernymsDV,wnTypes,linksN,linksV,linksDV,glosstermsN,glosstermsV,affix,letters,lexname1N,lexname1V,lexname1DV,lexnameAN,lexnameAV,lexnameADV	miacp.featgen.wfr.WordItself
+
+gov	Governor	lexname,alexname,ahypernyms	miacp.featgen.wfr.SyntacticGovernorRule
+
+par	GovArc		word		miacp.featgen.wfr.CreateParentArcPseudoToken
+
+ibt	InBetweens			word,pos	miacp.featgen.wfr.GetTokensBetweenWordAndPossessor
+dep	PossesseeChildren	word,alexname		miacp.featgen.wfr.GetChildrenByType
+
+wr	WordToRight			word	miacp.featgen.wfr.WordToRightRule

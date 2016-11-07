@@ -1,0 +1,297 @@
+<!-- Ant build file for PropBank-style Semantic Role Labeling targets. Out-of-date. -->
+<project xmlns:ac="antlib:net.sf.antcontrib" name="srl" basedir="..">
+
+	<!-- Import common targets for SVM building/running and compilation-->
+	<import file="build_common.xml"/>
+	
+	<property name="SRL_WORKING_DIR" value="semdata/srldata"/>
+	
+	<!-- The Penn Treebank mrg directory -->
+	<property name="PTB_MRG_DIR" value="../../Files/corpora/ldc/Treebank_3/parsed/mrg/wsj"/>
+	<!-- The dependency parse version of the training data -->
+	<property name="DEPENDENCY_PARSE_TRAINING_FILE" value="../../Files/corpora/ldc/trainingData.conllX"/>
+	<!-- The location of the PropBank directory -->
+	<property name="PROPBANK_DIR" value="../../Files/corpora/ldc/PropBank(LDC2004T14)"/>
+	
+	
+	<!-- the final result of training the argument/adjunct classifiers -->
+	<property name="SRL_ARGS_FINAL_MODEL_FILE" value="srlArgsWrapper.gz"/>
+	<!-- the final result of training the predicate disambiguation classifiers -->
+	<property name="SRL_PREDICATES_FINAL_MODEL_FILE" value="srlPredWrapper.gz"/>
+	
+	<!-- feature-generating word lookup rules -->
+	<property name="WFR_FOR_ARGUMENTS" value="conf/srl/srlArgsWFRs"/>
+	<!-- feature generation rules config -->
+	<property name="FER_LIST_FOR_ARGUMENTS" value="conf/srl/srlArgsFERs"/>
+	<property name="COMBO_RULES_FOR_ARGUMENTS" value="conf/srl/srlArgsComboRules"/>
+			
+	<property name="WFR_LIST_FOR_PREDICATES" value="conf/srl/srlPredicatesWFRs"/>
+	<property name="FER_LIST_FOR_PREDICATES" value="conf/srl/srlPredicatesFERs"/>
+	<property name="COMBO_RULES_FOR_PREDICATES" value="conf/srl/srlPredicatesComboRules"/>
+	
+	<property name="ALIGNED_TRAINING_FILE" value="${SRL_WORKING_DIR}/trainingDataAligned.conllX"/>
+	
+	<target name="SRL_train_system">
+		<!-- align PropBank with dependency parses -->
+		<antcall target="Align_Dependency_Trees_With_PropBank"/>
+		
+		<!-- train models for arguments and adjuncts -->
+		<antcall target="ArgSRL_featex_train"/>
+		<antcall target="ArgSRL_feature_select_and_train"/>
+		<antcall target="ArgSRL_wrap_models"/>
+		
+		<!-- train models for predicate disambiguation -->
+		<antcall target="PredSRL_featex_train"/>
+		<antcall target="PredSRL_feature_select_and_train"/>
+		<antcall target="PredSRL_wrap_models"/>
+	</target>
+	
+	<target name="ArgSRL_experiment" depends="ArgSRL_featex_train,ArgSRL_featex_test,ArgSRL_feature_select_and_train,ArgSRL_test_models"/>
+	<target name="PredSRL_experiment" depends="PredSRL_featex_train,PredSRL_featex_test,PredSRL_feature_select_and_train,PredSRL_test_models"/>
+	
+	<target name="Align_Dependency_Trees_With_PropBank" depends="compile">
+		<java classname="miacp.semantics.srl.PropBankConverter" fork="true">
+			<classpath refid="project.classpath"/>
+			<jvmarg value="-Xmx6000m"/>
+			<arg value="${PTB_MRG_DIR}"/>
+			<arg value="${PROPBANK_DIR}/data/prop.txt"/>
+			<arg value="${DEPENDENCY_PARSE_TRAINING_FILE}"/>
+			<arg value="${ALIGNED_TRAINING_FILE}"/>
+		</java>
+	</target>
+	
+	<target name="PredSRL_featex_train" depends="compile">
+		<java classname="miacp.semantics.srl.FeatureExtractionRoutinePredicates" fork="true">
+			<classpath refid="project.classpath"/>
+			<jvmarg value="-Xmx6000m"/>
+			<arg line="-input ${ALIGNED_TRAINING_FILE}"/>
+			<arg line="-outputdir ${SRL_WORKING_DIR}/predicatesFeaturesTrain"/>
+			<arg line="-wndir ${WORDNET_DIR}"/>
+			<arg line="-wfr ${WFR_LIST_FOR_PREDICATES}"/>
+			<arg line="-fer ${FER_LIST_FOR_PREDICATES}"/>
+			<arg line="-comborules ${COMBO_RULES_FOR_PREDICATES}"/>
+			<arg line="-isfortesting false"/>
+			<arg line="-truthfile ${SRL_WORKING_DIR}/predicates_traintruth.txt"/>
+			<arg line="-propbankframes ${PROPBANK_DIR}"/>
+		</java>
+		<java classname="miacp.semantics.srl.CreateModelsForUnrepresentedPredicates" fork="true">
+			<classpath refid="project.classpath"/>
+			<jvmarg value="-Xmx6048m"/>
+			<arg line="-propbankframes ${PROPBANK_DIR}/data/frames"/>
+			<arg line="-instances ${SRL_WORKING_DIR}/predicatesFeaturesTrain"/>
+		</java>
+	</target>
+	
+	<target name="PredSRL_featex_devel" depends="compile">
+		<java classname="miacp.semantics.srl.FeatureExtractionRoutinePredicates" fork="true">
+			<classpath refid="project.classpath"/>
+			<jvmarg value="-Xmx6000m"/>
+			<arg line="-input ${SRL_WORKING_DIR}/rawDevel/rawDevel.txt"/>
+			<arg line="-outputdir ${SRL_WORKING_DIR}/predicatesFeaturesDevel"/>
+			<arg line="-autoparsedfiles ${SRL_WORKING_DIR}/rawDevel/autoparsedDevel.conllX"/>
+			<arg line="-wndir ${WORDNET_DIR}"/>
+			<arg line="-wfr ${WFR_LIST_FOR_PREDICATES}"/>
+			<arg line="-fer ${FER_LIST_FOR_PREDICATES}"/>
+			<arg line="-comborules ${COMBO_RULES_FOR_PREDICATES}"/>
+			<arg line="-isfortesting true"/>
+			<arg line="-truthfile ${SRL_WORKING_DIR}/predicates_develtruth.txt"/>
+			<arg line="-propbankframes ${PROPBANK_DIR}"/>
+		</java>
+	</target>
+	<target name="PredSRL_featex_test" depends="compile">
+		<java classname="miacp.semantics.srl.FeatureExtractionRoutinePredicates" fork="true">
+			<classpath refid="project.classpath"/>
+			<jvmarg value="-Xmx6000m"/>
+			<arg line="-input ${SRL_WORKING_DIR}/rawTest/rawTest.txt"/>
+			<arg line="-outputdir ${SRL_WORKING_DIR}/predicatesFeaturesTest"/>
+			<arg line="-autoparsedfiles ${SRL_WORKING_DIR}/rawTest/autoparsedTest.conllX"/>
+			<arg line="-wndir ${WORDNET_DIR}"/>
+			<arg line="-wfr ${WFR_LIST_FOR_PREDICATES}"/>
+			<arg line="-fer ${FER_LIST_FOR_PREDICATES}"/>
+			<arg line="-comborules ${COMBO_RULES_FOR_PREDICATES}"/>
+			<arg line="-isfortesting true"/>
+			<arg line="-truthfile ${SRL_WORKING_DIR}/predicates_testtruth.txt"/>
+			<arg line="-propbankframes ${PROPBANK_DIR}"/>
+		</java>
+	</target>
+	
+	<target name="PredSRL_feature_select_and_train" depends="compile">
+		<antcall target="runFeatureSelector">
+			<param name="instances" value="${SRL_WORKING_DIR}/predicatesFeaturesTrain"/>
+			<param name="output" value="${SRL_WORKING_DIR}/predicatesFeaturesSelected"/>
+			<param name="min_feature_frequency" value="0"/>
+		</antcall>
+		<antcall target="runSvmTrainingFileCreator">
+			<param name="max_features" value="100000000"/>
+			<param name="feature_rankings" value="${SRL_WORKING_DIR}/predicatesFeaturesSelected"/>
+			<param name="instances" value="${SRL_WORKING_DIR}/predicatesFeaturesTrain"/>
+			<param name="svm_training_files" value="${SRL_WORKING_DIR}/predicatesTrainingFiles"/>
+			<param name="alphabets" value="${SRL_WORKING_DIR}/predicatesAlphabetFiles"/>
+			<param name="null_class_name" value="NA"/>
+		</antcall>
+		<antcall target="runSvmTrainer">
+			<param name="input" value="${SRL_WORKING_DIR}/predicatesTrainingFiles"/>
+			<param name="output" value="${SRL_WORKING_DIR}/predicatesModels"/>
+			<param name="svmcparam" value=".08"/>
+			<param name="waitfor" value="false"/>
+		</antcall>
+	</target>
+	
+	<target name="PredSRL_test_models" depends="compile">
+		<antcall target="runSvmTester">
+			<param name="model_dir" value="${SRL_WORKING_DIR}/predicatesModels"/>
+			<param name="alphabet_dir" value="${SRL_WORKING_DIR}/predicatesAlphabetFiles"/>
+			<param name="test_dir" value="${SRL_WORKING_DIR}/predicatesFeaturesTest"/>
+			<param name="output_dir" value="${SRL_WORKING_DIR}/predicatesOutput"/>
+			<param name="summary_file" value="${SRL_WORKING_DIR}/argumentPredictionSummary.txt"/>
+		</antcall>
+		
+	</target>
+	
+	<target name="ArgSRL_featex_train" depends="compile">
+		<java classname="miacp.semantics.srl.FeatureExtractionRoutine" fork="true">
+			<classpath refid="project.classpath"/>
+			<jvmarg value="-Xmx6000m"/>
+			<arg line="-input ${ALIGNED_TRAINING_FILE}"/>
+			<arg line="-outputdir ${SRL_WORKING_DIR}/argsFeaturesTrain"/>
+			<arg line="-wndir ${WORDNET_DIR}"/>
+			<arg line="-wfr ${WFR_FOR_ARGUMENTS}"/>
+			<arg line="-fer ${FER_LIST_FOR_ARGUMENTS}"/>
+			<arg line="-comborules ${COMBO_RULES_FOR_ARGUMENTS}"/>
+					
+			<arg line="-isfortesting false"/>
+			<arg line="-truthfile ${SRL_WORKING_DIR}/traintruth.txt"/>
+		</java>
+	</target>
+	
+	<target name="ArgSRL_featex_devel" depends="compile">
+		<java classname="miacp.semantics.srl.FeatureExtractionRoutine" fork="true">
+			<classpath refid="project.classpath"/>
+			<jvmarg value="-Xmx6000m"/>
+			<arg line="-input ${SRL_WORKING_DIR}/rawTrain/rawDevel.txt"/>
+			<arg line="-outputdir ${SRL_WORKING_DIR}/argsFeaturesDevel"/>
+			<arg line="-autoparsedfiles ${SRL_WORKING_DIR}/autoparsedDevel.conllX"/>-->
+			<arg line="-useautoparsed ${useautoparsed}"/>
+			<arg line="-wndir ${WORDNET_DIR}"/>
+			<arg line="-wfr ${WFR_FOR_ARGUMENTS}"/>
+			<arg line="-fer ${FER_LIST_FOR_ARGUMENTS}"/>
+			<arg line="-comborules ${COMBO_RULES_FOR_ARGUMENTS}"/>
+							
+			<arg line="-isfortesting true"/>
+			<arg line="-truthfile ${SRL_WORKING_DIR}/develtruth.txt"/>
+		</java>
+	</target>
+	
+	<target name="ArgSRL_featex_test" depends="compile">
+		<java classname="miacp.semantics.srl.FeatureExtractionRoutine" fork="true">
+			<classpath refid="project.classpath"/>
+			<jvmarg value="-Xmx6000m"/>
+			<arg line="-input ${SRL_WORKING_DIR}/rawTest/rawTest.txt"/>
+			<arg line="-outputdir ${SRL_WORKING_DIR}/argsFeaturesTest"/>
+			<arg line="-autoparsedfiles ${SRL_WORKING_DIR}/rawTest/autoparsedTest.conllX"/>
+			<arg line="-wndir ${WORDNET_DIR}"/>
+			<arg line="-wfr ${WFR_FOR_ARGUMENTS}"/>
+			<arg line="-fer ${FER_LIST_FOR_ARGUMENTS}"/>
+			<arg line="-comborules ${COMBO_RULES_FOR_ARGUMENTS}"/>
+									
+			<arg line="-isfortesting true"/>
+			<arg line="-truthfile ${SRL_WORKING_DIR}/testtruth.txt"/>
+		</java>
+	</target>
+	
+	<target name="ArgSRL_test_models" depends="compile">
+		<antcall target="runSvmTester">
+			<param name="model_dir" value="${SRL_WORKING_DIR}/argsModels"/>
+			<param name="alphabet_dir" value="${SRL_WORKING_DIR}/argsAlphabetFiles"/>
+			<param name="test_dir" value="${SRL_WORKING_DIR}/argsFeaturesTest"/>
+			<param name="output_dir" value="${SRL_WORKING_DIR}/argsOutput"/>
+			<param name="summary_file" value="${SRL_WORKING_DIR}/srlPredictionResultsSummary.txt"/>
+		</antcall>
+	</target>
+	
+	<target name="ArgSRL_feature_select_and_train" depends="compile">
+		<!--<antcall target="runFeatureSelector">
+			<param name="instances" value="${WORKING_DIR}/argsFeaturesTrain"/>
+			<param name="output" value="${WORKING_DIR}/argsFeaturesSelected"/>
+			<param name="min_feature_frequency" value="0"/>
+		</antcall>
+		<antcall target="runSvmTrainingFileCreator">
+			<param name="max_features" value="100000000"/>
+			<param name="feature_rankings" value="${WORKING_DIR}/argsFeaturesSelected"/>
+			<param name="instances" value="${WORKING_DIR}/argsFeaturesTrain"/>
+			<param name="svm_training_files" value="${WORKING_DIR}/argsTrainingFiles"/>
+			<param name="alphabets" value="${WORKING_DIR}/argsAlphabetFiles"/>
+			<param name="null_class_name" value="NA"/>
+		</antcall>
+		<antcall target="runSvmTrainer">
+			<param name="input" value="${WORKING_DIR}/argsTrainingFiles"/>
+			<param name="output" value="${WORKING_DIR}/argsModels"/>
+			<param name="svmcparam" value=".02"/>
+			<param name="waitfor" value="false"/>
+		</antcall>-->
+		
+		<antcall target="trainLiblinearModels">
+			<param name="instances" value="${SRL_WORKING_DIR}/argsFeaturesTrain"/>
+			<param name="feature_rankings" value="${SRL_WORKING_DIR}/argsFeaturesSelected"/>
+			<param name="min_feature_frequency" value="0"/>
+			<param name="max_features" value="100000000"/>
+			<param name="svm_training_files" value="${SRL_WORKING_DIR}/argsTrainingFiles"/>
+			<param name="alphabets" value="${SRL_WORKING_DIR}/argsAlphabetFiles"/>
+			<param name="null_class_name" value="NA"/>
+			<param name="models" value="${SRL_WORKING_DIR}/argsModels"/>
+			<param name="svmcparam" value=".02"/>
+			<param name="waitfor" value="false"/>
+		</antcall>
+	</target>
+	
+	<target name="precrecall_args" depends="compile">
+		<java classname="miacp.semantics.srl.PrecisionAndRecallForSRL" fork="true">
+			<classpath refid="project.classpath"/>
+			<jvmarg value="-Xmx6048m"/>
+			<arg line="-predictions ${SRL_WORKING_DIR}/argsOutput"/>
+			<arg line="-truthfile ${SRL_WORKING_DIR}/testtruth.txt"/>
+		</java>
+	</target>
+	
+	<target name="precrecall_predicates" depends="compile">
+		<java classname="miacp.semantics.srl.PrecisionAndRecallForSRL" fork="true">
+			<classpath refid="project.classpath"/>
+			<jvmarg value="-Xmx6048m"/>
+			<arg line="-predictions ${SRL_WORKING_DIR}/predicatesOutput"/>
+			<arg line="-truthfile ${SRL_WORKING_DIR}/predicates_testtruth.txt"/>
+		</java>
+	</target>
+	
+	<target name="ArgSRL_wrap_models" depends="compile">
+		<java classname="miacp.semantics.BundleModelsWithFeatureGenerator" fork="true">
+			<classpath refid="project.classpath"/>
+			<jvmarg value="-Xmx6048m"/>
+			<arg line="-alphabets ${SRL_WORKING_DIR}/argsAlphabetFiles"/>
+			<arg line="-models ${SRL_WORKING_DIR}/argsModels"/>
+			<arg line="-trimfactor 0"/>
+			<arg line="-wfr ${WFR_FOR_ARGUMENTS}"/>
+			<arg line="-fer ${FER_LIST_FOR_ARGUMENTS}"/>
+			<arg line="-comborules ${COMBO_RULES_FOR_ARGUMENTS}"/>
+			<arg line="-modellookup miacp.semantics.srl.SrlArgumentModelNameLookup"/>
+			
+			<arg line="-outputfile ${SRL_ARGS_FINAL_MODEL_FILE}"/>
+		</java>
+	</target>
+	
+	<target name="PredSRL_wrap_models" depends="compile">
+		<java classname="miacp.semantics.BundleModelsWithFeatureGenerator" fork="true">
+			<classpath refid="project.classpath"/>
+			<jvmarg value="-Xmx6048m"/>
+			<arg line="-alphabets ${SRL_WORKING_DIR}/predicatesAlphabetFiles"/>
+			<arg line="-models ${SRL_WORKING_DIR}/predicatesModels"/>
+			<arg line="-trimfactor 0"/>
+			<arg line="-wfr ${WFR_LIST_FOR_PREDICATES}"/>
+			<arg line="-fer ${FER_LIST_FOR_PREDICATES}"/>
+			<arg line="-comborules ${COMBO_RULES_FOR_PREDICATES}"/>
+			<arg line="-modellookup miacp.semantics.srl.SrlPredicatesModelNameLookup"/>
+				
+			<arg line="-outputfile ${SRL_PREDICATES_FINAL_MODEL_FILE}"/>
+		</java>
+	</target>
+	
+</project>

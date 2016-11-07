@@ -1,0 +1,58 @@
+README FILE
+
+MIAC-P project
+
+Stephen Tratz
+
+==================================================
+1. INTRODUCTION
+==================================================
+
+This is a modified version of the semantically-enriched parsing system described in the EMNLP 2011 paper "A Fast, Accurate, Non-Projective, Semantically-Enriched Parser" by Stephen Tratz and Eduard Hovy. It is based upon the code that was released at http://www.isi.edu/publications/licensed-sw/fanseparser/index.html . There are a variety of changes, including bug fixes as well as other improvements such as changes to reduce the size of the parsing models during training and changes to the parsing feature templates. PropBank-style Semantic Role Labeling subsystem is not currently supported and may not work properly with the current dependency parse tree conventions.
+
+==================================================
+2. FILES/DIRECTORIES IN THIS RELEASE
+==================================================
+
+	build/		-- contains several Apache Ant build files for training the different components of the system
+	conf/		-- contains file configuring the feature generating code for the semantic annotation models (only needed during training)
+	data/		-- contains various data files (only needed during training)
+	doc/		-- contains documentation files
+	lib/		-- directory for any required .jar files
+	scripts/ 	-- contains several scripts
+	src/		-- the source directory
+	
+	README -- this file
+	
+	doc/LICENSE-2.0 -- The text of the license for this software (Apache 2.0)
+	doc/PENNCONVERTER_LICENSE -- The license covering the pennconverter
+	doc/WORDNET_LICENSE -- The text of the license for WordNet 3.0	
+	doc/BASE_CODE_README -- The README for the code this release is based on
+	doc/TRAINING_INSTRUCTIONS -- Instructions for training the various components of the system
+	doc/TREEBANK_CONVERSION_PROCESS -- Description of how to convert the Penn Treebank in a fashion similar to that of Tratz and Hovy (2011)
+	
+	doc/NounCompoundDefinitions.pdf -- PDF file containing noun-noun semantic relation definitions
+	doc/PrepositionSenseDefinitions.pdf -- PDF file containing preposition senses
+	doc/PossessiveDefinitions.pdf -- PDF file containing the list of interpretations of English possessives
+	doc/SyntacticDependencyGuide.pdf -- PDF file containing the list of syntactic dependencies created by an *earlier* version of the parser
+
+	finegrainconverter-0.2.jar -- Fine-grain conversion code (should be run *after* running the pennconverter tool)
+	pennconverter_modified_Spring2012.jar -- A modified version of the pennconverter (Johansson and Nugues, 2007) tool
+	pennconverter-110609.tar.gz -- *Unmodified* copy of the pennconverter code
+	ModifiedYamadaHeadFinder(withTratz&Hovy2011mods_and_more).java -- the modified code for the pennconverter
+
+	scripts/parse.sh -- a simple script for running the whole system
+
+==================================================
+3. LICENSES
+==================================================
+
+	This software is licensed under the Apache 2.0 license (just as the code released at http://www.isi.edu/publications/licensed-sw/fanseparser/index.html was released under the Apache 2.0 license).
+	See the 'doc/LICENSE-2.0' file for more information.
+	This file may also be found at http://www.apache.org/licenses/LICENSE-2.0
+
+	A copy of WordNet 3.0 is included with this software. 
+	Its license is provided in the 'doc/WORDNET_LICENSE' file.
+
+	Copies of the pennconverter (Johansson and Nugues, 2007) are included with this software. 
+	Its license is provided in the 'doc/PENNCONVERTER_LICENSE' file.

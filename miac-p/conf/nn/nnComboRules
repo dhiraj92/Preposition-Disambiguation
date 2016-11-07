@@ -1,0 +1,12 @@
+#
+# Combination rules for noun compound feature generation
+#
+
+*CROSS*		ax			l	af	r	af		
+*CROSS*		posx		l	t	r	t		
+*CROSS*		lxax		l	lx	r	lx	
+*CROSS*		lx			l	ln		r	ln		
+*INTERSECT*		hx		l	hn		r	hn	
+*INTERSECT*		hvx		l	hv	r	hv	
+*INTERSECT*		gx		l	gn		r	gn		
+*INTERSECT*		gvx		l	gv	r	gv	

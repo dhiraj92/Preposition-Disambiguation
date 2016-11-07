@@ -1,0 +1,6 @@
+#Penn Treebank WSJ
+PTB_WSJ=semdata/possdata/Ptb02-22.sentences
+#Jungle Book
+JB=data/possessives/JBrebuilt.sentences
+#History of the Decline and Fall of the Roman Empire
+HDFRE=data/possessives/HDrebuilt.sentences

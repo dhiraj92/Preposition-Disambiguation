@@ -1,0 +1,85 @@
+#
+# Word-finding rules for semantic role labeling (arguments and adjuncts)
+#
+
+i			Self		isCapitalized,pos,wordClass,word,lemma,lastletters,hypernyms,synonyms,ahypernyms,asynonyms,lexname,affix	miacp.featgen.wfr.WordItself
+fr			Fronting	word	miacp.featgen.wfr.CreateLeftRightPseudoToken
+
+wl			WordToLeft	ruleitself,word,pos	miacp.featgen.wfr.WordToLeftRule
+wr			WordToRight	ruleitself,word,pos	miacp.featgen.wfr.WordToRightRule
+wl2			WordTwoToLeft	ruleitself,word,pos	miacp.featgen.wfr.WordToLeftRule	HowFarToLeft=2
+wr2			WordTwoToRight	ruleitself,word,pos	miacp.featgen.wfr.WordToRightRule	HowFarToRight=2
+
+wsl			WordsToLeft	ruleitself,word,pos	miacp.featgen.wfr.WordToLeftRule
+wsr			WordsToRight	ruleitself,word,pos	miacp.featgen.wfr.WordToRightRule
+wsl			WordsTwoToLeft	ruleitself,word,pos	miacp.featgen.wfr.WordToLeftRule	HowFarToLeft=2
+wsr			WordsTwoToRight	ruleitself,word,pos	miacp.featgen.wfr.WordToRightRule	HowFarToRight=2
+
+gh			GrandparentArc	word	miacp.featgen.wfr.CreateGrandparentArcPseudoToken
+gp			Grandparent		word,lemma,pos	miacp.featgen.wfr.GrandparentRule
+
+hv			Head	frames,hasdash,lexname,word,wordClass,hypernyms,synonyms,lexname,ahypernyms,asynonyms,glossterms,pos,lemma,firstletters,lastletters,affix	miacp.featgen.wfr.SyntacticGovernorRule
+h2			Head2	word	miacp.featgen.wfr.HeadRuleWithPseudoToken
+
+si		SIBLINGS_CROSS	word	miacp.featgen.wfr.GetSiblingsCrossed
+
+aux			AUX		word,lemma,ruleitself	miacp.featgen.wfr.GetSiblingsByType	DEP_TYPE=aux
+auxpass		AUXPASS	word,lemma,ruleitself	miacp.featgen.wfr.GetSiblingsByType	DEP_TYPE=auxpass
+#vch		VCH		word,lemma,ruleitself	miacp.featgen.wfr.GetSiblingsByType	DEP_TYPE=vch
+#csubj		CSUBJ	word,lemma,ruleitself	miacp.featgen.wfr.GetSiblingsByType	DEP_TYPE=csubj
+#nsubj		NSUBJ	word,lemma,pos,lemma,ruleitself	miacp.featgen.wfr.GetSiblingsByType	DEP_TYPE=nsubj
+#csubjpass	CSUBJPASS	word,lemma,ruleitself	miacp.featgen.wfr.GetSiblingsByType	DEP_TYPE=csubjpass
+#nsubjpass	NSUBJPASS	word,lemma,pos,ruleitself	miacp.featgen.wfr.GetSiblingsByType	DEP_TYPE=nsubjpass\
+
+subj		SUBJ		word,lemma,pos,ruleitself	miacp.featgen.wfr.GetSiblingsByType	DEP_TYPE=nsubj,csubj
+subjpass	SUBJPASS	word,lemma,pos,ruleitself	miacp.featgen.wfr.GetSiblingsByType	DEP_TYPE=nsubjpass,csubjpass
+
+dobj		DOBJ	word,lemma,pos,ruleitself	miacp.featgen.wfr.GetSiblingsByType	DEP_TYPE=dobj
+mark		MARK	lemma,ruleitself	miacp.featgen.wfr.GetSiblingsByType	DEP_TYPE=mark
+imark		IMARK	ruleitself	miacp.featgen.wfr.GetSiblingsByType	DEP_TYPE=infmark
+prep		PREP	lemma,ruleitself	miacp.featgen.wfr.GetSiblingsByType	DEP_TYPE=prep
+iobj		IOBJ	word,lemma,ruleitself	miacp.featgen.wfr.GetSiblingsByType	DEP_TYPE=iobj
+adv			ADV		word,lemma,ruleitself	miacp.featgen.wfr.GetSiblingsByType	DEP_TYPE=advmod
+advc		ADVCL	ruleitself	miacp.featgen.wfr.GetSiblingsByType	DEP_TYPE=advcl
+wadv		WADV	lemma,ruleitself	miacp.featgen.wfr.GetSiblingsByType	DEP_TYPE=whadvmod
+tmod		TMOD	word,lemma,ruleitself	miacp.featgen.wfr.GetSiblingsByType	DEP_TYPE=tmod
+cop			COP		word,lemma,ruleitself	miacp.featgen.wfr.GetSiblingsByType	DEP_TYPE=cop
+ccomp		CCOMP	ruleitself			miacp.featgen.wfr.GetSiblingsByType	DEP_TYPE=ccomp
+acomp		ACOMP	ruleitself			miacp.featgen.wfr.GetSiblingsByType	DEP_TYPE=acomp
+xcomp		XCOMP	ruleitself,lemma	miacp.featgen.wfr.GetSiblingsByType	DEP_TYPE=xcomp
+objcomp		OCOMP	pos,wordClass,ruleitself	miacp.featgen.wfr.GetSiblingsByType	DEP_TYPE=objcomp
+prt			PRT		lemma,ruleitself	miacp.featgen.wfr.GetSiblingsByType	DEP_TYPE=prt
+purp		PURP	ruleitself			miacp.featgen.wfr.GetSiblingsByType	DEP_TYPE=purpcl
+ag			AGENT	ruleitself			miacp.featgen.wfr.GetSiblingsByType	DEP_TYPE=agent
+#cc			CC		ruleitself,lemma	miacp.featgen.wfr.GetSiblingsByType	DEP_TYPE=cc
+#conj		CONJ	ruleitself			miacp.featgen.wfr.GetSiblingsByType	DEP_TYPE=conj
+somearg		SEVERAL	ruleitself			miacp.featgen.wfr.GetSiblingsByType	DEP_TYPE=acomp,dobj,ccomp,xcomp
+infarg		INFARG	ruleitself			miacp.featgen.wfr.GetSiblingsByType	DEP_TYPE=purpcl,xcomp,extr
+
+c_measure	C_MEAS	ruleitself	miacp.featgen.wfr.GetChildrenByType	DEP_TYPE=measure
+#added pos
+c_pcomp		C_PCOMP	ruleitself,lemma,pos,lexname	miacp.featgen.wfr.GetChildrenByType	DEP_TYPE=pcomp
+c_pobj		C_POBJ	ruleitself,times,lemma,lexname,hypernyms,synonyms,ahypernyms,asynonyms,affix	miacp.featgen.wfr.GetChildrenByType	DEP_TYPE=pobj
+c_wadv		C_WADV	ruleitself,lemma	miacp.featgen.wfr.GetChildrenByType	DEP_TYPE=whadvmod
+#c_cc		C_CC	ruleitself,lemma	miacp.featgen.wfr.GetChildrenByType	DEP_TYPE=cc
+#c_conj		C_CONJ	ruleitself	miacp.featgen.wfr.GetSiblingsByType	DEP_TYPE=conj
+#c_dep		C_DEP	ruleitself,lemma	miacp.featgen.wfr.GetSiblingsByType	DEP_TYPE=dep
+
+c_mark		C_MARK		ruleitself,lemma	miacp.featgen.wfr.GetChildrenByType	DEP_TYPE=mark
+c_subj		C_SUBJ		ruleitself,lemma	miacp.featgen.wfr.GetChildrenByType	DEP_TYPE=nsubj,csubj
+c_subjpass	C_SUBJPASS	ruleitself,lemma	miacp.featgen.wfr.GetChildrenByType	DEP_TYPE=nsubjpass,csubjpass
+c_comb		C_COMB		ruleitself,lemma	miacp.featgen.wfr.GetChildrenByType	DEP_TYPE=combo
+c_adv		C_ADV		ruleitself,isCapitalized,lemma	miacp.featgen.wfr.GetChildrenByType	DEP_TYPE=advmod
+c_poss		C_POSS		ruleitself,lemma,lexname	miacp.featgen.wfr.GetChildrenByType	DEP_TYPE=poss
+c_amod		C_AMOD		ruleitself,lemma,affix	miacp.featgen.wfr.GetChildrenByType	DEP_TYPE=amod
+c_partmod	C_PARTMOD	ruleitself,pos		miacp.featgen.wfr.GetChildrenByType	DEP_TYPE=partmod
+c_appos		C_APPOS		ruleitself			miacp.featgen.wfr.GetChildrenByType	DEP_TYPE=appos
+c_ccomp		C_CCOMP		ruleitself			miacp.featgen.wfr.GetChildrenByType	DEP_TYPE=ccomp
+c_infmod	C_INFMOD	ruleitself			miacp.featgen.wfr.GetChildrenByType	DEP_TYPE=infmod
+c_nn		C_NN		ruleitself,times,affix	miacp.featgen.wfr.GetChildrenByType	DEP_TYPE=nn
+c_det		C_DET		ruleitself,lemma	miacp.featgen.wfr.GetChildrenByType	DEP_TYPE=det
+c_num		C_NUM		ruleitself			miacp.featgen.wfr.GetChildrenByType	DEP_TYPE=num
+c_postloc	C_PL		ruleitself			miacp.featgen.wfr.GetChildrenByType	DEP_TYPE=postloc
+c_predet	C_PREDET	ruleitself,lemma	miacp.featgen.wfr.GetChildrenByType	DEP_TYPE=predet
+c_prep		C_PREP		ruleitself,lemma	miacp.featgen.wfr.GetChildrenByType	DEP_TYPE=prep
+c_complm	C_complm	ruleitself			miacp.featgen.wfr.GetChildrenByType	DEP_TYPE=complm

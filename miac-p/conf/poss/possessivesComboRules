@@ -1,0 +1,15 @@
+#
+# Combination rules for possessives interpretation
+#
+
+#Affixes
+*CROSS*		xax		po		af	pe		af
+
+#WordNet types
+*CROSS*		xtx		po		typ		pe		typ
+
+#Lexicographer filenames
+*CROSS*		xlx		po		lxa		pe		lxa
+
+#WordNet links
+*CROSS*		xkx		po		lkn		pe		lkn

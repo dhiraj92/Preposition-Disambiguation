@@ -1,0 +1,92 @@
+<!-- Ant build file related to building noun compound interpretation models -->
+<project name="nn" basedir="..">
+
+	<!-- Import common targets for SVM building/running and compilation-->
+	<import file="build_common.xml"/>
+	
+	<!-- Directory containing the noun compound instances -->
+	<property name="TRAINING_DATA_DIR" value="data/nn/newversion"/>
+	
+	<!-- Working directory (directory in which to keep intermediate files during training/testing) -->
+	<property name="WORKING_DIR" value="semdata/nndata"/>
+
+	<!-- Feature extraction configuration files -->
+	<property name="WFR_LIST" value="conf/nn/nnWFRs"/>
+	<property name="FER_LIST" value="conf/nn/nnFERs"/>
+	<property name="COMBO_LIST" value="conf/nn/nnComboRules"/>
+	
+	<!-- Portion of the lowest weighted (but weighted > 0) features to remove -->
+	<property name="MODEL_TRIM_FACTOR" value="0.0"/>
+	
+	<!-- The name of the model to be build -->
+	<property name="MODEL_FILE" value="nnModel.gz"/>
+
+	<target name="NN_train_system" depends="NN_feature_extract,NN_feature_select_and_build,NN_wrap_models"/>
+	
+	<target name="NN_feature_extract" depends="compile">
+		<java classname="miacp.semantics.nn.NnFeatureExtractionRoutine" fork="true">
+			<classpath refid="project.classpath"/>
+			<jvmarg value="-Xmx6000m"/>
+			<arg line="-indir ${TRAINING_DATA_DIR}"/>
+			<arg line="-wndir ${WORDNET_DIR}"/>
+			<arg line="-wfr ${WFR_LIST}"/>
+			<arg line="-fer ${FER_LIST}"/>
+			<arg line="-comborules ${COMBO_LIST}"/>
+			
+			<arg line="-outfile ${WORKING_DIR}/traininstances/nnfeatfile"/>
+		</java>
+	</target>
+
+	<target name="NN_feature_select_and_build" depends="compile">
+		<antcall target="trainLiblinearModels">
+			<param name="instances" value="${WORKING_DIR}/traininstances"/>
+			<param name="feature_rankings" value="${WORKING_DIR}/featuresSelected"/>
+			<param name="min_feature_frequency" value="0"/>
+			<param name="max_features" value="1000000000"/>
+			<param name="svm_training_files" value="${WORKING_DIR}/svmTrainingFiles"/>
+			<param name="alphabets" value="${WORKING_DIR}/alphabetFiles"/>
+			<param name="models" value="${WORKING_DIR}/models"/>
+			<param name="svmcparam" value="0.01"/>
+			<param name="waitfor" value="false"/>
+		</antcall>
+	</target>
+	
+	<target name="NN_wrap_models" depends="compile">
+		<java classname="miacp.semantics.BundleModelsWithFeatureGenerator" fork="true">
+			<classpath refid="project.classpath"/>
+			<jvmarg value="-Xmx6000m"/>
+			<arg line="-alphabets ${WORKING_DIR}/alphabetFiles/nnfeatfile"/>
+			<arg line="-models ${WORKING_DIR}/models/nnfeatfile.model"/>
+			<arg line="-trimfactor ${MODEL_TRIM_FACTOR}"/>
+				
+			<arg line="-wfr ${WFR_LIST}"/>
+			<arg line="-fer ${FER_LIST}"/>
+			<arg line="-comborules ${COMBO_LIST}"/>
+				
+			<arg line="-outputfile ${MODEL_FILE}"/>
+		</java>
+	</target>
+
+	<!-- Cross validation-related targets -->
+	<target name="NN_cross_validate_evaluation" depends="NN_feature_extract,NN_split_to_folds,NN_feature_select_and_build,NN_testModels"/>
+	<target name="NN_split_to_folds" depends="compile">
+		<antcall target="runSplitToFolds">
+			<param name="infile" value="${WORKING_DIR}/traininstances/nnfeatfile"/>
+			<param name="training_fold_prefix" value="${WORKING_DIR}/traininstances/fold"/>
+			<param name="test_fold_prefix" value="${WORKING_DIR}/testinstances/fold"/>
+			<param name="num_folds" value="10"/>
+			<param name="random_seed" value="0"/>
+		</antcall>
+		<delete file="${WORKING_DIR}/traininstances/nnfeatfile"/>
+	</target>
+	<target name="NN_testModels" depends="compile">
+		<antcall target="runSvmTester">
+			<param name="model_dir" value="${WORKING_DIR}/models"/>
+			<param name="alphabet_dir" value="${WORKING_DIR}/alphabetFiles"/>
+			<param name="test_dir" value="${WORKING_DIR}/testinstances"/>
+			<param name="output_dir" value="${WORKING_DIR}/output"/>
+			<param name="summary_file" value="${WORKING_DIR}/nnmodelsPredictionSummary.txt"/>
+		</antcall>
+	</target>
+
+</project>

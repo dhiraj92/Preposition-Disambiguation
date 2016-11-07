@@ -1,0 +1,39 @@
+#
+# Feature Extraction Rules for possessives
+#
+
+word		w		miacp.featgen.fer.WordFER
+asynonymsN	sn		miacp.featgen.fer.SynonymsFER	OverridePos=NN
+asynonymsV	sv		miacp.featgen.fer.SynonymsFER	OverridePos=VB
+asynonymsDV	sv		miacp.featgen.fer.SynonymsFER	OverridePos=VB	DerivedInputPos=NN	
+
+ahypernyms	hy		miacp.featgen.fer.HypernymsFER
+
+ahypernymsN	hn		miacp.featgen.fer.HypernymsFER	OverridePos=NN
+ahypernymsV	hv		miacp.featgen.fer.HypernymsFER	OverridePos=VB
+ahypernymsDV	hv		miacp.featgen.fer.HypernymsFER	OverridePos=VB	DerivedInputPos=NN
+
+linksN		lkn		miacp.featgen.fer.WordNetLinksFER		OverridePos=NN
+linksV		lkv		miacp.featgen.fer.WordNetLinksFER		OverridePos=VB
+linksDV		lkv		miacp.featgen.fer.WordNetLinksFER		OverridePos=VB	DerivedInputPos=NN
+
+glosstermsN	gn		miacp.featgen.fer.GlossTermsFER		OverridePos=NN
+glosstermsV	gv		miacp.featgen.fer.GlossTermsFER		OverridePos=VB
+affix		af		miacp.featgen.fer.AffixFER
+wnTypes		typ		miacp.featgen.fer.WordNetPosTypesFER
+
+letters		ll		miacp.featgen.fer.LastLettersFER
+
+alexname	alx		miacp.featgen.fer.LexNameFER
+
+lexname		lx		miacp.featgen.fer.LexNameFER	MaxSenseNum=1
+
+lexname1N	lx1	miacp.featgen.fer.LexNameFER	MaxSenseNum=1	OverridePos=NN
+lexname1V	lx1	miacp.featgen.fer.LexNameFER	MaxSenseNum=1	OverridePos=VB
+lexname1DV	lx1	miacp.featgen.fer.LexNameFER	MaxSenseNum=1	OverridePos=VB	DerivedInputPos=NN
+
+lexnameAN	lxa	miacp.featgen.fer.LexNameFER	OverridePos=NN
+lexnameAV	lxa	miacp.featgen.fer.LexNameFER	OverridePos=VB
+lexnameADV	lxa	miacp.featgen.fer.LexNameFER	OverridePos=VB	DerivedInputPos=NN	
+
+pos			pos		miacp.featgen.fer.POS_FER

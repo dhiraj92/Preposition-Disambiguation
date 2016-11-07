@@ -1,0 +1,121 @@
+<!-- Ant project for packaging up the project. May be out-of-date. -->
+<project name="parser_packaging" basedir=".." default="makeit">
+
+	<import file="build_common.xml"/>
+
+	<target name="init">
+		<tstamp />	
+		
+		<property name="DIST" value="dist"/>
+		
+		<property name="CONF" value="conf"/>
+		<property name="DATA" value="data" />
+		
+		<path id="project.classpath">
+			<pathelement path="${CLASSES}" />
+			<fileset dir="${LIB}">
+				<include name="**/*.jar" />
+			</fileset>
+		</path>
+	</target>
+
+
+	<target name="compile" depends="init">
+		<delete dir="${CLASSES}"/>
+		<mkdir dir="${CLASSES}" />
+		<javac srcdir="${SRC}" destdir="${CLASSES}" debug="on">
+			<classpath>
+				<fileset dir="${LIB}">
+					<include name="**/*.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+		<!--<copy todir="${CLASSES}">
+			<fileset dir="${SRC}">
+				<exclude name="*.java" />
+				<include name="**/*" />
+			</fileset>
+		</copy>-->
+		<!--<copy todir="${CLASSES}">
+			<fileset dir="${RESOURCES}">
+				<include name="**/*" />
+			</fileset>
+		</copy>-->
+	</target>
+	
+	<target name="makeit" depends="compile">
+		<delete dir="${DIST}"/>
+		<mkdir dir="${DIST}"/>
+		<mkdir dir="${DIST}/lib"/>
+		<mkdir dir="${DIST}/src"/>
+		<!-- Create .jar -->
+		<jar destfile="${DIST}/${PROJECT_NAME}-${VERSION}.jar">
+			<fileset dir="${CLASSES}"/>
+		</jar>
+		
+		<!-- Copy 'doc' --> 
+		<copy todir="${DIST}">
+			<fileset dir="doc">
+				<include name="**/*"/>
+			</fileset>
+		</copy>
+		
+		<!-- Copy 'extras' -->
+		<copy todir="${DIST}">
+			<fileset dir="extras">
+				<include name="**/*"/>
+			</fileset>
+		</copy>
+		
+		<!-- Copy 'conf' --> 
+		<copy todir="${DIST}/conf">
+			<fileset dir="${CONF}">
+				<include name="**/*"/>
+			</fileset>
+		</copy>
+		
+		
+		<!-- Copy 'build' -->
+		<copy todir="${DIST}/build">
+			<fileset dir="build">
+				<include name="build_common.xml"/>
+				<include name="build_nn.xml"/>
+				<include name="build_pos.xml"/>
+				<include name="build_psd.xml"/>
+				<include name="build_parse.xml"/>
+				<include name="build_srl.xml"/>
+				<include name="build_possessives.xml"/>
+			</fileset>
+		</copy>
+		
+		<!-- Copy 'lib' -->
+		<copy todir="${DIST}/${LIB}">
+			<fileset dir="${LIB}">
+				<include name="**/*"/>
+			</fileset>
+		</copy>
+		
+		<!-- Copy 'data' -->
+		<copy todir="${DIST}/data">
+			<fileset dir="data">
+				<include name="**/*"/>
+			</fileset>
+		</copy>
+		
+		<!-- Copy source -->
+		<copy todir="${DIST}/src">
+			<fileset dir="${SRC}">
+				<include name="**/*.java"/>
+			</fileset>
+		</copy>
+		
+		<!-- Tar everything -->
+		<tar destfile="${PROJECT_NAME}-${VERSION}.tar">
+			<fileset dir="${DIST}">
+				<include name="**/*"/>
+			</fileset>
+		</tar>
+		
+	</target>
+
+</project>

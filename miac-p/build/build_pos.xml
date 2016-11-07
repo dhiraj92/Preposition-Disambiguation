@@ -1,0 +1,286 @@
+<!-- Ant build file for training the part-of-speech tagger -->
+<project xmlns:ac="antlib:net.sf.antcontrib" name="postagging" basedir="..">
+
+	<!-- Import common targets for SVM building/running and compilation as well as POS/parsing filenames-->
+	<import file="build_pos_and_parse_common.xml"/>
+	
+	<property name="MAX_MEM" value="-Xmx7000m" />
+
+	<!-- Class for reading in the sentences -->
+	<property name="SENTENCE_READER" value="miacp.parse.io.ConllxSentenceReader"/>
+
+	<!-- Feature generation class -->
+	<property name="POS_FEAT_GENERATOR" value="miacp.pos.featgen.DefaultEnglishPosFeatureGenerator"/>
+
+	<!-- For training a single POS tagger -->
+	<target name="POS_train_system" depends="compile">
+		<mkdir dir="${POS_WORKING_DIR}"/>
+		<!-- The training data -->
+		<property name="trainingFile" value="posTrainingFile.txt"/>
+
+		<!-- Directory to keep intermediate files -->
+		<property name="minFeats" value="2"/>
+		<property name="cval" value="0.02"/>
+
+		<antcall target="TrainPosTagger">
+
+			<param name="TRAIN_RAW_FILE" value="${trainingFile}" />
+			<param name="SVM_TRAINING_FILE" value="${POS_WORKING_DIR}/posSVMtrainingFile" />
+			<param name="MODEL_FILENAME" value="posTagger.gz" />
+			<param name="ALPHABET_FILE" value="${POS_WORKING_DIR}/posTaggerFeatureAlphabet.txt" />
+
+			<param name="SENTENCE_READER" value="${SENTENCE_READER}" />
+			<param name="FEATURE_GENERATOR" value="${POS_FEAT_GENERATOR}" />
+			<param name="TRAIN_INSTANCES_FILE" value="${POS_WORKING_DIR}/posTrainInstances.gz" />
+			<param name="FEATURE_RANKINGS_FILE" value="${POS_WORKING_DIR}/posBestFeats.txt" />
+			<param name="FEATURES_READABLE_FILE" value="${POS_WORKING_DIR}/posReadableFeats.txt" />
+			
+			<param name="MIN_FEATURE_OCCURRENCE" value="${minFeats}" />
+			<param name="MAX_FEATURES_TO_USE" value="1000000000" />
+			<param name="CVAL" value="${cval}" />
+
+		</antcall>
+	</target>
+
+	<target name="CreateFolds">
+		<mkdir dir="${POS_WORKING_DIR}"/>
+		<ac:var name="POS_MRG_COMBINED_FILE" value="${POS_WORKING_DIR}/posMrgTestFold"/>
+
+		<ac:var name="foldnum" value=""/>
+		<!-- Delete any existing combined MRG files -->
+		<echo message="Deleting existing combined MRG files (if they exist)"/>
+		<ac:for list="${FOLDS_LIST}" param="fold">
+			<sequential>
+				<delete file="${POS_MRG_COMBINED_FILE}@{fold}"/>
+			</sequential>
+		</ac:for>
+		
+		<!-- Combine MRG files together for the folds -->
+		<echo message="Combining MRG files together into folds"/>
+		<ac:for list="${WSJ_TRAINING_SECTIONS}" param="mrgFolder">
+			<sequential>
+				<ac:switch value="@{mrgFolder}">
+					<ac:case value="00"><ac:var name="foldnum" value="0"/></ac:case>
+					<ac:case value="01"><ac:var name="foldnum" value="0"/></ac:case>
+					<ac:case value="02"><ac:var name="foldnum" value="1"/></ac:case>
+					<ac:case value="03"><ac:var name="foldnum" value="1"/></ac:case>
+					<ac:case value="04"><ac:var name="foldnum" value="2"/></ac:case>
+					<ac:case value="05"><ac:var name="foldnum" value="2"/></ac:case>
+					<ac:case value="06"><ac:var name="foldnum" value="3"/></ac:case>
+					<ac:case value="07"><ac:var name="foldnum" value="3"/></ac:case>
+					<ac:case value="08"><ac:var name="foldnum" value="4"/></ac:case>
+					<ac:case value="09"><ac:var name="foldnum" value="4"/></ac:case>
+					<ac:case value="10"><ac:var name="foldnum" value="5"/></ac:case>
+					<ac:case value="11"><ac:var name="foldnum" value="5"/></ac:case>
+					<ac:case value="12"><ac:var name="foldnum" value="6"/></ac:case>
+					<ac:case value="13"><ac:var name="foldnum" value="6"/></ac:case>
+					<ac:case value="14"><ac:var name="foldnum" value="7"/></ac:case>
+					<ac:case value="15"><ac:var name="foldnum" value="7"/></ac:case>
+					<ac:case value="16"><ac:var name="foldnum" value="8"/></ac:case>
+					<ac:case value="17"><ac:var name="foldnum" value="8"/></ac:case>
+					<ac:case value="18"><ac:var name="foldnum" value="9"/></ac:case>
+					<ac:case value="19"><ac:var name="foldnum" value="9"/></ac:case>
+					<ac:case value="20"><ac:var name="foldnum" value="10"/></ac:case>
+					<ac:case value="21"><ac:var name="foldnum" value="10"/></ac:case>
+				</ac:switch>
+						
+				<ac:for param="file">
+				    <fileset dir="${WSJ_DIR}/@{mrgFolder}" includes="*.mrg"/>
+				    <sequential>
+					<exec executable="/bin/sh">
+				  		<arg value="-c" />
+				  		<arg value="cat @{file} &gt;&gt; ${POS_MRG_COMBINED_FILE}${foldnum}" />
+					</exec>
+				    </sequential>
+				</ac:for>
+			</sequential>
+		</ac:for>
+		
+		<!-- Convert MRG files to new format -->
+		<ac:var name="POS_CONLL_FILE" value="${POS_WORKING_DIR}/posConllTestFold"/>
+		<echo message="Converting MRG files and deleting intermediate files"/>
+		<ac:for list="${FOLDS_LIST}" param="fold">
+			<sequential>
+				<!-- Run modified Penn converter -->
+				<antcall target="modified_pennconverter">
+					<param name="input_file" value="${POS_MRG_COMBINED_FILE}@{fold}"/>
+					<param name="output_file" value="${POS_CONLL_FILE}@{fold}"/>
+				</antcall>
+				<!-- Run fine converter -->
+				<antcall target="fine-grain_converter">
+					<param name="input_file" value="${POS_CONLL_FILE}@{fold}"/>
+					<param name="output_file" value="${POS_TEST_FOLD_FILE}@{fold}"/>
+				</antcall>
+				<!-- delete intermediate files -->
+				<delete file="${POS_MRG_COMBINED_FILE}@{fold}"/>
+				<delete file="${POS_CONLL_FILE}@{fold}"/>			
+			</sequential>
+		</ac:for>
+		
+		<!-- Delete any existing training files -->
+		<ac:for list="${FOLDS_LIST},FULL" param="trainportion">
+			<sequential>
+				<delete file="${POS_TRAIN_FOLD_FILE}@{trainportion}"/>
+			</sequential>
+		</ac:for>
+		
+		<!-- Combine fine folds together to create training folds -->
+		<ac:for list="${FOLDS_LIST}" param="fold">
+			<sequential>
+				<!-- Add file -->
+				<ac:for list="${FOLDS_LIST},FULL" param="trainportion">
+					<sequential>
+						<ac:if>
+							<ac:equals arg1="@{fold}" arg2="@{trainportion}"/>
+							<ac:then/> <!-- do nothing -->
+							<ac:else>
+								<!-- concatenate -->
+								<echo message="adding @{fold} to @{trainportion}"/>
+								<exec executable="/bin/sh">
+									<arg value="-c" />
+									<arg value="cat ${POS_TEST_FOLD_FILE}@{fold} &gt;&gt; ${POS_TRAIN_FOLD_FILE}@{trainportion}" />
+								</exec>
+							</ac:else>
+						</ac:if>
+					</sequential>
+				</ac:for>
+			</sequential>
+		</ac:for>
+	</target>
+
+	<!-- For training multiple POS taggers, one for each training fold. -->
+	<target name="TrainOneTaggerPerFold" depends="compile">
+		<property name="minFeats" value="2"/>
+		<property name="cval" value="0.02"/>
+		<ac:for list="${FOLDS_LIST},FULL" param="foldNum">
+			<sequential>
+				<antcall target="TrainPosTagger">
+					<param name="TRAIN_RAW_FILE" value="${POS_TRAIN_FOLD_FILE}@{foldNum}" /> <!-- ${additionalfile}: -->
+					<param name="SVM_TRAINING_FILE" value="${POS_WORKING_DIR}/posSvmTrainingFile@{foldNum}" />
+					<param name="MODEL_FILENAME" value="${POS_WORKING_DIR}/posModel@{foldNum}" />
+					<param name="ALPHABET_FILE" value="${POS_WORKING_DIR}/posAlphabet@{foldNum}" />
+
+					<param name="SENTENCE_READER" value="${SENTENCE_READER}" />
+					<param name="FEATURE_GENERATOR" value="${POS_FEAT_GENERATOR}" />
+					<param name="TRAIN_INSTANCES_FILE" value="${POS_WORKING_DIR}/posTrainInstances@{foldNum}.gz" />
+					<param name="FEATURE_RANKINGS_FILE" value="${POS_WORKING_DIR}/posBestFeats@{foldNum}" />
+					<param name="FEATURES_READABLE_FILE" value="${POS_WORKING_DIR}/posReadableFeats@{foldNum}" />
+
+					<param name="MIN_FEATURE_OCCURRENCE" value="${minFeats}" />
+					<param name="MAX_FEATURES_TO_SELECT" value="1000000000" />
+					<param name="MAX_FEATURES_TO_USE" value="1000000000" />
+					<param name="CVAL" value="${cval}" />
+				</antcall>
+			</sequential>
+		</ac:for>
+	</target>
+
+
+	<!-- For running the various taggers over the training folds as well as the development and test sections -->
+	<target name="PosTagAll" depends="compile">
+		<property name="cval" value="0.02"/>
+		<property name="sentenceWriter" value="miacp.parse.io.DefaultSentenceWriter"/>
+
+		<!-- Delete existing combined training fold output file -->
+		<!-- Combine output for training folds together -->
+		<delete file="${PARSE_TRAIN_FILE}.autotagged"/>
+		<ac:for list="${FOLDS_LIST}" param="foldNum">
+			<sequential>
+				<java classname="miacp.pos.PerformPosTagging" fork="true">
+					<classpath refid="project.classpath" />
+					<jvmarg value="-Xmx1000m" />
+					<jvmarg value="${MAX_MEM}" />
+					<arg line="-model ${POS_WORKING_DIR}/posModel@{foldNum}.gz" />
+					<arg line="-input ${POS_TEST_FOLD_FILE}@{foldNum}" />
+					<arg line="-sreader ${SENTENCE_READER}" />
+					<arg line="-swriter ${sentenceWriter}" />
+					<arg line="-writeropts output=${POS_WORKING_DIR}/posOutputFold@{foldNum}"/>
+					<arg line="-wndir ${WORDNET_DIR}" />
+					<arg line="-confusion ${POS_WORKING_DIR}/confusion_fold@{foldNum}" />
+				</java>
+				<exec executable="/bin/sh">
+				  <arg value="-c" />
+				  <arg value="cat ${POS_WORKING_DIR}/posOutputFold@{foldNum} &gt;&gt; ${PARSE_TRAIN_FILE}.autotagged" />
+				</exec>
+			</sequential>
+		</ac:for>
+		
+		
+		<!-- POS tag the development file -->
+		<java classname="miacp.pos.PerformPosTagging" fork="true">
+			<classpath refid="project.classpath" />
+			<jvmarg value="-Xmx1000m" />
+			<jvmarg value="${MAX_MEM}" />
+			<arg line="-model ${POS_WORKING_DIR}/posModelFULL.gz"/>
+			<arg line="-input ${PARSE_DEVEL_FILE}.gold" />
+			<arg line="-sreader ${SENTENCE_READER}" />
+			<arg line="-swriter ${sentenceWriter}"/>
+			<arg line="-writeropts output=${PARSE_DEVEL_FILE}.autotagged" />
+			<arg line="-wndir ${WORDNET_DIR}" />
+			<arg line="-confusion ${POS_WORKING_DIR}/confusion_dev"/>
+		</java>
+		<!-- POS tag the test file -->
+		<java classname="miacp.pos.PerformPosTagging" fork="true">
+			<classpath refid="project.classpath" />
+			<jvmarg value="-Xmx1000m" />
+			<jvmarg value="${MAX_MEM}" />
+			<arg line="-model ${POS_WORKING_DIR}/posModelFULL.gz" />
+			<arg line="-input ${PARSE_TEST_FILE}.gold" />
+			<arg line="-sreader ${SENTENCE_READER}" />
+			<arg line="-swriter ${sentenceWriter}"/>
+			<arg line="-writeropts output=${PARSE_TEST_FILE}.autotagged" />
+			<arg line="-wndir ${WORDNET_DIR}" />
+			<arg line="-confusion ${POS_WORKING_DIR}/confusion_test"/>
+		</java>
+	</target>
+
+	<!-- Target for training a single POS tagging model -->
+	<target name="TrainPosTagger" depends="compile">
+		<!-- Extract the features -->
+		<java classname="miacp.pos.train.PosTagTrainingDataGenerator" fork="true">
+			<classpath refid="project.classpath" />
+			<jvmarg value="-Xmx1000m"/>
+			<jvmarg value="${MAX_MEM}"/>
+			<arg line="-input ${TRAIN_RAW_FILE}"/>
+			<arg line="-sentencereader ${SENTENCE_READER}"/>
+			<arg line="-output ${TRAIN_INSTANCES_FILE}"/>
+			<arg line="-featuregenerator ${FEATURE_GENERATOR}"/>
+			<arg line="-wndir ${WORDNET_DIR}"/>
+		</java>
+		
+		<!-- Select features, create training input files, train the model -->
+		<antcall target="trainLiblinearModels">
+			<param name="instances" value="${TRAIN_INSTANCES_FILE}"/>
+			<param name="feature_rankings" value="${FEATURE_RANKINGS_FILE}"/>
+			<param name="min_feature_frequency" value="${MIN_FEATURE_OCCURRENCE}"/>
+			<param name="max_features" value="${MAX_FEATURES_TO_USE}"/>
+			<param name="svm_training_files" value="${SVM_TRAINING_FILE}"/>
+			<param name="alphabets" value="${ALPHABET_FILE}"/>
+			<param name="null_class_name" value="null"/>
+			<param name="models" value="${MODEL_FILENAME}_c${CVAL}_libsvm.out"/>
+			<param name="svmcparam" value="${CVAL}"/>
+		</antcall>
+		
+		<!-- Shrink the model -->
+		<java classname="miacp.pos.train.FinalizePosModel" fork="true">
+			<classpath refid="project.classpath" />
+			<jvmarg value="-Xms1000m" />
+			<jvmarg value="${MAX_MEM}" />
+			<arg line="-alphabet ${ALPHABET_FILE}"/>
+			<arg line="-inputmodel ${MODEL_FILENAME}_c${CVAL}_libsvm.out"/>
+			<arg line="-trimfactor 0.0"/>
+			<arg line="-output ${MODEL_FILENAME}.gz"/>
+			<arg line="-featgenclass ${POS_FEAT_GENERATOR}"/>
+		</java>
+
+		<!-- Remove intermediate files -->
+		<delete file="${ALPHABET_FILE}"/>
+		<delete file="${SVM_TRAINING_FILE}"/>
+		<delete file="${MODEL_FILENAME}_c${CVAL}_libsvm.out"/>
+		<delete file="${FEATURE_RANKING_FILE}"/>
+		<delete file="${FEATURES_READABLE_FILE}"/>
+		<delete file="${TRAIN_INSTANCES_FILE}"/>
+
+	</target>
+
+</project>

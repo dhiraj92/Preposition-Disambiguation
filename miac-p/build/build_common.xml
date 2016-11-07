@@ -1,0 +1,186 @@
+<!-- Ant build file containing common properties and targets used by other build files -->
+<project name="common" basedir="..">
+
+	<!-- Project information -->
+	<property name="PROJECT_NAME" value="miacparser" />
+	<property name="VERSION" value="0.1" />
+
+	<!-- Build directory -->
+	<property name="BUILD" location="build" />
+	<!-- Directory to place compiled classes -->
+	<property name="CLASSES" location="${BUILD}/classes" />
+	<!-- Library directory -->
+	<property name="LIB" location="lib" />
+	<!-- Source code directory -->
+	<property name="SRC" location="src" />
+	<!-- Directory to place jar of project -->
+	<property name="JAR_DIR" value="jar" />
+	
+	<!-- WordNet 3.0 dictionary ('dict') directory -->
+	<property name="WORDNET_DIR" value="data/wordnet3"/>
+	
+	<!-- RunPipe constants (only currently used for training the preposition sense disambiguation system) -->
+	<property name="PIPELINE_RUNNER_CLASS" value="miacp.runpipe.util.RunPipe" />
+	<property name="CORPUS_READER" value="-corpusreader" />
+	<property name="DOCUMENT_READER" value="-documentreader" />
+	<property name="ANNOTATOR" value="-annotator" />
+	<property name="END_PROCESSING_UNIT" value="-endpoint" />
+	
+	
+	<target name="init">
+		<path id="project.classpath">
+			<pathelement path="${CLASSES}" />
+			<fileset dir="${LIB}">
+				<include name="**/*.jar" />
+			</fileset>
+		</path>
+	</target>
+
+	<!-- Compile the code -->
+	<target name="compile" depends="init">
+		<delete dir="${CLASSES}"/>
+		<mkdir dir="${CLASSES}" />
+		<javac srcdir="${SRC}" destdir="${CLASSES}" debug="on">
+			<classpath>
+				<fileset dir="${LIB}">
+					<include name="**/*.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+	
+	<!-- Create the jar... doesn't really belong in build_common -->
+	<target name="makeJar" depends="compile">
+		<mkdir dir="${JAR_DIR}" />
+		<!-- Create .jar -->
+		<jar destfile="${JAR_DIR}/${PROJECT_NAME}-${VERSION}.jar">
+			<fileset dir="${CLASSES}" />
+		</jar>
+	</target>
+
+	<!-- Runs the modified penn converter -->
+	<target name="modified_pennconverter">
+		<exec executable="/bin/sh">
+			<arg value="-c"/>
+			<arg value="java -jar pennconverter_modified_Spring2012.jar -format=conllx -splitSmallClauses=false -splitSlash=false -imAsHead=false  -ddtGapping=false -conll2008clf=false -iobj=true -name=false -posthon=true -deepenQP=true -qmod=true &lt; ${input_file} &gt; ${output_file}"/>
+		</exec>
+	</target>
+	
+	<!-- Runs the fine-grain converter -->
+	<target name="fine-grain_converter">
+		<java classname="tratz.parse.converter.ConllToFineGrain" fork="true">
+			<classpath>
+				<pathelement location="finegrainconverter-0.2.jar"/>
+			</classpath>
+			<jvmarg value="-Xmx7000m" />
+			<arg value="${input_file}"/>
+			<arg value="${output_file}"/>
+			<arg value="false"/>
+		</java>
+	</target>
+	
+	<!-- Figures out which are the best features -->
+	<target name="runFeatureSelector" depends="compile">
+		<java classname="miacp.ml.FeatureSelection" fork="true">
+			<classpath refid="project.classpath" />
+			<jvmarg value="-Xmx12000m" />
+			<!-- <jvmarg value="-Xdebug" /> 
+			<jvmarg value="-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=9999" /> -->
+			<arg line="-instances ${instances}" />
+			<arg line="-output ${output}" />
+			<arg line="-minfreq ${min_feature_frequency}" />
+		</java>
+	</target>
+	
+	<!-- Creates LIBLINEAR-compatible training files along with serialized alphabets -->
+	<target name="runSvmTrainingFileCreator" depends="compile">
+		<java classname="miacp.ml.SvmTrainingFileCreator" fork="true">
+			<classpath refid="project.classpath" />
+			<jvmarg value="-Xmx12000m" />
+			<!-- <jvmarg value="-Xdebug" /> 
+			<jvmarg value="-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=9999" /> -->
+				
+			<arg line="-maxfeatures ${max_features}" />
+			<arg line="-featurerankings ${feature_rankings}" />
+			<arg line="-instances ${instances}" />
+			<arg line="-outfiles ${svm_training_files}" />
+			<arg line="-alphabets ${alphabets}" />
+			<arg line="-nullclass ${null_class_name}"/>
+		</java>
+	</target>
+	
+	<!-- Target for running the svm trainer -->
+	<target name="runSvmTrainer" depends="compile">
+		<java classname="miacp.ml.TrainSvmModels" fork="true">
+			<classpath refid="project.classpath" />
+			<jvmarg value="-Xmx12000m" />
+			<!-- <jvmarg value="-Xdebug" /> 
+			<jvmarg value="-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=9999" /> -->
+			
+			<!-- input file/directory -->
+			<arg line="-input ${input}" />
+			<!-- file/directory for model(s) -->
+			<arg line="-output ${output}" />
+			<!-- SVM C parameter -->
+			<arg line="-svmcparam ${svmcparam}" />
+			<!-- wait for one model to finish training before starting the next one -->
+			<arg line="-waitfor ${waitfor}"/>
+		</java>
+	</target>
+
+	<!-- For training models using LIBLINEAR after feature extraction -->	
+	<target name="trainLiblinearModels">
+		<!-- 1. Determine most useful features, features meeting cutoff constraint -->
+		<antcall target="runFeatureSelector">
+			<param name="instances" value="${instances}"/>
+			<param name="output" 	value="${feature_rankings}"/>
+			<param name="min_feature_frequency" value="${min_feature_frequency}"/>
+		</antcall>
+		<!-- 2. Build the input file for the LIBLINEAR training system -->
+		<antcall target="runSvmTrainingFileCreator">
+			<param name="max_features" 		value="${max_features}"/>
+			<param name="instances" 	value="${instances}"/>
+			<param name="feature_rankings" 	value="${feature_rankings}"/>
+			<param name="svm_training_files" 	value="${svm_training_files}"/>
+			<param name="alphabets" 		value="${alphabets}"/>
+			<param name="null_class_name"	value="${null_class_name}"/>
+		</antcall>
+		<!-- 3. Execute the LIBLINEAR training system -->
+		<antcall target="runSvmTrainer">
+			<param name="input" 	value="${svm_training_files}"/>
+			<param name="output" 	value="${models}"/>
+			<param name="svmcparam" value="${svmcparam}"/>
+			<param name="waitfor" 	value="${waitfor}"/>
+		</antcall>
+	</target>
+
+	<!-- Can be used to split an instances file into training and test fold files -->
+	<target name="runSplitToFolds" depends="compile">
+		<java classname="miacp.ml.SplitToFolds" fork="true">
+			<classpath refid="project.classpath" />
+			<jvmarg value="-Xmx6048m" />
+			<arg line="-infile ${infile}" />
+			<arg line="-trainfoldprefix ${training_fold_prefix}" />
+			<arg line="-testfoldprefix ${test_fold_prefix}" />
+			<arg line="-numfolds ${num_folds}" />
+			<arg line="-randomseed ${random_seed}" />
+		</java>
+	</target>
+	
+	<!-- Can be used to evaluate the effectiveness of trained model(s) -->
+	<target name="runSvmTester" depends="compile">
+		<java classname="miacp.ml.SvmModelTester" fork="true">
+			<classpath refid="project.classpath"/>
+			<jvmarg value="-Xmx6000m"/>
+			<!--<jvmarg value="-Xdebug" />
+			<jvmarg value="-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=9999" /> -->
+			<arg line="-modeldir ${model_dir}"/>
+			<arg line="-alphabetdir ${alphabet_dir}"/>
+			<arg line="-testdir ${test_dir}"/>
+			<arg line="-outputdir ${output_dir}"/>
+			<arg line="-summaryfile ${summary_file}"/>
+		</java>
+	</target>
+
+	
+</project>

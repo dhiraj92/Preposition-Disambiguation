@@ -1,0 +1,26 @@
+#
+# Feature extraction rules for preposition sense disambiguation (PSD)
+#
+
+word			w	miacp.featgen.fer.WordFER
+isCapitalized	c	miacp.featgen.fer.IsCapitalizedFER
+lemma			l	miacp.featgen.fer.LemmaFER
+pos				pos	miacp.featgen.fer.POS_FER
+wordClass		wc	miacp.featgen.fer.WordClassFER
+
+affix			af	miacp.featgen.fer.AffixFER
+
+hypernyms		h	miacp.featgen.fer.HypernymsFER
+ahypernyms		ah	miacp.featgen.fer.AllHypernymsFER
+
+synonyms		s	miacp.featgen.fer.SynonymsFER
+derived			as	miacp.featgen.fer.DerivedFormFER
+asynonyms		as	miacp.featgen.fer.AllSynonymsFER
+
+glossterms		g	miacp.featgen.fer.GlossTermsFER
+
+lexname			ln	miacp.featgen.fer.LexNameFER
+
+ruleitself		ri	miacp.featgen.fer.RuleItselfFER
+
+word2vecSimWords	wv	miacp.featgen.fer.Word2VecFER

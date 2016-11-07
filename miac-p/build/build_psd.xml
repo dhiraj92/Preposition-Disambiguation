@@ -1,0 +1,258 @@
+<project xmlns:ac="antlib:net.sf.antcontrib" name="psd" basedir="..">
+
+	<!-- Import common targets for SVM building/running and compilation-->
+	<import file="build_common.xml"/>
+
+	<!-- The directory under which the 'train', 'test', and 'key' SemEval 2007 files have been extracted -->
+    <property name="SEMEVAL_DATA_DIR" value="data/SemEval2007" />
+	
+	<!-- Final trained output file -->
+	<property name="PSD_MODELS_FILE" value="psdModels.gz"/>
+		
+	<!-- Final model trim factor -->
+	<property name="FINAL_TRIM_FACTOR" value="0.0"/>
+	
+	<!-- POS-tagging model to use -->
+	<property name="POS_TAGGING_MODEL_FILE" value="posModelFULL.gz"/> <!-- posTaggingModel.gz -->
+	
+	<!-- Parsing model to use -->
+	<property name="PARSER_MODEL_FILE" value="parseModelFinal35.gz"/> <!-- parseModel.gz -->	
+	
+	
+	<!-- Temporary directories for intermediate files -->
+	<property name="WORKING_DIR" value="${SEMEVAL_DATA_DIR}/working"/>
+	<property name="TRAINING_INSTANCES_DIR" value="${WORKING_DIR}/featuresTrain"/>
+	<property name="TESTING_INSTANCES_DIR" value="${WORKING_DIR}/featuresTest"/>
+	<property name="MODELS_DIR" value="${WORKING_DIR}/models"/>
+	<property name="ALPHABETS_DIR" value="${WORKING_DIR}/alphabetFiles"/>
+	<property name="FEATURE_RANKINGS_DIR" value="${WORKING_DIR}/featuresSelected"/>
+	<property name="SVM_TRAINING_FILES_DIR" value="${WORKING_DIR}/trainingFiles"/>
+	<property name="PARSED_TRAINING_FILES_DIR" value="${WORKING_DIR}/parsedTrain"/>
+	<property name="PARSED_TEST_FILES_DIR" value="${WORKING_DIR}/parsedTest"/>
+
+	<!-- feature-generating word lookup rules -->
+	<property name="COMPLEX_RULE_LIST" value="conf/psd/psdWFRs"/>
+	<!-- feature generation rules config -->
+	<property name="FEATURE_EXTRACTION_RULE_LIST" value="conf/psd/psdFERs"/>
+	<!-- combination rules -->	
+	<property name="COMBO_RULE_LIST" value="conf/psd/psdComboRules"/>
+
+
+	<!-- Target for training a set of production models (include test data in training) -->
+	<target name="PSD_train_system" depends="PSD_parse_training,PSD_parse_test,semeval_feature_extract_final,PSD_feature_select_and_build,PSD_wrap_models" />
+	<!-- Train models on training data and test on testing data -->
+	<target name="PSD_full_experiment" depends="PSD_parse_training,PSD_parse_test,semeval_feature_extract_train,semeval_feature_extract_test,PSD_feature_select_and_build,PSD_test_models" />
+	
+
+	<!-- Target for selecting features and then building the actual SVM models -->
+	<target name="PSD_feature_select_and_build" depends="compile">
+		<antcall target="trainLiblinearModels">
+			<param name="instances" value="${TRAINING_INSTANCES_DIR}"/>
+			<param name="feature_rankings" value="${FEATURE_RANKINGS_DIR}"/>
+			<param name="min_feature_frequency" value="0"/>
+			<param name="max_features" value="1000000000"/>
+			<param name="svm_training_files" value="${SVM_TRAINING_FILES_DIR}"/>
+			<param name="alphabets" value="${ALPHABETS_DIR}"/>
+			<param name="models" value="${MODELS_DIR}"/>
+			<param name="svmcparam" value="0.01"/>
+			<param name="waitfor" value="false"/>
+		</antcall>
+	</target>
+
+	<!-- Test the preposition sense disambiguation models -->
+	<target name="PSD_test_models" depends="compile">
+		<antcall target="runSvmTester">
+			<param name="model_dir" value="${MODELS_DIR}"/>
+			<param name="alphabet_dir" value="${ALPHABETS_DIR}"/>
+			<param name="test_dir" value="${TESTING_INSTANCES_DIR}"/>
+			<param name="output_dir" value="${WORKING_DIR}/output"/>
+			<param name="summary_file" value="${MODELS_DIR}.txt"/>
+		</antcall>
+	</target>
+	
+	<!-- Wrap up the SVMs with instances of the feature generation class -->
+	<target name="PSD_wrap_models" depends="compile">
+		<java classname="miacp.semantics.BundleModelsWithFeatureGenerator" fork="true">
+			<classpath refid="project.classpath"/>
+			<jvmarg value="-Xmx6000m"/>
+
+			<arg line="-alphabets ${ALPHABETS_DIR}"/>
+			<arg line="-models ${MODELS_DIR}"/>
+			<arg line="-trimfactor ${FINAL_TRIM_FACTOR}"/>
+			<arg line="-wfr ${COMPLEX_RULE_LIST}"/>
+			<arg line="-fer ${FEATURE_EXTRACTION_RULE_LIST}"/>
+			<arg line="-comborules ${COMBO_RULE_LIST}"/>
+			<arg line="-modellookup miacp.semantics.psd.PsdModelNameLookup"/>
+				
+			<arg line="-outputfile ${PSD_MODELS_FILE}"/>
+		</java>
+	</target>
+
+	<target name="PSD_parse_both" depends="PSD_parse_training,PSD_parse_test"/>
+
+	<!-- POS-tag & parse the PSD training documents -->
+	<target name="PSD_parse_training" depends="compile">
+		<antcall target="parse_docs">
+			<param name="indir" value="${SEMEVAL_DATA_DIR}/train/xml"/>
+			<param name="outdir" value="${PARSED_TRAINING_FILES_DIR}"/>
+		</antcall>
+	</target>
+
+	<!-- POS-tag & parse the PSD test documents -->
+	<target name="PSD_parse_test" depends="compile">
+		<antcall target="parse_docs">
+			<param name="indir" value="${SEMEVAL_DATA_DIR}/test/xml"/>
+			<param name="outdir" value="${PARSED_TEST_FILES_DIR}"/>
+		</antcall>
+	</target>
+
+	<target name="semeval_feature_extract_all" depends="semeval_feature_extract_train,semeval_feature_extract_test"/>
+
+	<!-- Extract features from the training data -->
+	<target name="semeval_feature_extract_train" depends="compile">
+		<antcall target="PSD_feature_extract">
+			<param name="indir" value="${PARSED_TRAINING_FILES_DIR}"/>
+			<param name="outdir" value="${WORKING_DIR}/featuresTrain"/>
+			<param name="APPEND" value="false"/>
+		</antcall>
+	</target>
+
+	<!-- Extract features from the test data -->
+	<target name="semeval_feature_extract_test" depends="compile">
+		<antcall target="PSD_feature_extract">
+			<param name="indir" value="${PARSED_TEST_FILES_DIR}"/>
+			<param name="outdir" value="${WORKING_DIR}/featuresTest"/>
+			<param name="APPEND" value="false"/>
+		</antcall>
+	</target>
+
+	<!-- Extract features from both the training data and the test data for building a production model -->
+	<target name="semeval_feature_extract_final" depends="compile">
+		<antcall target="PSD_feature_extract">
+			<param name="indir" value="${PARSED_TRAINING_FILES_DIR}"/>
+			<param name="outdir" value="${WORKING_DIR}/featuresTrain"/>
+			<param name="APPEND" value="false"/>
+		</antcall>
+		<antcall target="PSD_feature_extract">
+			<param name="indir" value="${PARSED_TEST_FILES_DIR}"/>
+			<param name="outdir" value="${WORKING_DIR}/featuresTrain"/>
+			<param name="APPEND" value="true"/>
+		</antcall>
+	</target>
+
+	<target name="PSD_feature_extract" depends="compile">
+		<ac:if>
+			<ac:equals arg1="${APPEND}" arg2="true" />
+			<ac:then>
+				<!-- do nothing -->
+			</ac:then>
+			<ac:else>
+				<delete dir="${outdir}"/>
+			</ac:else>
+		</ac:if>
+		<pathconvert property="classpathProp" refid="project.classpath"/>
+		<java classname="${PIPELINE_RUNNER_CLASS}" fork="true">
+			<classpath refid="project.classpath"/>
+			<!-- <jvmarg value="-Xmx4024m"/> -->
+			<jvmarg value="-Xms1024m"/>
+			<jvmarg value="-Xmx10g"/>
+			<!-- <jvmarg value="-Xdebug" /> 
+			<jvmarg value="-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=9999" /> --> 
+
+			<!-- Corpus Reader -->
+			<arg value="${CORPUS_READER}" />
+			<arg value="miacp.runpipe.impl.corpusreader.GzippedCorpusReader" />
+			<arg value="InputDirectories=${indir}" />
+
+			<!-- Fills out the lemma etc. (Still needed?)-->
+			<arg value="${ANNOTATOR}"/>
+			<arg value="miacp.runpipe.impl.annotators.parse.TokenFieldUpdater"/>
+			<arg value="WordNetDir=${WORDNET_DIR}" />
+
+			<!-- Extract the features -->
+			<arg value="${END_PROCESSING_UNIT}" />
+			<arg value="miacp.semantics.psd.training.FeatureExtractorEndPoint" />
+			<arg value="OutputDir=${outdir}"/>
+			<arg value="FeatureExtractionRuleList=${FEATURE_EXTRACTION_RULE_LIST}"/>
+			<arg value="ComplexRuleList=${COMPLEX_RULE_LIST}"/>
+			<arg value="TruthDir=${SEMEVAL_DATA_DIR}/key"/>
+			<arg value="Append=${APPEND}"/>
+			<!-- Comment out this argument to use the original TPP annotations -->
+			<arg value="OverrideMap=data/psd/mappings_for_tpp_data"/>
+		</java>
+	</target>
+	
+	<!-- For parsing SemEval 2007 PSD task documents -->
+	<target name="parse_docs" depends="compile">
+		<java classname="${PIPELINE_RUNNER_CLASS}" fork="true">
+			<classpath refid="project.classpath" />
+			<jvmarg value="-Xms128m" />
+			<jvmarg value="-Xmx6000m" />
+
+			<!-- Corpus Reader -->
+			<arg value="${CORPUS_READER}" />
+			<arg value="miacp.runpipe.impl.corpusreader.DirectoryCorpusReader" />
+			<arg value="InputDirectories=${indir}"/>
+
+			<!-- Document Reader -->
+			<arg value="${DOCUMENT_READER}" />
+			<arg value="miacp.semantics.psd.training.PrepDocReader" />
+
+			<!-- Tokenize using whitespace (luckily this is sufficient) -->
+			<arg value="${ANNOTATOR}" />
+			<arg value="miacp.runpipe.impl.annotators.tokenize.WhitespaceTokenizer" />
+
+			<!-- Part-of-Speech tag -->
+			<arg value="${ANNOTATOR}" />
+			<arg value="miacp.runpipe.impl.annotators.pos.TratzPosTaggerAnnotator" />
+			<arg value="ModelFile=${POS_TAGGING_MODEL_FILE}"/>
+			<arg value="WordNetDir=${WORDNET_DIR}"/>
+
+			<!-- Parse -->
+			<arg value="${ANNOTATOR}" />
+			<arg value="miacp.runpipe.impl.annotators.parse.TratzParserAnnotator" />
+			<arg value="ModelFile=${PARSER_MODEL_FILE}"/>
+
+			<!-- End Points -->
+			<arg value="${END_PROCESSING_UNIT}" />
+			<arg value="miacp.runpipe.impl.endpoints.GzippedDocumentWriter" />
+			<arg value="OutputDir=${outdir}" />
+		</java>
+	</target>
+
+	<target name="PSDtemp_print_stuff" depends="compile">
+		<ac:if>
+			<ac:equals arg1="${APPEND}" arg2="true" />
+			<ac:then>
+				<!-- do nothing -->
+			</ac:then>
+			<ac:else>
+				<delete dir="${outdir}"/>
+			</ac:else>
+		</ac:if>
+		<java classname="${PIPELINE_RUNNER_CLASS}" fork="true">
+			<classpath refid="project.classpath"/>
+			<jvmarg value="-Xmx4024m"/>
+
+			<!-- Corpus Reader -->
+			<arg value="${CORPUS_READER}" />
+			<arg value="miacp.runpipe.impl.corpusreader.GzippedCorpusReader" />
+			<arg value="InputDirectories=${PARSED_TRAINING_FILES_DIR}" />
+
+			<!-- Fills out the lemma etc. (Still needed?)-->
+			<arg value="${ANNOTATOR}"/>
+			<arg value="miacp.runpipe.impl.annotators.parse.TokenFieldUpdater"/>
+			<arg value="WordNetDir=${WORDNET_DIR}" />
+
+			<!-- Extract the features -->
+			<arg value="${END_PROCESSING_UNIT}" />
+			<arg value="miacp.semantics.psd.training.PsdSentenceDumperEndPoint" />
+			<arg value="OutputDir=${WORKING_DIR}/plainparse"/>
+			<arg value="TruthDir=${SEMEVAL_DATA_DIR}/key"/>
+			<arg value="Append=${APPEND}"/>
+			<!-- Comment out this argument to use the original TPP annotations -->
+			<arg value="OverrideMap=data/psd/mappings_for_tpp_data"/>
+		</java>
+	</target>
+
+</project>

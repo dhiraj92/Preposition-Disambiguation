@@ -1,0 +1,159 @@
+TRAINING INSTRUCTIONS
+
+This file describes how to train all the components of the system.
+
+This includes:
+	1. Parser
+	2. Part-of-Speech Tagger
+	3. Noun compound disambiguation system
+	4. Preposition sense disambiguation system
+	5. Possessives interpretation system
+	6. PropBank semantic role labeling system
+
+==========================================
+			Preliminaries
+==========================================
+All the training is performed using Apache Ant.
+	To download, or for more information, see
+	http://ant.apache.org/
+
+Some of the Ant tasks use the ant-contrib collection of tasks.
+	To get a copy of these, visit http://ant-contrib.sourceforge.net/
+	
+All of the components *except* the Parser are trained using LIBLINEAR.
+	LIBLINEAR can be obtained at
+	http://www.csie.ntu.edu.tw/~cjlin/liblinear/
+	***NOTE***
+		The Ant scripts for building components 2 through 6 expect a compiled version of LIBLINEAR to exist
+		in the parser installation directory with the name "trainSVM". If you dislike this location/name, you are
+		free to change it.
+	***NOTE*** 
+	
+==========================================
+			Training Steps
+==========================================
+This section describes the general flow of how the training operates for everything *except* the parser. If you don't care
+about the inner workings, you can skip this section.
+
+The components are trained in 5 steps. Much of the code for training these components is the same. 
+The same code is used for steps 2 through 4, regardless of the component being trained.
+
+	Step 1. Feature extraction -> build files containing the feature information
+				The files that are created in this process are formatted as follows:
+				Each line contains one data point (training/testing example) in a sparse format
+					The lines look like:
+						instance_name\30class\30feature1\30feature2\30feature3...
+						instance_name --> the name of the example (the name doesn't matter)
+						class --> the label of the example (i.e., 'green' in 'green apple' might be labeled 'JJ')
+						featureX --> a string indicating a boolean feature (presence of the string means the value is '1'; absence implies '0')
+						\30 --> I use this character instead of whitespace or commas because it is unlikely to occur within the feature names. According to the ASCII chart, \30 is 'record separator'.
+	Step 2. Feature selection
+				In this step, only features that meet a particular frequency threshold (usually 1 or 2) are kept.
+				Also, the features are ranked by the Chi Squared measure and only the best X features are kept. Typically, I leave X at a very high number so every feature is kept.
+				
+	Step 3. Create the training file in LIBLINEAR format
+				In this step, training file(s) are created in a format that LIBLINEAR can read
+				Also, serialized alphabet/dictionary files are created so that it is possible to map from feature strings to the feature indices used by LIBLINEAR.
+	
+	Step 4. Model training
+				In this step, LIBLINEAR is invoked on the training file(s) created in the previous step.
+	
+	Step 5. Model shrinking and wrapping
+				In this step, features that were assigning zero weights are removed from the model to reduce the memory footprint.
+				It is also possible to throw away X% of the lowest weighted features (that had weight > 0).
+				The trimmed model(s) are stored as serialized Java objects in a Gzipped file(s) along with the feature alphabet(s) and instance(s) of the appropriate feature generator (which is some sort of Java object).
+
+==========================================
+1. Parser
+==========================================
+
+Edit the PARSE_TRAIN_FILE and PARSE_DEVEL_FILE entries in the INSTALLATION_DIR/build/build_parse.xml to point to the training and development files, respectively.
+(See the TREEBANK_CONVERSION_PROCESS.txt file for information on converting the Penn Treebank into dependency trees)
+
+You may choose to alter the NUMBER_OF_TRAINING_ITERATIONS property to reduce the number of training operations.
+
+Change directories to INSTALLATION_DIR/build
+Run the following command "ant -f build_parse.xml Parser_train"
+
+This will run the trainer for a number of iterations, reporting the accuracy on the given development set.
+While it is possible to use the resulting model files, it is better to run one more step.
+
+Decide which model you are interested in using (probably the one that scored the highest on the development data) and then
+edit the -infile and -outfile arguments for the "FinalizeParsingModel" Ant task.
+(-infile points to the model you want to use. -outfile points to the new model file (e.g., parseModel.gz))
+
+Then, run the following command "ant -f build_parse.xml FinalizeParsingModel"
+(Running the command will produce a smaller and faster model)
+
+==========================================
+2. Part-of-speech tagger
+==========================================
+
+Edit the POS_TRAIN_FILE property in the INSTALLATION_DIR/build/build_pos.xml file to point to the training data.
+
+Change directories to INSTALLATION_DIR/build
+Run the following command "ant -f build_pos.xml POS_train_system"
+
+==========================================
+3. Noun compound disambiguation system
+==========================================
+
+Change directories to INSTALLATION_DIR/build
+Run the following command "ant -f build_nn.xml NN_train_system"
+
+If everything proceeds smoothly, a Gzipped model file (nnModel.gz) should appear
+
+==========================================
+4. Preposition sense disambiguation system
+==========================================
+
+The preposition sense disambiguation system relies on data created by The Preposition Project and used for the SemEval 2007 preposition sense disambiguation task.
+	The website of The Preposition Project is
+		http://www.clres.com/prepositions.html
+	The SemEval-2007 data can be obtained by following the given links:
+		http://nlp.cs.swarthmore.edu/semeval/tasks/task06/data/train.tar.gz
+		http://nlp.cs.swarthmore.edu/semeval/tasks/task06/data/test.tar.gz
+		http://nlp.cs.swarthmore.edu/semeval/tasks/task06/data/key.tar.gz
+
+First, download the SemEval-2007 preposition data and place in a directory of your choice (e.g., SemEval2007PSD).
+Then, extract each of the files which will resulting in 3 subdirectories (e.g., SemEval2007PSD/train, SemEval2007PSD/test, SemEval2007/key)
+
+Then, open the build/build_psd.xml file and change the SEMEVAL_DATA_DIR property to point to the directory with the SemEval data (e.g., SemEval2007PSD)
+
+By default, the models to be trained will use preposition definitions based on The Preposition Project definitions that I have spent some time refining.
+These definitions are described in data/psd/definitions
+The mappings for the TPP data are in the data/psd/mappings_for_tpp_data file
+To use the original TPP annotations instead, comment out the OverrideMap=data/psd/mappings_for_tpp_data argument in the PSD_feature_extract Ant task in the build/build_psd.xml file.
+
+Change directories to INSTALLATION_DIR/build
+Run the following command "ant -f build_psd.xml PSD_train_system"
+
+If everything proceeds smoothly, a file named "psdModels.gz" should appear.
+
+==========================================
+5. Possessives interpretation system
+==========================================
+
+I will document this in the next release.
+
+==========================================
+6. PropBank semantic role labeling system
+==========================================
+
+For this, the relevant Ant build fild is INSTALLATION_DIR/build/build_srl.xml
+
+Before you can begin, you will need a dependency converted version of the Penn Treebank. See the TREEBANK_CONVERSION_PROCESS.txt file for more information on this.
+You will also need a copy of PropBank (LDC catalogue id: LDC2004T14).
+
+First, edit the PTB_MRG_DIR, DEPENDENCY_PARSE_TRAINING_FILE, and PROPBANK_DIR properties to point to the
+	PennTreebank mrg files directory (e.g., Treebank3/parsed/mrg/wsj), the dependency converted version of the treebank (e.g., converted.conllX), and the PropBank root directory, respectively.
+	
+Also edit the SRL_WORKING_DIR so it points to a directory where you'd like to keep to temporary/intermediate files (if you don't like the default).
+	
+Then, change to the INSTALLATION_DIR/build directory and run
+	"ant -f build_srl.xml SRL_train_system"
+	
+Assuming everything runs correctly, you should have files
+	srlArgsWrapper.gz - argument/adjunct classifiers
+	srlPredWrapper.gz - predicate disambiguation models
+

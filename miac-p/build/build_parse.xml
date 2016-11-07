@@ -1,0 +1,143 @@
+<!-- Ant build file for training the parser -->
+<project xmlns:ac="antlib:net.sf.antcontrib" name="Parser" basedir="..">
+
+	<!-- Import common targets for SVM building/running and compilation as well as POS/parsing filenames -->
+	<import file="build_pos_and_parse_common.xml"/>
+
+	<property name="MAX_MEM" value="-Xmx11000m" />
+	
+	<!-- .gz will be added to final model name -->
+	<property name="MODEL_FILE_NAME" value="parseModel"/>
+	<property name="NUMBER_OF_TRAINING_ITERATIONS" value="60"/>
+	<property name="FEATURE_GENERATION_CLASS" value="miacp.parse.featgen.DefaultEnParseFeatureGenerator"/>
+
+	<!-- Target for training the parser -->
+	<target name="Parser_train" depends="compile">
+		<java classname="miacp.parse.train.OnlineParserTrainer" fork="true">
+			<classpath refid="project.classpath" />
+			<jvmarg value="-Xms1000m" />
+			<jvmarg value="${MAX_MEM}" />
+			<arg line="-infiles ${PARSE_TRAIN_FILE}.autotagged" />
+			<arg line="-iterations ${NUMBER_OF_TRAINING_ITERATIONS}" />
+			<arg line="-sentencereader miacp.parse.io.ConllxSentenceReader" />
+			<arg line="-out ${MODEL_FILE_NAME}.untrimmed" />
+			<arg line="-log ${MODEL_FILE_NAME}.training_log" />
+			<arg line="-featgen ${FEATURE_GENERATION_CLASS}" />
+			<arg line="-devfile ${PARSE_DEVEL_FILE}.autotagged" />
+			<arg line="-modelclass miacp.parse.ml.TrainablePerceptron"/>
+			<arg line="-trainingclass miacp.parse.train.StandardPerSentenceTrainer"/>
+			<arg line="-wndir ${WORDNET_DIR}" />
+			<!-- optional (default=10), determines when it will start saving models to disk -->
+			<arg line="-firstsaveiteration 10"/>
+			<!-- options: all,new_best; all = save after each iteration; new_best = only save if it scores higher on the development set -->
+			<arg line="-saveiterations new_best"/>
+		</java>
+	</target>
+	
+	<!-- Takes about 7 minutes provided there is plenty of memory -->
+	<target name="FinalizeParsingModel" depends="compile">
+		<java classname="miacp.parse.train.FinalizeParseModel" fork="true">
+			<classpath refid="project.classpath" />
+			<jvmarg value="-Xms1000m" />
+			<jvmarg value="-Xmx7300m" />
+			<!-- which model file do you want to use -->
+			<arg line="-infile parseModel.untrimmed35.gz"/>
+			<!-- file name for the smaller, faster version of the model -->
+			<arg line="-outfile parseModelFinal35.gz"/>
+			<arg line="-keeppercent 1.00"/>
+		</java>
+	</target>
+
+	<!-- Parse a given input file -->
+	<target name="Parse" depends="compile">
+		<java classname="miacp.parse.util.ParseScriptForEval" fork="true">
+			<classpath refid="project.classpath" />
+			<jvmarg value="-Xms1000m" />
+			<jvmarg value="-Xmx7300m" />
+			<arg line="-sentencereader miacp.parse.io.ConllxSentenceReader" />
+			<arg line="-sentencewriter miacp.parse.io.DefaultSentenceWriter" />
+			<arg line="-writeroptions output=model35output:skipsemantics=true" /> <!-- false for extra columns -->
+			<arg line="-model parseModelFinal35.gz" />
+			<arg line="-wndir ${WORDNET_DIR}" />
+			<arg line="-infile ${PARSE_TEST_FILE}.autotagged" />
+		</java>
+	</target>
+
+	<target name="CreateGoldTrainDevTestFiles">
+		<mkdir dir="${PARSE_WORKING_DIR}"/>
+		<!-- Delete any existing combined MRG files -->
+		<echo message="Deleting existing combined MRG files (if they exist)"/>
+		<ac:for list="${PARSE_TRAIN_FILE},${PARSE_DEVEL_FILE},${PARSE_TEST_FILE}" param="file">
+			<sequential>
+				<delete file="@{file}.mrgcombo"/>
+			</sequential>
+		</ac:for>
+		
+		<!-- Combine MRG files together -->
+		<echo message="Combining training MRG files together"/>
+		<ac:for list="${WSJ_TRAINING_SECTIONS}" param="mrgFolder">
+			<sequential>
+				<ac:for param="file">
+				    <fileset dir="${WSJ_DIR}/@{mrgFolder}" includes="*.mrg"/>
+				    <sequential>
+					<exec executable="/bin/sh">
+				  		<arg value="-c" />
+				  		<arg value="cat @{file} &gt;&gt; ${PARSE_TRAIN_FILE}.mrgcombo" />
+					</exec>
+				    </sequential>
+				</ac:for>
+			</sequential>
+		</ac:for>
+		<echo message="Combining development MRG files together"/>
+		<ac:for list="${WSJ_DEVEL_SECTIONS}" param="mrgFolder">
+			<sequential>
+				<ac:for param="file">
+				    <fileset dir="${WSJ_DIR}/@{mrgFolder}" includes="*.mrg"/>
+				    <sequential>
+					<exec executable="/bin/sh">
+				  		<arg value="-c" />
+				  		<arg value="cat @{file} &gt;&gt; ${PARSE_DEVEL_FILE}.mrgcombo" />
+					</exec>
+				    </sequential>
+				</ac:for>
+			</sequential>
+		</ac:for>
+		<echo message="Combining test MRG files together"/>
+		<ac:for list="${WSJ_TEST_SECTIONS}" param="mrgFolder">
+			<sequential>
+				<ac:for param="file">
+				    <fileset dir="${WSJ_DIR}/@{mrgFolder}" includes="*.mrg"/>
+				    <sequential>
+					<exec executable="/bin/sh">
+				  		<arg value="-c" />
+				  		<arg value="cat @{file} &gt;&gt; ${PARSE_TEST_FILE}.mrgcombo" />
+					</exec>
+				    </sequential>
+				</ac:for>
+			</sequential>
+		</ac:for>
+		
+		<!-- Convert MRG files to new format -->
+		<echo message="Converting MRG files and deleting intermediate files"/>
+		<ac:for list="${PARSE_TRAIN_FILE},${PARSE_DEVEL_FILE},${PARSE_TEST_FILE}" param="file">
+			<sequential>
+				<!-- Run modified Penn converter -->
+				<antcall target="modified_pennconverter">
+					<param name="input_file" value="@{file}.mrgcombo"/>
+					<param name="output_file" value="@{file}.conll"/>
+				</antcall>
+				<!-- Run fine converter -->
+				<antcall target="fine-grain_converter">
+					<param name="input_file" value="@{file}.conll"/>
+					<param name="output_file" value="@{file}.gold"/>
+				</antcall>
+				<!-- delete intermediate files -->
+				<delete file="@{file}.mrgcombo"/>
+				<delete file="@{file}.conll"/>			
+			</sequential>
+		</ac:for>
+		
+		
+	</target>
+
+</project>

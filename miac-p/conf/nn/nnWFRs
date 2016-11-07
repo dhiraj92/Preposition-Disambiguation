@@ -1,0 +1,8 @@
+#
+# Word-finding rules for noun compound interpretation feature generation
+#
+
+l	Modifier	word,synN,synV,synDV,hypN,hypV,hypDV,glossN,glossV,linksN,linksV,linksDV,types,lexN,lexV,lexDV,lexN1,lexV1,lexDV1,letters,hasprep,affix	miacp.featgen.wfr.WordItself
+r	Head		word,synN,synV,synDV,hypN,hypV,hypDV,glossN,glossV,linksN,linksV,linksDV,types,lexN,lexV,lexDV,lexN1,lexV1,lexDV1,letters,hasprep,affix	miacp.featgen.wfr.SyntacticGovernorRule
+
+ft	FullTerm	ruleitself	miacp.featgen.wfr.CombineWithParentRule	

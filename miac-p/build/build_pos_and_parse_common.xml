@@ -1,0 +1,33 @@
+<project xmlns:ac="antlib:net.sf.antcontrib" name="pos_and_parse_common" basedir="..">
+
+	<!-- Import common targets for SVM building/running and compilation -->
+	<import file="build_common.xml"/>
+
+	<!-- Penn Treebank WSJ MRG directory -->
+	<property name="WSJ_DIR" value="../../Files/corpora/ldc/Treebank_3/parsed/mrg/wsjNNpatched"/>
+	<!-- WSJ sections to use for training -->
+	<property name="WSJ_TRAINING_SECTIONS" value="00,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21"/>	
+	<!-- WSJ development section -->
+	<property name="WSJ_DEVEL_SECTIONS" value="22"/>
+	<!-- WSJ test section -->
+	<property name="WSJ_TEST_SECTIONS" value="23"/>
+
+	<!-- Working directories -->
+	<property name="POS_WORKING_DIR" value="posworking"/>
+	<property name="PARSE_WORKING_DIR" value="parseWorking" />
+
+	<property name="PARSE_TRAIN_FILE" value="${PARSE_WORKING_DIR}/parseTrainingFile" />
+	<property name="PARSE_DEVEL_FILE" value="${PARSE_WORKING_DIR}/parseDevelFile" />
+	<property name="PARSE_TEST_FILE"  value="${PARSE_WORKING_DIR}/parseTestFile" />
+
+
+	<!-- List of POS tagging folds -->
+	<property name="FOLDS_LIST" value="0,1,2,3,4,5,6,7,8,9,10"/>
+
+	<!-- Filenames for folds covering the training data -->
+	<property name="POS_TRAIN_FOLD_FILE" value="${POS_WORKING_DIR}/posTrainingForFold"/>
+	<property name="POS_TEST_FOLD_FILE" value="${POS_WORKING_DIR}/posTestFold"/>
+
+	<property name="POS_DEVEL_FILE" value="${POS_WORKING_DIR}/fineDevel.txt" />
+	<property name="POS_TEST_FILE"  value="${POS_WORKING_DIR}/fineTest.txt" />
+</project>
