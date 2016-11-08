@@ -1,0 +1,148 @@
+#
+# Word-finding rules for preposition sense disambiguation (PSD)
+#
+
+l	VerbToLeft2	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms	miacp.featgen.wfr.VerbToLeftRule
+l	HeadToLeft2	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms	miacp.featgen.wfr.PrepositionGovernorHeuristic
+hl	HeadToLeft	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms	miacp.featgen.wfr.PrepositionGovernorHeuristic
+vl	VerbToLeft	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms	miacp.featgen.wfr.VerbToLeftRule
+hr	PrepCompHeur	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms	miacp.featgen.wfr.PrepositionComplementHeuristic
+wl	WordToLeft	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms	miacp.featgen.wfr.WordToLeftRule
+
+h	Governor	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms,word2vecSimWords	miacp.featgen.wfr.SyntacticGovernorRule
+c	PrepCompSyn	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms,word2vecSimWords	miacp.featgen.wfr.PrepositionComplementSyntactic
+#
+# Feature extraction rules for preposition sense disambiguation (PSD)
+#
+
+word			w	miacp.featgen.fer.WordFER
+isCapitalized	c	miacp.featgen.fer.IsCapitalizedFER
+lemma			l	miacp.featgen.fer.LemmaFER
+pos				pos	miacp.featgen.fer.POS_FER
+wordClass		wc	miacp.featgen.fer.WordClassFER
+
+affix			af	miacp.featgen.fer.AffixFER
+
+hypernyms		h	miacp.featgen.fer.HypernymsFER
+ahypernyms		ah	miacp.featgen.fer.AllHypernymsFER
+
+synonyms		s	miacp.featgen.fer.SynonymsFER
+derived			as	miacp.featgen.fer.DerivedFormFER
+asynonyms		as	miacp.featgen.fer.AllSynonymsFER
+
+glossterms		g	miacp.featgen.fer.GlossTermsFER
+
+lexname			ln	miacp.featgen.fer.LexNameFER
+
+ruleitself		ri	miacp.featgen.fer.RuleItselfFER
+
+word2vecSimWords	wv	miacp.featgen.fer.Word2VecFERrunSvmTester:
+     [java] /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models.txt
+     [java] Applying model to: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/about
+     [java] Loading: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/about.model
+     [java] 357.0 7.0 0.9807692307692307
+     [java] Applying model to: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/above
+     [java] Loading: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/above.model
+     [java] 19.0 4.0 0.8260869565217391
+     [java] Applying model to: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/across
+     [java] Loading: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/across.model
+     [java] 150.0 1.0 0.9933774834437086
+     [java] Applying model to: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/after
+     [java] Loading: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/after.model
+     [java] 42.0 5.0 0.8936170212765957
+     [java] Applying model to: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/against
+     [java] Loading: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/against.model
+     [java] 90.0 2.0 0.9782608695652174
+     [java] Applying model to: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/along
+     [java] Loading: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/along.model
+     [java] 126.0 0.0 1.0
+     [java] Applying model to: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/among
+     [java] Loading: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/among.model
+     [java] 37.0 13.0 0.74
+     [java] Applying model to: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/around
+     [java] Loading: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/around.model
+     [java] 129.0 22.0 0.8543046357615894
+     [java] Applying model to: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/as
+     [java] Loading: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/as.model
+     [java] 81.0 1.0 0.9878048780487805
+     [java] Applying model to: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/at
+     [java] Loading: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/at.model
+     [java] 338.0 29.0 0.9209809264305178
+     [java] Applying model to: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/before
+     [java] Loading: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/before.model
+     [java] 18.0 2.0 0.9
+     [java] Applying model to: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/behind
+     [java] Loading: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/behind.model
+     [java] 64.0 2.0 0.9696969696969697
+     [java] Applying model to: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/beneath
+     [java] Loading: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/beneath.model
+     [java] 26.0 2.0 0.9285714285714286
+     [java] Applying model to: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/beside
+     [java] Loading: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/beside.model
+     [java] 29.0 0.0 1.0
+     [java] Applying model to: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/between
+     [java] Loading: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/between.model
+     [java] 102.0 0.0 1.0
+     [java] Applying model to: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/by
+     [java] Loading: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/by.model
+     [java] 212.0 36.0 0.8548387096774194
+     [java] Applying model to: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/down
+     [java] Loading: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/down.model
+     [java] 120.0 23.0 0.8391608391608392
+     [java] Applying model to: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/during
+     [java] Loading: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/during.model
+     [java] 39.0 0.0 1.0
+     [java] Applying model to: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/for
+     [java] Loading: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/for.model
+     [java] 377.0 75.0 0.834070796460177
+     [java] Applying model to: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/from
+     [java] Loading: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/from.model
+     [java] 487.0 91.0 0.842560553633218
+     [java] Applying model to: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/in
+     [java] Loading: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/in.model
+     [java] 538.0 143.0 0.7900146842878121
+     [java] Applying model to: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/inside
+     [java] Loading: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/inside.model
+     [java] 22.0 13.0 0.6285714285714286
+     [java] Applying model to: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/into
+     [java] Loading: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/into.model
+     [java] 267.0 30.0 0.898989898989899
+     [java] Applying model to: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/like
+     [java] Loading: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/like.model
+     [java] 118.0 7.0 0.944
+     [java] Applying model to: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/of
+     [java] Loading: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/of.model
+     [java] 1313.0 165.0 0.8883626522327469
+     [java] Applying model to: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/off
+     [java] Loading: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/off.model
+     [java] 48.0 8.0 0.8571428571428571
+     [java] Applying model to: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/on
+     [java] Loading: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/on.model
+     [java] 370.0 71.0 0.8390022675736961
+     [java] Applying model to: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/onto
+     [java] Loading: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/onto.model
+     [java] 57.0 1.0 0.9827586206896551
+     [java] Applying model to: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/over
+     [java] Loading: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/over.model
+     [java] 85.0 13.0 0.8673469387755102
+     [java] Applying model to: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/round
+     [java] Loading: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/round.model
+     [java] 63.0 16.0 0.7974683544303798
+     [java] Applying model to: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/through
+     [java] Loading: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/through.model
+     [java] 202.0 6.0 0.9711538461538461
+     [java] Applying model to: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/to
+     [java] Loading: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/to.model
+     [java] 515.0 57.0 0.9003496503496503
+     [java] Applying model to: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/towards
+     [java] Loading: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/towards.model
+     [java] 99.0 3.0 0.9705882352941176
+     [java] Applying model to: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/with
+     [java] Loading: /home/ssing129/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/with.model
+     [java] 526.0 52.0 0.9100346020761245
+     [java] 7066.0 900.0 0.8870198342957569
+
+PSD_full_experiment:
+
+BUILD SUCCESSFUL
+Total time: 451 minutes 32 seconds
