@@ -182,8 +182,8 @@ public class FeatureExtractorEndPoint extends EndPointImpl {
 					writer.println("#" + sentence.getParseString());
 					sentenceText = sentence.getAnnotText();
 					parseString = sentence.getParseString();
-					System.err.println(sentenceText);
-					System.err.println(parseString);
+					// System.err.println(sentenceText);
+					// System.err.println(parseString);
 					
 					int numTokens = containedList.size();
 					int headIndex = -1;

@@ -20,7 +20,8 @@ public class Word2VecFER extends AbstractFeatureRule{
 	private static final long serialVersionUID = 1L;
 	Word2Vec model;
 	Map<String, Collection<String>> simDict;
-	
+	static int count;
+
 	@Override
 	public void init(Map<String, String> params) {
 		        
@@ -39,6 +40,7 @@ public class Word2VecFER extends AbstractFeatureRule{
                 simDict = new HashMap<String, Collection<String>>();
             }
 			model = (Word2Vec) WordVectorSerializer.loadGoogleModel(gModel, true);			
+			count = 0;
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e){
@@ -53,18 +55,21 @@ public class Word2VecFER extends AbstractFeatureRule{
         if(nearestWords == null){
             nearestWords = model.wordsNearest(base, 10);
             simDict.put(base, nearestWords);
-        }    
-		// System.out.println(nearestWords);
+        }
+
+        count++;
+        if (count % 500 == 0){
+            write();
+        }
+
 		return new HashSet<String>(nearestWords);
 	}
 
-    @Override
-    protected void finalize(){
+    private void write(){
         try{
-            FileOutputStream fos = new FileOutputStream("data/similarWordsDict.ser");
+            FileOutputStream fos = new FileOutputStream("data/similarWordsDict.ser", false);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(simDict);
-            System.out.printf("Serialized HashMap data is saved in data/similarWordsDict.ser");
             oos.close();
             fos.close();
         }
