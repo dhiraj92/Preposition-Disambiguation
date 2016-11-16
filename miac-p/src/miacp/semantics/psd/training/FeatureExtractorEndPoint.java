@@ -182,8 +182,8 @@ public class FeatureExtractorEndPoint extends EndPointImpl {
 					writer.println("#" + sentence.getParseString());
 					sentenceText = sentence.getAnnotText();
 					parseString = sentence.getParseString();
-					System.err.println(sentenceText);
-					System.err.println(parseString);
+					// System.err.println(sentenceText);
+					// System.err.println(parseString);
 					
 					int numTokens = containedList.size();
 					int headIndex = -1;
@@ -301,9 +301,9 @@ public class FeatureExtractorEndPoint extends EndPointImpl {
 						
 						String annotText = annot.getText();
 						String type = annot.getPos();
-						if(type == null) {
-							System.err.println("Null type for: " + annotText);
-						}
+						//if(type == null) {
+						//	System.err.println("Null type for: " + annotText);
+						// }
 						// Strip off ending periods
 						String[] parts = annotText.split("\\s+");
 						String lastPart = parts[parts.length-1];
