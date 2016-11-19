@@ -19,6 +19,7 @@ public class stanfordClass {
 	 int headIndex = 7; 
 	 String sentence =	 "He led in amalgamating the Royal Clyde with the Royal Northern . "; 
 	 HashMap m = getDepGraph(sentence,8,"with","with");
+	 System.out.println(m.get("gov"));
 	 }
 	 
 

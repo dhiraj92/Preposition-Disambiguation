@@ -4,3 +4,4 @@ liblinear*
 build/classes
 trainSVM
 lib
+/bin/

@@ -1,0 +1,791 @@
+Buildfile: C:\Users\Dhiraj\workspace\PrepositionProject\build\build_psd.xml
+init:
+compile:
+   [delete] Deleting directory C:\Users\Dhiraj\workspace\PrepositionProject\build\classes
+    [mkdir] Created dir: C:\Users\Dhiraj\workspace\PrepositionProject\build\classes
+    [javac] C:\Users\Dhiraj\workspace\PrepositionProject\build\build_common.xml:43: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+    [javac] Compiling 223 source files to C:\Users\Dhiraj\workspace\PrepositionProject\build\classes
+    [javac] Note: Some input files use unchecked or unsafe operations.
+    [javac] Note: Recompile with -Xlint:unchecked for details.
+PSD_parse_training:
+init:
+compile:
+   [delete] Deleting directory C:\Users\Dhiraj\workspace\PrepositionProject\build\classes
+    [mkdir] Created dir: C:\Users\Dhiraj\workspace\PrepositionProject\build\classes
+    [javac] C:\Users\Dhiraj\workspace\PrepositionProject\build\build_common.xml:43: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+    [javac] Compiling 223 source files to C:\Users\Dhiraj\workspace\PrepositionProject\build\classes
+    [javac] Note: Some input files use unchecked or unsafe operations.
+    [javac] Note: Recompile with -Xlint:unchecked for details.
+parse_docs:
+     [java] Initializing document reader
+     [java] Initializing corpus reader
+     [java] Initializing annotatordata/SemEvalData/train/xml
+     [java] Initializing annotator
+     [java] Initializing annotator
+     [java] Loading model...loaded
+     [java] Model loading took: 10.966 seconds.
+     [java] Initializing end unit
+     [java] Reading file 1 of 34: pp-with.sents.trng.xml
+     [java] Reading file 2 of 34: pp-towards.sents.trng.xml
+     [java] Reading file 3 of 34: pp-to.sents.trng.xml
+     [java] Reading file 4 of 34: pp-through.sents.trng.xml
+     [java] Reading file 5 of 34: pp-round.sents.trng.xml
+     [java] Reading file 6 of 34: pp-over.sents.trng.xml
+     [java] Reading file 7 of 34: pp-onto.sents.trng.xml
+     [java] Reading file 8 of 34: pp-on.sents.trng.xml
+     [java] Reading file 9 of 34: pp-off.sents.trng.xml
+     [java] Reading file 10 of 34: pp-of.sents.trng.xml
+     [java] Reading file 11 of 34: pp-like.sents.trng.xml
+     [java] Reading file 12 of 34: pp-into.sents.trng.xml
+     [java] Reading file 13 of 34: pp-inside.sents.trng.xml
+     [java] Reading file 14 of 34: pp-in.sents.trng.xml
+     [java] Reading file 15 of 34: pp-from.sents.trng.xml
+     [java] Reading file 16 of 34: pp-for.sents.trng.xml
+     [java] Reading file 17 of 34: pp-during.sents.trng.xml
+     [java] Reading file 18 of 34: pp-down.sents.trng.xml
+     [java] Reading file 19 of 34: pp-by.sents.trng.xml
+     [java] Reading file 20 of 34: pp-between.sents.trng.xml
+     [java] Reading file 21 of 34: pp-beside.sents.trng.xml
+     [java] Reading file 22 of 34: pp-beneath.sents.trng.xml
+     [java] Reading file 23 of 34: pp-behind.sents.trng.xml
+     [java] Reading file 24 of 34: pp-before.sents.trng.xml
+     [java] Reading file 25 of 34: pp-at.sents.trng.xml
+     [java] Reading file 26 of 34: pp-as.sents.trng.xml
+     [java] Reading file 27 of 34: pp-around.sents.trng.xml
+     [java] Reading file 28 of 34: pp-among.sents.trng.xml
+     [java] Reading file 29 of 34: pp-along.sents.trng.xml
+     [java] Reading file 30 of 34: pp-against.sents.trng.xml
+     [java] Reading file 31 of 34: pp-after.sents.trng.xml
+     [java] Reading file 32 of 34: pp-across.sents.trng.xml
+     [java] Reading file 33 of 34: pp-above.sents.trng.xml
+     [java] Reading file 34 of 34: pp-about.sents.trng.xml
+     [java] Annotator processing complete
+     [java] End point processing complete
+PSD_parse_test:
+init:
+compile:
+   [delete] Deleting directory C:\Users\Dhiraj\workspace\PrepositionProject\build\classes
+    [mkdir] Created dir: C:\Users\Dhiraj\workspace\PrepositionProject\build\classes
+    [javac] C:\Users\Dhiraj\workspace\PrepositionProject\build\build_common.xml:43: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+    [javac] Compiling 223 source files to C:\Users\Dhiraj\workspace\PrepositionProject\build\classes
+    [javac] Note: Some input files use unchecked or unsafe operations.
+    [javac] Note: Recompile with -Xlint:unchecked for details.
+parse_docs:
+     [java] Initializing document reader
+     [java] data/SemEvalData/test/xmlInitializing corpus reader
+     [java] Initializing annotator
+     [java] Initializing annotator
+     [java] Initializing annotator
+     [java] Loading model...loaded
+     [java] Model loading took: 16.16 seconds.
+     [java] Initializing end unit
+     [java] Reading file 1 of 34: pp-with.sents.test.xml
+     [java] Reading file 2 of 34: pp-towards.sents.test.xml
+     [java] Reading file 3 of 34: pp-to.sents.test.xml
+     [java] Reading file 4 of 34: pp-through.sents.test.xml
+     [java] Reading file 5 of 34: pp-round.sents.test.xml
+     [java] Reading file 6 of 34: pp-over.sents.test.xml
+     [java] Reading file 7 of 34: pp-onto.sents.test.xml
+     [java] Reading file 8 of 34: pp-on.sents.test.xml
+     [java] Reading file 9 of 34: pp-off.sents.test.xml
+     [java] Reading file 10 of 34: pp-of.sents.test.xml
+     [java] Reading file 11 of 34: pp-like.sents.test.xml
+     [java] Reading file 12 of 34: pp-into.sents.test.xml
+     [java] Reading file 13 of 34: pp-inside.sents.test.xml
+     [java] Reading file 14 of 34: pp-in.sents.test.xml
+     [java] Reading file 15 of 34: pp-from.sents.test.xml
+     [java] Reading file 16 of 34: pp-for.sents.test.xml
+     [java] Reading file 17 of 34: pp-during.sents.test.xml
+     [java] Reading file 18 of 34: pp-down.sents.test.xml
+     [java] Reading file 19 of 34: pp-by.sents.test.xml
+     [java] Reading file 20 of 34: pp-between.sents.test.xml
+     [java] Reading file 21 of 34: pp-beside.sents.test.xml
+     [java] Reading file 22 of 34: pp-beneath.sents.test.xml
+     [java] Reading file 23 of 34: pp-behind.sents.test.xml
+     [java] Reading file 24 of 34: pp-before.sents.test.xml
+     [java] Reading file 25 of 34: pp-at.sents.test.xml
+     [java] Reading file 26 of 34: pp-as.sents.test.xml
+     [java] Reading file 27 of 34: pp-around.sents.test.xml
+     [java] Reading file 28 of 34: pp-among.sents.test.xml
+     [java] Reading file 29 of 34: pp-along.sents.test.xml
+     [java] Reading file 30 of 34: pp-against.sents.test.xml
+     [java] Reading file 31 of 34: pp-after.sents.test.xml
+     [java] Reading file 32 of 34: pp-across.sents.test.xml
+     [java] Reading file 33 of 34: pp-above.sents.test.xml
+     [java] Reading file 34 of 34: pp-about.sents.test.xml
+     [java] Annotator processing complete
+     [java] End point processing complete
+semeval_feature_extract_train:
+init:
+compile:
+   [delete] Deleting directory C:\Users\Dhiraj\workspace\PrepositionProject\build\classes
+    [mkdir] Created dir: C:\Users\Dhiraj\workspace\PrepositionProject\build\classes
+    [javac] C:\Users\Dhiraj\workspace\PrepositionProject\build\build_common.xml:43: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+    [javac] Compiling 223 source files to C:\Users\Dhiraj\workspace\PrepositionProject\build\classes
+    [javac] Note: Some input files use unchecked or unsafe operations.
+    [javac] Note: Recompile with -Xlint:unchecked for details.
+PSD_feature_extract:
+   [delete] Deleting directory C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\featuresTrain
+     [java] Initializing corpus reader
+     [java] Initializing annotator
+     [java] data/SemEvalData/working/parsedTrain
+     [java] Initializing end unit
+     [java] Reading file: 1 of 34 total: pp-with.sents.trng.xml.gz
+     [java] New file: with
+     [java] SLF4J: Class path contains multiple SLF4J bindings.
+     [java] SLF4J: Found binding in [jar:file:/C:/Users/Dhiraj/workspace/PrepositionProject/lib/stanford-corenlp-full-2015-12-09/slf4j-simple.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+     [java] SLF4J: Found binding in [jar:file:/C:/Users/Dhiraj/workspace/PrepositionProject/lib/stanford-ner-2015-12-09/lib/slf4j-simple.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+     [java] SLF4J: Found binding in [jar:file:/C:/Users/Dhiraj/workspace/PrepositionProject/lib/stanford-parser-full-2015-12-09/slf4j-simple.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+     [java] SLF4J: Found binding in [jar:file:/C:/Users/Dhiraj/workspace/PrepositionProject/lib/stanford-postagger-full-2015-12-09/lib/slf4j-simple.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+     [java] SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+     [java] SLF4J: Actual binding is of type [org.slf4j.impl.SimpleLoggerFactory]
+     [java] Reading file: 2 of 34 total: pp-towards.sents.trng.xml.gz
+     [java] New file: towards
+     [java] Reading file: 3 of 34 total: pp-to.sents.trng.xml.gz
+     [java] New file: to
+     [java] Reading file: 4 of 34 total: pp-through.sents.trng.xml.gz
+     [java] New file: through
+     [java] Reading file: 5 of 34 total: pp-round.sents.trng.xml.gz
+     [java] New file: round
+     [java] Reading file: 6 of 34 total: pp-over.sents.trng.xml.gz
+     [java] New file: over
+     [java] Reading file: 7 of 34 total: pp-onto.sents.trng.xml.gz
+     [java] New file: onto
+     [java] Reading file: 8 of 34 total: pp-on.sents.trng.xml.gz
+     [java] New file: on
+     [java] Reading file: 9 of 34 total: pp-off.sents.trng.xml.gz
+     [java] New file: off
+     [java] Reading file: 10 of 34 total: pp-of.sents.trng.xml.gz
+     [java] New file: of
+     [java] Reading file: 11 of 34 total: pp-like.sents.trng.xml.gz
+     [java] New file: like
+     [java] Reading file: 12 of 34 total: pp-into.sents.trng.xml.gz
+     [java] New file: into
+     [java] Reading file: 13 of 34 total: pp-inside.sents.trng.xml.gz
+     [java] New file: inside
+     [java] Reading file: 14 of 34 total: pp-in.sents.trng.xml.gz
+     [java] New file: in
+     [java] Reading file: 15 of 34 total: pp-from.sents.trng.xml.gz
+     [java] New file: from
+     [java] Reading file: 16 of 34 total: pp-for.sents.trng.xml.gz
+     [java] New file: for
+     [java] Reading file: 17 of 34 total: pp-during.sents.trng.xml.gz
+     [java] New file: during
+     [java] Reading file: 18 of 34 total: pp-down.sents.trng.xml.gz
+     [java] New file: down
+     [java] Reading file: 19 of 34 total: pp-by.sents.trng.xml.gz
+     [java] New file: by
+     [java] Reading file: 20 of 34 total: pp-between.sents.trng.xml.gz
+     [java] New file: between
+     [java] Reading file: 21 of 34 total: pp-beside.sents.trng.xml.gz
+     [java] New file: beside
+     [java] Reading file: 22 of 34 total: pp-beneath.sents.trng.xml.gz
+     [java] New file: beneath
+     [java] Reading file: 23 of 34 total: pp-behind.sents.trng.xml.gz
+     [java] New file: behind
+     [java] Reading file: 24 of 34 total: pp-before.sents.trng.xml.gz
+     [java] New file: before
+     [java] Reading file: 25 of 34 total: pp-at.sents.trng.xml.gz
+     [java] New file: at
+     [java] Reading file: 26 of 34 total: pp-as.sents.trng.xml.gz
+     [java] New file: as
+     [java] Reading file: 27 of 34 total: pp-around.sents.trng.xml.gz
+     [java] New file: around
+     [java] Reading file: 28 of 34 total: pp-among.sents.trng.xml.gz
+     [java] New file: among
+     [java] Reading file: 29 of 34 total: pp-along.sents.trng.xml.gz
+     [java] New file: along
+     [java] Reading file: 30 of 34 total: pp-against.sents.trng.xml.gz
+     [java] New file: against
+     [java] Reading file: 31 of 34 total: pp-after.sents.trng.xml.gz
+     [java] New file: after
+     [java] Reading file: 32 of 34 total: pp-across.sents.trng.xml.gz
+     [java] New file: across
+     [java] Reading file: 33 of 34 total: pp-above.sents.trng.xml.gz
+     [java] New file: above
+     [java] Reading file: 34 of 34 total: pp-about.sents.trng.xml.gz
+     [java] New file: about
+     [java] Annotator processing complete
+     [java] End point processing complete
+semeval_feature_extract_test:
+init:
+compile:
+   [delete] Deleting directory C:\Users\Dhiraj\workspace\PrepositionProject\build\classes
+    [mkdir] Created dir: C:\Users\Dhiraj\workspace\PrepositionProject\build\classes
+    [javac] C:\Users\Dhiraj\workspace\PrepositionProject\build\build_common.xml:43: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+    [javac] Compiling 223 source files to C:\Users\Dhiraj\workspace\PrepositionProject\build\classes
+    [javac] Note: Some input files use unchecked or unsafe operations.
+    [javac] Note: Recompile with -Xlint:unchecked for details.
+PSD_feature_extract:
+     [java] Initializing corpus reader
+     [java] Initializing annotator
+     [java] data/SemEvalData/working/parsedTest
+     [java] Initializing end unit
+     [java] Reading file: 1 of 34 total: pp-with.sents.test.xml.gz
+     [java] New file: with
+     [java] SLF4J: Class path contains multiple SLF4J bindings.
+     [java] SLF4J: Found binding in [jar:file:/C:/Users/Dhiraj/workspace/PrepositionProject/lib/stanford-corenlp-full-2015-12-09/slf4j-simple.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+     [java] SLF4J: Found binding in [jar:file:/C:/Users/Dhiraj/workspace/PrepositionProject/lib/stanford-ner-2015-12-09/lib/slf4j-simple.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+     [java] SLF4J: Found binding in [jar:file:/C:/Users/Dhiraj/workspace/PrepositionProject/lib/stanford-parser-full-2015-12-09/slf4j-simple.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+     [java] SLF4J: Found binding in [jar:file:/C:/Users/Dhiraj/workspace/PrepositionProject/lib/stanford-postagger-full-2015-12-09/lib/slf4j-simple.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+     [java] SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+     [java] SLF4J: Actual binding is of type [org.slf4j.impl.SimpleLoggerFactory]
+     [java] Reading file: 2 of 34 total: pp-towards.sents.test.xml.gz
+     [java] New file: towards
+     [java] Reading file: 3 of 34 total: pp-to.sents.test.xml.gz
+     [java] New file: to
+     [java] Reading file: 4 of 34 total: pp-through.sents.test.xml.gz
+     [java] New file: through
+     [java] Reading file: 5 of 34 total: pp-round.sents.test.xml.gz
+     [java] New file: round
+     [java] Reading file: 6 of 34 total: pp-over.sents.test.xml.gz
+     [java] New file: over
+     [java] Reading file: 7 of 34 total: pp-onto.sents.test.xml.gz
+     [java] New file: onto
+     [java] Reading file: 8 of 34 total: pp-on.sents.test.xml.gz
+     [java] New file: on
+     [java] Reading file: 9 of 34 total: pp-off.sents.test.xml.gz
+     [java] New file: off
+     [java] Reading file: 10 of 34 total: pp-of.sents.test.xml.gz
+     [java] New file: of
+     [java] Reading file: 11 of 34 total: pp-like.sents.test.xml.gz
+     [java] New file: like
+     [java] Reading file: 12 of 34 total: pp-into.sents.test.xml.gz
+     [java] New file: into
+     [java] Reading file: 13 of 34 total: pp-inside.sents.test.xml.gz
+     [java] New file: inside
+     [java] Reading file: 14 of 34 total: pp-in.sents.test.xml.gz
+     [java] New file: in
+     [java] Reading file: 15 of 34 total: pp-from.sents.test.xml.gz
+     [java] New file: from
+     [java] Reading file: 16 of 34 total: pp-for.sents.test.xml.gz
+     [java] New file: for
+     [java] Reading file: 17 of 34 total: pp-during.sents.test.xml.gz
+     [java] New file: during
+     [java] Reading file: 18 of 34 total: pp-down.sents.test.xml.gz
+     [java] New file: down
+     [java] Reading file: 19 of 34 total: pp-by.sents.test.xml.gz
+     [java] New file: by
+     [java] Reading file: 20 of 34 total: pp-between.sents.test.xml.gz
+     [java] New file: between
+     [java] Reading file: 21 of 34 total: pp-beside.sents.test.xml.gz
+     [java] New file: beside
+     [java] Reading file: 22 of 34 total: pp-beneath.sents.test.xml.gz
+     [java] New file: beneath
+     [java] Reading file: 23 of 34 total: pp-behind.sents.test.xml.gz
+     [java] New file: behind
+     [java] Reading file: 24 of 34 total: pp-before.sents.test.xml.gz
+     [java] New file: before
+     [java] Reading file: 25 of 34 total: pp-at.sents.test.xml.gz
+     [java] New file: at
+     [java] Reading file: 26 of 34 total: pp-as.sents.test.xml.gz
+     [java] New file: as
+     [java] Reading file: 27 of 34 total: pp-around.sents.test.xml.gz
+     [java] New file: around
+     [java] Reading file: 28 of 34 total: pp-among.sents.test.xml.gz
+     [java] New file: among
+     [java] Reading file: 29 of 34 total: pp-along.sents.test.xml.gz
+     [java] New file: along
+     [java] Reading file: 30 of 34 total: pp-against.sents.test.xml.gz
+     [java] New file: against
+     [java] Reading file: 31 of 34 total: pp-after.sents.test.xml.gz
+     [java] New file: after
+     [java] Reading file: 32 of 34 total: pp-across.sents.test.xml.gz
+     [java] New file: across
+     [java] Reading file: 33 of 34 total: pp-above.sents.test.xml.gz
+     [java] New file: above
+     [java] Reading file: 34 of 34 total: pp-about.sents.test.xml.gz
+     [java] New file: about
+     [java] Annotator processing complete
+     [java] End point processing complete
+PSD_feature_select_and_build:
+trainLiblinearModels:
+init:
+compile:
+   [delete] Deleting directory C:\Users\Dhiraj\workspace\PrepositionProject\build\classes
+    [mkdir] Created dir: C:\Users\Dhiraj\workspace\PrepositionProject\build\classes
+    [javac] C:\Users\Dhiraj\workspace\PrepositionProject\build\build_common.xml:43: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+    [javac] Compiling 223 source files to C:\Users\Dhiraj\workspace\PrepositionProject\build\classes
+    [javac] Note: Some input files use unchecked or unsafe operations.
+    [javac] Note: Recompile with -Xlint:unchecked for details.
+runFeatureSelector:
+     [java] Instances: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\featuresTrain
+     [java] Processing: about
+     [java] Reading and counting...
+     [java] Number of examples: 710
+     [java] Keeping only hashes of features meeting the frequency threshold...
+     [java] Writing counts
+     [java] 1 seconds
+     [java] Processing: above
+     [java] Reading and counting...
+     [java] Number of examples: 48
+     [java] Keeping only hashes of features meeting the frequency threshold...
+     [java] Writing counts
+     [java] 0 seconds
+     [java] Processing: across
+     [java] Reading and counting...
+     [java] Number of examples: 318
+     [java] Keeping only hashes of features meeting the frequency threshold...
+     [java] Writing counts
+     [java] 0 seconds
+     [java] Processing: after
+     [java] Reading and counting...
+     [java] Number of examples: 96
+     [java] Keeping only hashes of features meeting the frequency threshold...
+     [java] Writing counts
+     [java] 0 seconds
+     [java] Processing: against
+     [java] Reading and counting...
+     [java] Number of examples: 195
+     [java] Keeping only hashes of features meeting the frequency threshold...
+     [java] Writing counts
+     [java] 0 seconds
+     [java] Processing: along
+     [java] Reading and counting...
+     [java] Number of examples: 284
+     [java] Keeping only hashes of features meeting the frequency threshold...
+     [java] Writing counts
+     [java] 0 seconds
+     [java] Processing: among
+     [java] Reading and counting...
+     [java] Number of examples: 100
+     [java] Keeping only hashes of features meeting the frequency threshold...
+     [java] Writing counts
+     [java] 0 seconds
+     [java] Processing: around
+     [java] Reading and counting...
+     [java] Number of examples: 321
+     [java] Keeping only hashes of features meeting the frequency threshold...
+     [java] Writing counts
+     [java] 0 seconds
+     [java] Processing: as
+     [java] Reading and counting...
+     [java] Number of examples: 173
+     [java] Keeping only hashes of features meeting the frequency threshold...
+     [java] Writing counts
+     [java] 0 seconds
+     [java] Processing: at
+     [java] Reading and counting...
+     [java] Number of examples: 715
+     [java] Keeping only hashes of features meeting the frequency threshold...
+     [java] Writing counts
+     [java] 1 seconds
+     [java] Processing: before
+     [java] Reading and counting...
+     [java] Number of examples: 47
+     [java] Keeping only hashes of features meeting the frequency threshold...
+     [java] Writing counts
+     [java] 0 seconds
+     [java] Processing: behind
+     [java] Reading and counting...
+     [java] Number of examples: 135
+     [java] Keeping only hashes of features meeting the frequency threshold...
+     [java] Writing counts
+     [java] 0 seconds
+     [java] Processing: beneath
+     [java] Reading and counting...
+     [java] Number of examples: 56
+     [java] Keeping only hashes of features meeting the frequency threshold...
+     [java] Writing counts
+     [java] 0 seconds
+     [java] Processing: beside
+     [java] Reading and counting...
+     [java] Number of examples: 60
+     [java] Keeping only hashes of features meeting the frequency threshold...
+     [java] Writing counts
+     [java] 0 seconds
+     [java] Processing: between
+     [java] Reading and counting...
+     [java] Number of examples: 211
+     [java] Keeping only hashes of features meeting the frequency threshold...
+     [java] Writing counts
+     [java] 0 seconds
+     [java] Processing: by
+     [java] Reading and counting...
+     [java] Number of examples: 509
+     [java] Keeping only hashes of features meeting the frequency threshold...
+     [java] Writing counts
+     [java] 1 seconds
+     [java] Processing: down
+     [java] Reading and counting...
+     [java] Number of examples: 295
+     [java] Keeping only hashes of features meeting the frequency threshold...
+     [java] Writing counts
+     [java] 0 seconds
+     [java] Processing: during
+     [java] Reading and counting...
+     [java] Number of examples: 81
+     [java] Keeping only hashes of features meeting the frequency threshold...
+     [java] Writing counts
+     [java] 0 seconds
+     [java] Processing: for
+     [java] Reading and counting...
+     [java] Number of examples: 916
+     [java] Keeping only hashes of features meeting the frequency threshold...
+     [java] Writing counts
+     [java] 1 seconds
+     [java] Processing: from
+     [java] Reading and counting...
+     [java] Number of examples: 1204
+     [java] Keeping only hashes of features meeting the frequency threshold...
+     [java] Writing counts
+     [java] 2 seconds
+     [java] Processing: in
+     [java] Reading and counting...
+     [java] Number of examples: 1376
+     [java] Keeping only hashes of features meeting the frequency threshold...
+     [java] Writing counts
+     [java] 2 seconds
+     [java] Processing: inside
+     [java] Reading and counting...
+     [java] Number of examples: 66
+     [java] Keeping only hashes of features meeting the frequency threshold...
+     [java] Writing counts
+     [java] 0 seconds
+     [java] Processing: into
+     [java] Reading and counting...
+     [java] Number of examples: 604
+     [java] Keeping only hashes of features meeting the frequency threshold...
+     [java] Writing counts
+     [java] 0 seconds
+     [java] Processing: like
+     [java] Reading and counting...
+     [java] Number of examples: 266
+     [java] Keeping only hashes of features meeting the frequency threshold...
+     [java] Writing counts
+     [java] 0 seconds
+     [java] Processing: of
+     [java] Reading and counting...
+     [java] Number of examples: 2997
+     [java] Keeping only hashes of features meeting the frequency threshold...
+     [java] Writing counts
+     [java] 5 seconds
+     [java] Processing: off
+     [java] Reading and counting...
+     [java] Number of examples: 123
+     [java] Keeping only hashes of features meeting the frequency threshold...
+     [java] Writing counts
+     [java] 0 seconds
+     [java] Processing: on
+     [java] Reading and counting...
+     [java] Number of examples: 870
+     [java] Keeping only hashes of features meeting the frequency threshold...
+     [java] Writing counts
+     [java] 2 seconds
+     [java] Processing: onto
+     [java] Reading and counting...
+     [java] Number of examples: 117
+     [java] Keeping only hashes of features meeting the frequency threshold...
+     [java] Writing counts
+     [java] 0 seconds
+     [java] Processing: over
+     [java] Reading and counting...
+     [java] Number of examples: 200
+     [java] Keeping only hashes of features meeting the frequency threshold...
+     [java] Writing counts
+     [java] 0 seconds
+     [java] Processing: round
+     [java] Reading and counting...
+     [java] Number of examples: 178
+     [java] Keeping only hashes of features meeting the frequency threshold...
+     [java] Writing counts
+     [java] 0 seconds
+     [java] Processing: through
+     [java] Reading and counting...
+     [java] Number of examples: 439
+     [java] Keeping only hashes of features meeting the frequency threshold...
+     [java] Writing counts
+     [java] 0 seconds
+     [java] Processing: to
+     [java] Reading and counting...
+     [java] Number of examples: 1180
+     [java] Keeping only hashes of features meeting the frequency threshold...
+     [java] Writing counts
+     [java] 1 seconds
+     [java] Processing: towards
+     [java] Reading and counting...
+     [java] Number of examples: 214
+     [java] Keeping only hashes of features meeting the frequency threshold...
+     [java] Writing counts
+     [java] 0 seconds
+     [java] Processing: with
+     [java] Reading and counting...
+     [java] Number of examples: 1187
+     [java] Keeping only hashes of features meeting the frequency threshold...
+     [java] Writing counts
+     [java] 1 seconds
+init:
+compile:
+   [delete] Deleting directory C:\Users\Dhiraj\workspace\PrepositionProject\build\classes
+    [mkdir] Created dir: C:\Users\Dhiraj\workspace\PrepositionProject\build\classes
+    [javac] C:\Users\Dhiraj\workspace\PrepositionProject\build\build_common.xml:43: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+    [javac] Compiling 223 source files to C:\Users\Dhiraj\workspace\PrepositionProject\build\classes
+    [javac] Note: Some input files use unchecked or unsafe operations.
+    [javac] Note: Recompile with -Xlint:unchecked for details.
+runSvmTrainingFileCreator:
+     [java] Maximum number of features: 1000000000
+     [java] Instances dir: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\featuresTrain
+     [java] Num of files: 34
+     [java] Reading features...Done
+     [java] Reading from: about
+     [java] Reading features...Done
+     [java] Reading from: above
+     [java] Reading features...Done
+     [java] Reading from: across
+     [java] Reading features...Done
+     [java] Reading from: after
+     [java] Reading features...Done
+     [java] Reading from: against
+     [java] Reading features...Done
+     [java] Reading from: along
+     [java] Reading features...Done
+     [java] Reading from: among
+     [java] Reading features...Done
+     [java] Reading from: around
+     [java] Reading features...Done
+     [java] Reading from: as
+     [java] Reading features...Done
+     [java] Reading from: at
+     [java] Reading features...Done
+     [java] Reading from: before
+     [java] Reading features...Done
+     [java] Reading from: behind
+     [java] Reading features...Done
+     [java] Reading from: beneath
+     [java] Reading features...Done
+     [java] Reading from: beside
+     [java] Reading features...Done
+     [java] Reading from: between
+     [java] Reading features...Done
+     [java] Reading from: by
+     [java] Reading features...Done
+     [java] Reading from: down
+     [java] Reading features...Done
+     [java] Reading from: during
+     [java] Reading features...Done
+     [java] Reading from: for
+     [java] Reading features...Done
+     [java] Reading from: from
+     [java] Reading features...Done
+     [java] Reading from: in
+     [java] Reading features...Done
+     [java] Reading from: inside
+     [java] Reading features...Done
+     [java] Reading from: into
+     [java] Reading features...Done
+     [java] Reading from: like
+     [java] Reading features...Done
+     [java] Reading from: of
+     [java] Reading features...Done
+     [java] Reading from: off
+     [java] Reading features...Done
+     [java] Reading from: on
+     [java] Reading features...Done
+     [java] Reading from: onto
+     [java] Reading features...Done
+     [java] Reading from: over
+     [java] Reading features...Done
+     [java] Reading from: round
+     [java] Reading features...Done
+     [java] Reading from: through
+     [java] Reading features...Done
+     [java] Reading from: to
+     [java] Reading features...Done
+     [java] Reading from: towards
+     [java] Reading features...Done
+     [java] Reading from: with
+init:
+compile:
+   [delete] Deleting directory C:\Users\Dhiraj\workspace\PrepositionProject\build\classes
+    [mkdir] Created dir: C:\Users\Dhiraj\workspace\PrepositionProject\build\classes
+    [javac] C:\Users\Dhiraj\workspace\PrepositionProject\build\build_common.xml:43: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+    [javac] Compiling 223 source files to C:\Users\Dhiraj\workspace\PrepositionProject\build\classes
+    [javac] Note: Some input files use unchecked or unsafe operations.
+    [javac] Note: Recompile with -Xlint:unchecked for details.
+runSvmTrainer:
+     [java] Attempting to create non-existent output directory...success
+     [java] Executing: E:/Downloads/liblinear-2.1/liblinear-2.1/windows/train -q -c 0.01 C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\trainingFiles\about C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models/about.model
+     [java] Will proceed to start the next process immediately if fewer than 100 have been started.
+     [java] Executing: E:/Downloads/liblinear-2.1/liblinear-2.1/windows/train -q -c 0.01 C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\trainingFiles\above C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models/above.model
+     [java] Will proceed to start the next process immediately if fewer than 100 have been started.
+     [java] Executing: E:/Downloads/liblinear-2.1/liblinear-2.1/windows/train -q -c 0.01 C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\trainingFiles\across C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models/across.model
+     [java] Will proceed to start the next process immediately if fewer than 100 have been started.
+     [java] Executing: E:/Downloads/liblinear-2.1/liblinear-2.1/windows/train -q -c 0.01 C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\trainingFiles\after C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models/after.model
+     [java] Will proceed to start the next process immediately if fewer than 100 have been started.
+     [java] Executing: E:/Downloads/liblinear-2.1/liblinear-2.1/windows/train -q -c 0.01 C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\trainingFiles\against C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models/against.model
+     [java] Will proceed to start the next process immediately if fewer than 100 have been started.
+     [java] Executing: E:/Downloads/liblinear-2.1/liblinear-2.1/windows/train -q -c 0.01 C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\trainingFiles\along C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models/along.model
+     [java] Will proceed to start the next process immediately if fewer than 100 have been started.
+     [java] Executing: E:/Downloads/liblinear-2.1/liblinear-2.1/windows/train -q -c 0.01 C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\trainingFiles\among C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models/among.model
+     [java] Will proceed to start the next process immediately if fewer than 100 have been started.
+     [java] Executing: E:/Downloads/liblinear-2.1/liblinear-2.1/windows/train -q -c 0.01 C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\trainingFiles\around C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models/around.model
+     [java] Will proceed to start the next process immediately if fewer than 100 have been started.
+     [java] Executing: E:/Downloads/liblinear-2.1/liblinear-2.1/windows/train -q -c 0.01 C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\trainingFiles\as C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models/as.model
+     [java] Will proceed to start the next process immediately if fewer than 100 have been started.
+     [java] Executing: E:/Downloads/liblinear-2.1/liblinear-2.1/windows/train -q -c 0.01 C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\trainingFiles\at C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models/at.model
+     [java] Will proceed to start the next process immediately if fewer than 100 have been started.
+     [java] Executing: E:/Downloads/liblinear-2.1/liblinear-2.1/windows/train -q -c 0.01 C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\trainingFiles\before C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models/before.model
+     [java] Will proceed to start the next process immediately if fewer than 100 have been started.
+     [java] Executing: E:/Downloads/liblinear-2.1/liblinear-2.1/windows/train -q -c 0.01 C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\trainingFiles\behind C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models/behind.model
+     [java] Will proceed to start the next process immediately if fewer than 100 have been started.
+     [java] Executing: E:/Downloads/liblinear-2.1/liblinear-2.1/windows/train -q -c 0.01 C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\trainingFiles\beneath C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models/beneath.model
+     [java] Will proceed to start the next process immediately if fewer than 100 have been started.
+     [java] Executing: E:/Downloads/liblinear-2.1/liblinear-2.1/windows/train -q -c 0.01 C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\trainingFiles\beside C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models/beside.model
+     [java] Will proceed to start the next process immediately if fewer than 100 have been started.
+     [java] Executing: E:/Downloads/liblinear-2.1/liblinear-2.1/windows/train -q -c 0.01 C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\trainingFiles\between C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models/between.model
+     [java] Will proceed to start the next process immediately if fewer than 100 have been started.
+     [java] Executing: E:/Downloads/liblinear-2.1/liblinear-2.1/windows/train -q -c 0.01 C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\trainingFiles\by C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models/by.model
+     [java] Will proceed to start the next process immediately if fewer than 100 have been started.
+     [java] Executing: E:/Downloads/liblinear-2.1/liblinear-2.1/windows/train -q -c 0.01 C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\trainingFiles\down C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models/down.model
+     [java] Will proceed to start the next process immediately if fewer than 100 have been started.
+     [java] Executing: E:/Downloads/liblinear-2.1/liblinear-2.1/windows/train -q -c 0.01 C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\trainingFiles\during C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models/during.model
+     [java] Will proceed to start the next process immediately if fewer than 100 have been started.
+     [java] Executing: E:/Downloads/liblinear-2.1/liblinear-2.1/windows/train -q -c 0.01 C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\trainingFiles\for C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models/for.model
+     [java] Will proceed to start the next process immediately if fewer than 100 have been started.
+     [java] Executing: E:/Downloads/liblinear-2.1/liblinear-2.1/windows/train -q -c 0.01 C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\trainingFiles\from C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models/from.model
+     [java] Will proceed to start the next process immediately if fewer than 100 have been started.
+     [java] Executing: E:/Downloads/liblinear-2.1/liblinear-2.1/windows/train -q -c 0.01 C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\trainingFiles\in C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models/in.model
+     [java] Will proceed to start the next process immediately if fewer than 100 have been started.
+     [java] Executing: E:/Downloads/liblinear-2.1/liblinear-2.1/windows/train -q -c 0.01 C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\trainingFiles\inside C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models/inside.model
+     [java] Will proceed to start the next process immediately if fewer than 100 have been started.
+     [java] Executing: E:/Downloads/liblinear-2.1/liblinear-2.1/windows/train -q -c 0.01 C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\trainingFiles\into C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models/into.model
+     [java] Will proceed to start the next process immediately if fewer than 100 have been started.
+     [java] Executing: E:/Downloads/liblinear-2.1/liblinear-2.1/windows/train -q -c 0.01 C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\trainingFiles\like C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models/like.model
+     [java] Will proceed to start the next process immediately if fewer than 100 have been started.
+     [java] Executing: E:/Downloads/liblinear-2.1/liblinear-2.1/windows/train -q -c 0.01 C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\trainingFiles\of C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models/of.model
+     [java] Will proceed to start the next process immediately if fewer than 100 have been started.
+     [java] Executing: E:/Downloads/liblinear-2.1/liblinear-2.1/windows/train -q -c 0.01 C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\trainingFiles\off C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models/off.model
+     [java] Will proceed to start the next process immediately if fewer than 100 have been started.
+     [java] Executing: E:/Downloads/liblinear-2.1/liblinear-2.1/windows/train -q -c 0.01 C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\trainingFiles\on C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models/on.model
+     [java] Will proceed to start the next process immediately if fewer than 100 have been started.
+     [java] Executing: E:/Downloads/liblinear-2.1/liblinear-2.1/windows/train -q -c 0.01 C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\trainingFiles\onto C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models/onto.model
+     [java] Will proceed to start the next process immediately if fewer than 100 have been started.
+     [java] Executing: E:/Downloads/liblinear-2.1/liblinear-2.1/windows/train -q -c 0.01 C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\trainingFiles\over C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models/over.model
+     [java] Will proceed to start the next process immediately if fewer than 100 have been started.
+     [java] Executing: E:/Downloads/liblinear-2.1/liblinear-2.1/windows/train -q -c 0.01 C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\trainingFiles\round C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models/round.model
+     [java] Will proceed to start the next process immediately if fewer than 100 have been started.
+     [java] Executing: E:/Downloads/liblinear-2.1/liblinear-2.1/windows/train -q -c 0.01 C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\trainingFiles\through C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models/through.model
+     [java] Will proceed to start the next process immediately if fewer than 100 have been started.
+     [java] Executing: E:/Downloads/liblinear-2.1/liblinear-2.1/windows/train -q -c 0.01 C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\trainingFiles\to C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models/to.model
+     [java] Will proceed to start the next process immediately if fewer than 100 have been started.
+     [java] Executing: E:/Downloads/liblinear-2.1/liblinear-2.1/windows/train -q -c 0.01 C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\trainingFiles\towards C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models/towards.model
+     [java] Will proceed to start the next process immediately if fewer than 100 have been started.
+     [java] Executing: E:/Downloads/liblinear-2.1/liblinear-2.1/windows/train -q -c 0.01 C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\trainingFiles\with C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models/with.model
+     [java] Will proceed to start the next process immediately if fewer than 100 have been started.
+PSD_test_models:
+init:
+compile:
+   [delete] Deleting directory C:\Users\Dhiraj\workspace\PrepositionProject\build\classes
+    [mkdir] Created dir: C:\Users\Dhiraj\workspace\PrepositionProject\build\classes
+    [javac] C:\Users\Dhiraj\workspace\PrepositionProject\build\build_common.xml:43: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+    [javac] Compiling 223 source files to C:\Users\Dhiraj\workspace\PrepositionProject\build\classes
+    [javac] Note: Some input files use unchecked or unsafe operations.
+    [javac] Note: Recompile with -Xlint:unchecked for details.
+runSvmTester:
+     [java] C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models.txt
+     [java] Applying model to: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\featuresTest\about
+     [java] Loading: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models\about.model
+     [java] 355.0 9.0 0.9752747252747253
+     [java] Applying model to: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\featuresTest\above
+     [java] Loading: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models\above.model
+     [java] 19.0 4.0 0.8260869565217391
+     [java] Applying model to: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\featuresTest\across
+     [java] Loading: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models\across.model
+     [java] 150.0 1.0 0.9933774834437086
+     [java] Applying model to: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\featuresTest\after
+     [java] Loading: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models\after.model
+     [java] 42.0 5.0 0.8936170212765957
+     [java] Applying model to: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\featuresTest\against
+     [java] Loading: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models\against.model
+     [java] 90.0 2.0 0.9782608695652174
+     [java] Applying model to: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\featuresTest\along
+     [java] Loading: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models\along.model
+     [java] 126.0 0.0 1.0
+     [java] Applying model to: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\featuresTest\among
+     [java] Loading: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models\among.model
+     [java] 37.0 13.0 0.74
+     [java] Applying model to: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\featuresTest\around
+     [java] Loading: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models\around.model
+     [java] 122.0 29.0 0.8079470198675497
+     [java] Applying model to: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\featuresTest\as
+     [java] Loading: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models\as.model
+     [java] 81.0 1.0 0.9878048780487805
+     [java] Applying model to: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\featuresTest\at
+     [java] Loading: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models\at.model
+     [java] 337.0 30.0 0.9182561307901907
+     [java] Applying model to: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\featuresTest\before
+     [java] Loading: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models\before.model
+     [java] 19.0 1.0 0.95
+     [java] Applying model to: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\featuresTest\behind
+     [java] Loading: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models\behind.model
+     [java] 64.0 2.0 0.9696969696969697
+     [java] Applying model to: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\featuresTest\beneath
+     [java] Loading: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models\beneath.model
+     [java] 26.0 2.0 0.9285714285714286
+     [java] Applying model to: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\featuresTest\beside
+     [java] Loading: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models\beside.model
+     [java] 29.0 0.0 1.0
+     [java] Applying model to: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\featuresTest\between
+     [java] Loading: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models\between.model
+     [java] 101.0 1.0 0.9901960784313726
+     [java] Applying model to: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\featuresTest\by
+     [java] Loading: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models\by.model
+     [java] 217.0 31.0 0.875
+     [java] Applying model to: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\featuresTest\down
+     [java] Loading: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models\down.model
+     [java] 124.0 19.0 0.8671328671328671
+     [java] Applying model to: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\featuresTest\during
+     [java] Loading: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models\during.model
+     [java] 39.0 0.0 1.0
+     [java] Applying model to: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\featuresTest\for
+     [java] Loading: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models\for.model
+     [java] 376.0 76.0 0.831858407079646
+     [java] Applying model to: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\featuresTest\from
+     [java] Loading: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models\from.model
+     [java] 484.0 94.0 0.8373702422145328
+     [java] Applying model to: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\featuresTest\in
+     [java] Loading: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models\in.model
+     [java] 538.0 143.0 0.7900146842878121
+     [java] Applying model to: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\featuresTest\inside
+     [java] Loading: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models\inside.model
+     [java] 22.0 13.0 0.6285714285714286
+     [java] Applying model to: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\featuresTest\into
+     [java] Loading: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models\into.model
+     [java] 265.0 32.0 0.8922558922558923
+     [java] Applying model to: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\featuresTest\like
+     [java] Loading: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models\like.model
+     [java] 118.0 7.0 0.944
+     [java] Applying model to: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\featuresTest\of
+     [java] Loading: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models\of.model
+     [java] 1291.0 187.0 0.8734776725304465
+     [java] Applying model to: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\featuresTest\off
+     [java] Loading: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models\off.model
+     [java] 49.0 7.0 0.875
+     [java] Applying model to: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\featuresTest\on
+     [java] Loading: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models\on.model
+     [java] 363.0 78.0 0.8231292517006803
+     [java] Applying model to: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\featuresTest\onto
+     [java] Loading: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models\onto.model
+     [java] 57.0 1.0 0.9827586206896551
+     [java] Applying model to: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\featuresTest\over
+     [java] Loading: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models\over.model
+     [java] 85.0 13.0 0.8673469387755102
+     [java] Applying model to: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\featuresTest\round
+     [java] Loading: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models\round.model
+     [java] 64.0 15.0 0.810126582278481
+     [java] Applying model to: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\featuresTest\through
+     [java] Loading: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models\through.model
+     [java] 202.0 6.0 0.9711538461538461
+     [java] Applying model to: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\featuresTest\to
+     [java] Loading: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models\to.model
+     [java] 508.0 64.0 0.8881118881118881
+     [java] Applying model to: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\featuresTest\towards
+     [java] Loading: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models\towards.model
+     [java] 98.0 4.0 0.9607843137254902
+     [java] Applying model to: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\featuresTest\with
+     [java] Loading: C:\Users\Dhiraj\workspace\PrepositionProject\data\SemEvalData\working\models\with.model
+     [java] 515.0 63.0 0.8910034602076125
+     [java] 7013.0 953.0 0.8803665578709515
+PSD_full_experiment:
+BUILD SUCCESSFUL
+Total time: 268 minutes 48 seconds
