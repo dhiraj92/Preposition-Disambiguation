@@ -1,6 +1,0 @@
-data
-liblinear*
-*.gz
-build/classes
-trainSVM
-lib
