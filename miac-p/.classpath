@@ -34,5 +34,6 @@
 	<classpathentry kind="lib" path="lib/stanford-corenlp-full-2015-12-09/slf4j-simple.jar"/>
 	<classpathentry kind="lib" path="lib/stanford-corenlp-full-2015-12-09/xom-1.2.10-src.jar"/>
 	<classpathentry kind="lib" path="lib/stanford-corenlp-full-2015-12-09/xom.jar"/>
+	<classpathentry kind="lib" path="lib/DeepLearning4jWithDep.jar.zip"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

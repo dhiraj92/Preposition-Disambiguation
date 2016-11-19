@@ -2,12 +2,16 @@
 # Word-finding rules for preposition sense disambiguation (PSD)
 #
 
-l	VerbToLeft2	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms	miacp.featgen.wfr.VerbToLeftRule
-l	HeadToLeft2	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms	miacp.featgen.wfr.PrepositionGovernorHeuristic
-hl	HeadToLeft	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms	miacp.featgen.wfr.PrepositionGovernorHeuristic
-vl	VerbToLeft	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms	miacp.featgen.wfr.VerbToLeftRule
-hr	PrepCompHeur	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms	miacp.featgen.wfr.PrepositionComplementHeuristic
-wl	WordToLeft	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms	miacp.featgen.wfr.WordToLeftRule
+l	VerbToLeft2	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms,word2vecSimWords	miacp.featgen.wfr.VerbToLeftRule
+l	HeadToLeft2	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms,word2vecSimWords	miacp.featgen.wfr.PrepositionGovernorHeuristic
+hl	HeadToLeft	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms,word2vecSimWords	miacp.featgen.wfr.PrepositionGovernorHeuristic
+vl	VerbToLeft	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms,word2vecSimWords	miacp.featgen.wfr.VerbToLeftRule
+hr	PrepCompHeur	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms,word2vecSimWords	miacp.featgen.wfr.PrepositionComplementHeuristic
+wl	WordToLeft	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms,word2vecSimWords	miacp.featgen.wfr.WordToLeftRule
 
 h	Governor	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms,word2vecSimWords	miacp.featgen.wfr.SyntacticGovernorRule
-c	PrepCompSyn	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms	miacp.featgen.wfr.PrepositionComplementSyntactic
+c	PrepCompSyn	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms,word2vecSimWords	miacp.featgen.wfr.PrepositionComplementSyntactic
+sg	StanforGov	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms,word2vecSimWords	miacp.featgen.wfr.StanfordGoverner
+so	StanfordObj	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms,word2vecSimWords	miacp.featgen.wfr.StanfordObject
+sp	GovernorParents	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms,word2vecSimWords	miacp.featgen.wfr.StanfordGovernorParents
+sc	GovernorChilder	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms,word2vecSimWords	miacp.featgen.wfr.StanfordGovernorChildren
