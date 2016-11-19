@@ -6,7 +6,6 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="E:/Downloads/ant-contrib-0.6-bin/lib/ant-contrib-0.6.jar"/>
 	<classpathentry kind="lib" path="lib/stanford-ner-2015-12-09/stanford-ner-3.6.0-javadoc.jar"/>
 	<classpathentry kind="lib" path="lib/stanford-ner-2015-12-09/stanford-ner-3.6.0-sources.jar"/>
 	<classpathentry kind="lib" path="lib/stanford-ner-2015-12-09/stanford-ner-3.6.0.jar"/>
@@ -34,5 +33,6 @@
 	<classpathentry kind="lib" path="lib/stanford-corenlp-full-2015-12-09/slf4j-simple.jar"/>
 	<classpathentry kind="lib" path="lib/stanford-corenlp-full-2015-12-09/xom-1.2.10-src.jar"/>
 	<classpathentry kind="lib" path="lib/stanford-corenlp-full-2015-12-09/xom.jar"/>
+	<classpathentry kind="lib" path="/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
