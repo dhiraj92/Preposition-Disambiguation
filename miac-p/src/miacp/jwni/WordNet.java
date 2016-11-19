@@ -90,16 +90,16 @@ public class WordNet {
 	}
 	
 	public WordNet(String base) throws IOException {
-		this(URI.create(base + File.separator+"index.sense").toURL(), 
-			URI.create(base + File.separator+"data.noun").toURL(), 
-			URI.create(base + File.separator+"data.verb").toURL(), 
-			URI.create(base + File.separator+"data.adj").toURL(), 
-			URI.create(base + File.separator+"data.adv").toURL(),
-			URI.create(base + File.separator+"index.noun").toURL(), 
-			URI.create(base + File.separator+"index.verb").toURL(), 
-			URI.create(base + File.separator+"index.adj").toURL(),
-			URI.create(base + File.separator+"index.adv").toURL(),
-			URI.create(base + File.separator+"lexnames").toURL(),
+		this(URI.create(base +"index.sense").toURL(), 
+			URI.create(base + "data.noun").toURL(), 
+			URI.create(base + "data.verb").toURL(), 
+			URI.create(base + "data.adj").toURL(), 
+			URI.create(base + "data.adv").toURL(),
+			URI.create(base + "index.noun").toURL(), 
+			URI.create(base + "index.verb").toURL(), 
+			URI.create(base + "index.adj").toURL(),
+			URI.create(base + "index.adv").toURL(),
+			URI.create(base + "lexnames").toURL(),
 			true);
 		mMorpho = new MorphoProcessor(this, base);
 		sInstance = this;

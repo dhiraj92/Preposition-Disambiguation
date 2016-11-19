@@ -21,14 +21,17 @@
 
 package miacp.featgen.wfr;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Properties;
 import java.util.Set;
 
 import miacp.parse.types.Parse;
 import miacp.parse.types.Token;
 import miacp.util.TreebankConstants;
-
+import miacp.util.stanfordClass;
+import edu.stanford.nlp.simple.*;
 
 /**
  * Word-finding rule for finding the first likely syntactic governor of a preposition
@@ -38,22 +41,25 @@ import miacp.util.TreebankConstants;
 public class PrepositionGovernorHeuristic extends AbstractWordFindingRule {
 	
 	private static final long serialVersionUID = 1L;
+	private static final char[] ILLEGAL_CHARACTERS = { '/', '\n', '\r', '\t', '\0', '\f', '`', '?', '*', '\\', '<', '>', '|', '\"', ':' };
 
 	@Override
 	public Set<Token> getProductions(List<Token> tokenList, Parse parse, int headIndex) {
 		Set<Token> results = new HashSet<Token>();
-		
-		for(int i = headIndex-1; i >= 0; i--) {
-			Token tok = tokenList.get(i);
-			String pos = tok.getPos();
-			if(TreebankConstants.NOUN_LABELS.contains(pos) || 
-			   TreebankConstants.VERB_LABELS.contains(pos) || 
-			   TreebankConstants.PRON_LABELS.contains(pos) || 
-			   TreebankConstants.ADJ_LABELS.contains(pos)) {
-				results.add(tok);
-				break;
+
+			for(int i = headIndex-1; i >= 0; i--) {
+				Token tok = tokenList.get(i);
+				String pos = tok.getPos();
+				if(TreebankConstants.NOUN_LABELS.contains(pos) || 
+				   TreebankConstants.VERB_LABELS.contains(pos) || 
+				   TreebankConstants.PRON_LABELS.contains(pos) || 
+				   TreebankConstants.ADJ_LABELS.contains(pos)) {
+					results.add(tok);
+					//System.out.println(tokenList.get(headIndex).getText()+" from earlier heurstic "+ tok.getText());
+					break;
+				}
 			}
-		}
+		
 		
 		return results;
 	}

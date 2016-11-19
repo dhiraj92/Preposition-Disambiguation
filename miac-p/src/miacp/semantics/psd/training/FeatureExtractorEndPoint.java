@@ -151,9 +151,12 @@ public class FeatureExtractorEndPoint extends EndPointImpl {
 		PrintWriter writer = null;
 		try {
 			String uri = doc.getUri();
-			String inputFilename = uri.substring(uri.lastIndexOf('/')+1);
+			//System.out.println(uri);
+			
+			String inputFilename = uri.substring(uri.lastIndexOf(File.separator)+1);
 			String preposition = inputFilename.substring(3, inputFilename.indexOf('.'));
-		    
+			//System.out.println(preposition);
+			//System.out.println(mOutDir.getPath());
 			File newFile = new File(mOutDir, preposition);
 			System.err.println("New file: " + newFile.getName());
 
@@ -173,17 +176,17 @@ public class FeatureExtractorEndPoint extends EndPointImpl {
 						if(headAnnot.getStart() >= sentence.getStart() && headAnnot.getEnd() <= sentence.getEnd()) {
 							head = headAnnot;
 							
-							// writer.println(sentence.getAnnotText());
+							//writer.println(sentence.getAnnotText());
 					List<Set<Annotation>> annotSets = new ArrayList<Set<Annotation>>();
 					
 					Map<WfrEntry, List<Set<miacp.parse.types.Token>>> ruleToAnnotSets = new HashMap<WfrEntry, List<Set<miacp.parse.types.Token>>>();
 					
-					writer.println("#" + sentence.getAnnotText());
-					writer.println("#" + sentence.getParseString());
+					//writer.println("#" + sentence.getAnnotText());
+					//writer.println("#" + sentence.getParseString());
 					sentenceText = sentence.getAnnotText();
 					parseString = sentence.getParseString();
-					// System.err.println(sentenceText);
-					// System.err.println(parseString);
+					//System.err.println(sentenceText);
+					//System.err.println(parseString);
 					
 					int numTokens = containedList.size();
 					int headIndex = -1;
@@ -194,10 +197,8 @@ public class FeatureExtractorEndPoint extends EndPointImpl {
 					}
 					
 					List<miacp.parse.types.Token> parserTokens = new ArrayList<miacp.parse.types.Token>();
-					// System.out.println("# " + sentence.getAnnotText());
 					for(int i = 0; i < containedList.size(); i++) {
 						miacp.runpipe.annotations.Token token = containedList.get(i);
-						miacp.parse.types.Token tokenN = new Token(token.getAnnotText(), token.getPos(), i+1);						
 						parserTokens.add(new Token(token.getAnnotText(), token.getPos(), i+1));
 					}
 					
@@ -250,7 +251,7 @@ public class FeatureExtractorEndPoint extends EndPointImpl {
 					}
 				}
 					}
-				}
+				}//
 			}
 		}
 		catch(Exception e) {
@@ -268,7 +269,6 @@ public class FeatureExtractorEndPoint extends EndPointImpl {
 								   Map<WfrEntry, List<Set<miacp.parse.types.Token>>> ruleToAnnotSets,
 								   Sentence sentence,
 								   List<miacp.runpipe.annotations.Token> tokens) throws Exception {
-		
 		writer.print(headAnnot.getId()+"\30" + sense+"\30"); // sense
 		List<WfrEntry> allRules = new ArrayList<WfrEntry>();
 		allRules.addAll(Arrays.asList(mComplexRules));
@@ -288,10 +288,10 @@ public class FeatureExtractorEndPoint extends EndPointImpl {
 		
 		Set<String> feats = new HashSet<String>();
 		for(WfrEntry rule : allRules) {
-			// System.out.println("## Rule : " + rule.getName());
+			
 			List<Set<Token>> annotSetList = ruleToAnnotSets.get(rule);
 			if(annotSetList != null && annotSetList.size() > 0) {
-				
+				//System.err.println("Printing for rule: " + rule);
 				for(int i = 0; i < annotSetList.size(); i++) {
 					List<Token> annots = new ArrayList<Token>(annotSetList.get(i));
 					int numAnnots = annots.size();
@@ -301,9 +301,9 @@ public class FeatureExtractorEndPoint extends EndPointImpl {
 						
 						String annotText = annot.getText();
 						String type = annot.getPos();
-						//if(type == null) {
-						//	System.err.println("Null type for: " + annotText);
-						// }
+						if(type == null) {
+							System.err.println("Null type for: " + annotText);
+						}
 						// Strip off ending periods
 						String[] parts = annotText.split("\\s+");
 						String lastPart = parts[parts.length-1];
@@ -312,15 +312,13 @@ public class FeatureExtractorEndPoint extends EndPointImpl {
 							annotText = annotText.substring(0, periodIndex);
 						}
 						List<FeatureExtractionRule> fers = rule.getFERs();
-						// System.out.println("### Token : " + annotText);
 						for(FeatureExtractionRule fer : fers) {
 							Set<String> productions = fer.getProductions(annotText, type);
-							// System.out.println("#### Feature : " + fer.getClass().getName());							
+							//System.err.println(fer.getClass().getName());
 							if(productions != null) {
 								for(String production : productions) {
 									production = production.replace("\30", "*c*");
 									//feats.add((rule.mPrefix+":"+fer.getPrefix() +":"+tindex+":"+production));//.toLowerCase() for Dirk
-									// System.out.println((production).toLowerCase());
 									feats.add((rule.getPrefix()+":"+fer.getPrefix() +":"+production).toLowerCase());//.toLowerCase()
 									//writer.print((rule.mPrefix + ":" + fer.getPrefix() + ":" + production +"\30").toLowerCase());
 								}
@@ -338,7 +336,6 @@ public class FeatureExtractorEndPoint extends EndPointImpl {
 			writer.print(feati);
 			writer.print("\30");
 		}
-			
 		writer.println();
 	}
 	

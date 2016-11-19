@@ -43,6 +43,7 @@ public class VerbToLeftRule extends AbstractWordFindingRule {
 	@Override
 	public Set<Token> getProductions(List<Token> tokenList, Parse parse, int headIndex) {
 		Set<Token> results = new HashSet<Token>();
+		
 		for(int i = headIndex-1; i >= 0; i--) {
 			Token tok = tokenList.get(i);
 			String pos = tok.getPos();

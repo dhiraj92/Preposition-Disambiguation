@@ -73,8 +73,10 @@ public class MultiStepFeatureGeneratorConfigParser {
 		String line = null;
 		while((line = reader.readLine()) != null) {
 			line = line.trim();
+			//System.out.println(line);
 			if(!line.equals("") && !line.startsWith("#")) {
 				String[] split = line.split("\\t+");
+				//System.out.println(split.length);
 				String prefix = split[0];
 				String name = split[1];
 				String wfrClassName = split[3];

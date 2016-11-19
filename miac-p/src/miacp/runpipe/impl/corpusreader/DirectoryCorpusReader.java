@@ -65,6 +65,7 @@ public class DirectoryCorpusReader implements CorpusReader {
 		String filterPattern = params.get(PARAM_FILTER_PATTERN);
 		Matcher fileNameMatcher = filterPattern == null ? null : Pattern.compile(filterPattern).matcher("");
 		for(String inputDirectory : inputDirectoriesArray) {
+			System.out.println(inputDirectory);
 			addFiles(new File(inputDirectory), mFiles, includeSubdirs, fileNameMatcher);
 		}
 		Collections.sort(mFiles);
@@ -73,7 +74,10 @@ public class DirectoryCorpusReader implements CorpusReader {
 	
 	private static void addFiles(File directory, List<File> fileList, boolean includeSubdirs, Matcher filter) {
 		File[] files = directory.listFiles();
+		
+		//System.out.println(files.length);
 		for(File file : files) {
+				//System.out.println("in add files" + file.getAbsolutePath());
 			
 				if(file.isDirectory()) {
 					if(includeSubdirs) {

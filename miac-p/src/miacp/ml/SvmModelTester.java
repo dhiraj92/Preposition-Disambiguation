@@ -115,7 +115,7 @@ public class SvmModelTester {
 					String[] split = line.split("\30");
 					String id = split[0];
 					if(split.length <= 1) {
-						// System.err.println("Ignore instance: bad input line?: " + line);
+						System.err.println("Ignore instance: bad input line?: " + line);
 						continue;
 					}
 					String trueClass = split[1];

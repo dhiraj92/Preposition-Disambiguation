@@ -92,7 +92,7 @@ public class TrainSvmModels {
 			else {
 				outputFilename = output.getAbsolutePath();
 			}
-			String command = "./trainSVM -q -c " + cParam + " " + f.getAbsolutePath() + " " + outputFilename;
+			String command = "E:/Downloads/liblinear-2.1/liblinear-2.1/windows/train -q -c " + cParam + " " + f.getAbsolutePath() + " " + outputFilename;
 			System.err.println("Executing: " + command);
 			Process p = runtime.exec(command);
 			
