@@ -75,9 +75,9 @@ public class DirectoryCorpusReader implements CorpusReader {
 	private static void addFiles(File directory, List<File> fileList, boolean includeSubdirs, Matcher filter) {
 		File[] files = directory.listFiles();
 		
-		//System.out.println("total file" + files.length);
+		//System.out.println(files.length);
 		for(File file : files) {
-				//System.out.println("in add files" + file.getAbsolutePath());
+				System.out.println("in add files" + file.getAbsolutePath());
 			
 				if(file.isDirectory()) {
 					if(includeSubdirs) {
