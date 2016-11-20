@@ -84,8 +84,10 @@
 		<java classname="miacp.ml.FeatureSelection" fork="true">
 			<classpath refid="project.classpath" />
 			<jvmarg value="-Xmx12000m" />
+			
 			<!-- <jvmarg value="-Xdebug" /> 
 			<jvmarg value="-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=9999" /> -->
+			
 			<arg line="-instances ${instances}" />
 			<arg line="-output ${output}" />
 			<arg line="-minfreq ${min_feature_frequency}" />

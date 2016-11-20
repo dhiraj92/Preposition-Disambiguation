@@ -24,3 +24,5 @@ lexname			ln	miacp.featgen.fer.LexNameFER
 ruleitself		ri	miacp.featgen.fer.RuleItselfFER
 
 word2vecSimWords	wv	miacp.featgen.fer.Word2VecFER
+
+numeric	n	miacp.featgen.fer.NumericFER

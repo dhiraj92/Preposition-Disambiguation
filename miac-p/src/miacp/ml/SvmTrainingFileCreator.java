@@ -34,6 +34,7 @@ import java.io.InputStreamReader;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
@@ -171,9 +172,17 @@ public class SvmTrainingFileCreator {
 				int labelIndex = labelAlphabet.lookupIndex(clazz, true);
 			
 				IntArrayList data = new IntArrayList();
+				HashMap<Integer, Integer> numericFeatValues = new HashMap<Integer, Integer>();
 				for(int x = 2 ; x < split.length; x++) {
 					String featureKey = split[x];
-					if(featureSet.contains(featureKey)) {
+					String[] splits = featureKey.split(":");
+					if (splits[1].equals("n")){
+						featureKey = splits[0]+":"+splits[1];
+						int featureIndex = dict.lookupIndex(featureKey, true);
+						data.add(featureIndex);
+						numericFeatValues.put(featureIndex, Integer.valueOf(splits[2]));
+					}
+					else if(featureSet.contains(featureKey)) {
 						data.add(dict.lookupIndex(featureKey, true));
 					}
 				}
@@ -182,7 +191,13 @@ public class SvmTrainingFileCreator {
 				dataWriter.print(labelIndex + " ");
 				final int numFeats = data.size();
 				for(int i = 0; i < numFeats; i++) {
-					dataWriter.print((data.get(i)+1)+":1 ");
+					if (numericFeatValues.containsKey(data.get(i))){
+						// System.out.println((data.get(i)+1)+":" + numericFeatValues.get(data.get(i)) + " ");
+						dataWriter.print((data.get(i)+1)+":" + numericFeatValues.get(data.get(i)) + " ");
+					}
+					else{
+						dataWriter.print((data.get(i)+1)+":1 ");					}
+					
 				}
 				dataWriter.println("# ");
 				if(lineNo % 100000 == 0) {
@@ -212,7 +227,14 @@ public class SvmTrainingFileCreator {
 		int numFeats = 0;
 		while((line = freader.readLine()) != null) {
 			String[] split = line.split("\\t+");
-			filterSet.add(split[0]);
+			// if the feature is numeric, do not add the full string
+			String[] splits = split[0].split(":");
+			if (splits[1].equals("n")){
+				filterSet.add(splits[0]+":"+splits[1]);
+			}
+			else{
+				filterSet.add(split[0]);
+			}			
 			numFeats++;
 			if(numFeats == maxNumOfFeatures) {
 				break;

@@ -180,7 +180,7 @@ public class FeatureSelection {
 			valHolder.val++;
 			classToCount.put(split[1], valHolder);
 			for(int i = 2; i < split.length; i++) {
-				int hash = split[i].hashCode();
+				int hash = split[i].hashCode();				
 				IntHolder holder = hashToCount.get(hash);
 				if(holder == null) {
 					hashToCount.put(hash, holder = new IntHolder(0));
