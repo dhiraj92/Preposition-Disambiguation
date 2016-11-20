@@ -40,7 +40,7 @@
 	<target name="compile" depends="init">
 		<delete dir="${CLASSES}"/>
 		<mkdir dir="${CLASSES}" />
-		<javac srcdir="${SRC}" destdir="${CLASSES}" debug="on">
+		<javac srcdir="${SRC}" destdir="${CLASSES}" debug="on" encoding="UTF-8">
 			<classpath>
 				<fileset dir="${LIB}">
 					<include name="**/*.jar" />
