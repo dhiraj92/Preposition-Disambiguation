@@ -156,8 +156,9 @@
 			<!-- <jvmarg value="-Xmx4024m"/> -->
 			<jvmarg value="-Xms1024m"/>
 			<jvmarg value="-Xmx10g"/>
+			
 			<!-- <jvmarg value="-Xdebug" /> 
-			<jvmarg value="-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=9999" /> -->
+			<jvmarg value="-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=9999" /> --> 
 
 			<!-- Corpus Reader -->
 			<arg value="${CORPUS_READER}" />

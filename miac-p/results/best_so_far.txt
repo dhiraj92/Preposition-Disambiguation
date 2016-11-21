@@ -1,49 +1,4 @@
-#
-# Word-finding rules for preposition sense disambiguation (PSD)
-#
-
-l	VerbToLeft2	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms,word2vecSimWords	miacp.featgen.wfr.VerbToLeftRule
-l	HeadToLeft2	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms,word2vecSimWords	miacp.featgen.wfr.PrepositionGovernorHeuristic
-hl	HeadToLeft	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms,word2vecSimWords	miacp.featgen.wfr.PrepositionGovernorHeuristic
-vl	VerbToLeft	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms,word2vecSimWords	miacp.featgen.wfr.VerbToLeftRule
-hr	PrepCompHeur	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms,word2vecSimWords	miacp.featgen.wfr.PrepositionComplementHeuristic
-wl	WordToLeft	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms,word2vecSimWords	miacp.featgen.wfr.WordToLeftRule
-
-h	Governor	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms,word2vecSimWords	miacp.featgen.wfr.SyntacticGovernorRule
-c	PrepCompSyn	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms,word2vecSimWords	miacp.featgen.wfr.PrepositionComplementSyntactic
-
-# sg	StanforGov	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms,word2vecSimWords	miacp.featgen.wfr.StanfordGoverner
-# so	StanfordObj	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms,word2vecSimWords	miacp.featgen.wfr.StanfordObject
-# sp	GovernorParents	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms,word2vecSimWords	miacp.featgen.wfr.StanfordGovernorParents
-
-pi	PrepIndex	numeric	miacp.featgen.wfr.PrepositionRelPositionRule#
-# Feature extraction rules for preposition sense disambiguation (PSD)
-#
-
-word			w	miacp.featgen.fer.WordFER
-isCapitalized	c	miacp.featgen.fer.IsCapitalizedFER
-lemma			l	miacp.featgen.fer.LemmaFER
-pos				pos	miacp.featgen.fer.POS_FER
-wordClass		wc	miacp.featgen.fer.WordClassFER
-
-affix			af	miacp.featgen.fer.AffixFER
-
-hypernyms		h	miacp.featgen.fer.HypernymsFER
-ahypernyms		ah	miacp.featgen.fer.AllHypernymsFER
-
-synonyms		s	miacp.featgen.fer.SynonymsFER
-derived			as	miacp.featgen.fer.DerivedFormFER
-asynonyms		as	miacp.featgen.fer.AllSynonymsFER
-
-glossterms		g	miacp.featgen.fer.GlossTermsFER
-
-lexname			ln	miacp.featgen.fer.LexNameFER
-
-ruleitself		ri	miacp.featgen.fer.RuleItselfFER
-
-word2vecSimWords	wv	miacp.featgen.fer.Word2VecFER
-
-numeric	n	miacp.featgen.fer.NumericFERBuildfile: /home/shashank/Preposition-Disambiguation/miac-p/build/build_psd.xml
+Buildfile: /home/shashank/Preposition-Disambiguation/miac-p/build/build_psd.xml
 
 init:
 
@@ -51,7 +6,7 @@ compile:
    [delete] Deleting directory /home/shashank/Preposition-Disambiguation/miac-p/build/classes
     [mkdir] Created dir: /home/shashank/Preposition-Disambiguation/miac-p/build/classes
     [javac] /home/shashank/Preposition-Disambiguation/miac-p/build/build_common.xml:43: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
-    [javac] Compiling 226 source files to /home/shashank/Preposition-Disambiguation/miac-p/build/classes
+    [javac] Compiling 229 source files to /home/shashank/Preposition-Disambiguation/miac-p/build/classes
     [javac] Note: Some input files use unchecked or unsafe operations.
     [javac] Note: Recompile with -Xlint:unchecked for details.
 
@@ -63,7 +18,7 @@ compile:
    [delete] Deleting directory /home/shashank/Preposition-Disambiguation/miac-p/build/classes
     [mkdir] Created dir: /home/shashank/Preposition-Disambiguation/miac-p/build/classes
     [javac] /home/shashank/Preposition-Disambiguation/miac-p/build/build_common.xml:43: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
-    [javac] Compiling 226 source files to /home/shashank/Preposition-Disambiguation/miac-p/build/classes
+    [javac] Compiling 229 source files to /home/shashank/Preposition-Disambiguation/miac-p/build/classes
     [javac] Note: Some input files use unchecked or unsafe operations.
     [javac] Note: Recompile with -Xlint:unchecked for details.
 
@@ -75,7 +30,7 @@ parse_docs:
      [java] Initializing annotator
      [java] Initializing annotator
      [java] Loading model...loaded
-     [java] Model loading took: 8.482 seconds.
+     [java] Model loading took: 10.003 seconds.
      [java] Initializing end unit
      [java] Reading file 1 of 34: pp-with.sents.trng.xml
      [java] Reading file 2 of 34: pp-towards.sents.trng.xml
@@ -122,19 +77,19 @@ compile:
    [delete] Deleting directory /home/shashank/Preposition-Disambiguation/miac-p/build/classes
     [mkdir] Created dir: /home/shashank/Preposition-Disambiguation/miac-p/build/classes
     [javac] /home/shashank/Preposition-Disambiguation/miac-p/build/build_common.xml:43: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
-    [javac] Compiling 226 source files to /home/shashank/Preposition-Disambiguation/miac-p/build/classes
+    [javac] Compiling 229 source files to /home/shashank/Preposition-Disambiguation/miac-p/build/classes
     [javac] Note: Some input files use unchecked or unsafe operations.
     [javac] Note: Recompile with -Xlint:unchecked for details.
 
 parse_docs:
-     [java] data/SemEval2007/test/xmlInitializing document reader
+     [java] data/SemEval2007/test/xml
+     [java] Initializing document reader
      [java] Initializing corpus reader
      [java] Initializing annotator
      [java] Initializing annotator
-     [java] 
      [java] Initializing annotator
      [java] Loading model...loaded
-     [java] Model loading took: 9.12 seconds.
+     [java] Model loading took: 10.334 seconds.
      [java] Initializing end unit
      [java] Reading file 1 of 34: pp-with.sents.test.xml
      [java] Reading file 2 of 34: pp-towards.sents.test.xml
@@ -181,7 +136,7 @@ compile:
    [delete] Deleting directory /home/shashank/Preposition-Disambiguation/miac-p/build/classes
     [mkdir] Created dir: /home/shashank/Preposition-Disambiguation/miac-p/build/classes
     [javac] /home/shashank/Preposition-Disambiguation/miac-p/build/build_common.xml:43: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
-    [javac] Compiling 226 source files to /home/shashank/Preposition-Disambiguation/miac-p/build/classes
+    [javac] Compiling 229 source files to /home/shashank/Preposition-Disambiguation/miac-p/build/classes
     [javac] Note: Some input files use unchecked or unsafe operations.
     [javac] Note: Recompile with -Xlint:unchecked for details.
 
@@ -199,102 +154,102 @@ PSD_feature_extract:
      [java] SLF4J: Found binding in [jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/stanford-postagger-full-2015-12-09/lib/slf4j-simple.jar!/org/slf4j/impl/StaticLoggerBinder.class]
      [java] SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
      [java] SLF4J: Actual binding is of type [ch.qos.logback.classic.util.ContextSelectorStaticBinder]
-     [java] 15:31:54.758 [main] INFO  org.nd4j.nativeblas.NativeOps - Number of threads used for NativeOps: 4
-     [java] 15:31:54.766 [main] INFO  org.nd4j.nativeblas.Nd4jBlas - Number of threads used for BLAS: 4
-     [java] 15:31:54.794 [main] DEBUG org.reflections.Reflections - going to scan these urls:
+     [java] 22:56:15.124 [main] INFO  org.nd4j.nativeblas.NativeOps - Number of threads used for NativeOps: 4
+     [java] 22:56:15.131 [main] INFO  org.nd4j.nativeblas.Nd4jBlas - Number of threads used for BLAS: 4
+     [java] 22:56:15.157 [main] DEBUG org.reflections.Reflections - going to scan these urls:
      [java] jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/
-     [java] 15:31:54.898 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libjnind4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:54.899 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libjnind4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:54.899 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libgomp.so.1 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:54.899 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libgomp.so.1 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:54.899 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libgfortran.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:54.899 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libgfortran.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:54.899 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libopenblas.so.0 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:54.899 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libopenblas.so.0 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:54.900 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libnd4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:54.900 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libnd4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:54.901 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libiomp5.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:54.901 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libiomp5.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:54.901 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libjnind4j.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:54.901 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libjnind4j.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:54.901 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libnd4j.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:54.902 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libnd4j.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:54.902 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/jnind4j.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:54.902 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/jnind4j.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:54.902 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgcc_s_seh-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:54.902 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgcc_s_seh-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:54.902 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgfortran-3.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:54.903 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgfortran-3.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:54.903 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgomp-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:54.903 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgomp-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:54.903 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libnd4j.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:54.903 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libnd4j.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:54.904 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libopenblas.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:54.904 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libopenblas.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:54.904 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libquadmath-0.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:54.904 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libquadmath-0.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:54.905 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libstdc++-6.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:54.905 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libstdc++-6.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:54.905 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libwinpthread-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:54.906 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libwinpthread-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:54.906 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libnd4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:54.906 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libnd4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:54.906 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libblas.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:54.906 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libblas.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:54.907 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libjnind4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:54.907 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libjnind4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:54.907 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libgfortran.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:54.907 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libgfortran.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:54.908 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libgomp.so.1 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:54.908 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libgomp.so.1 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:54.912 [main] INFO  org.reflections.Reflections - Reflections took 117 ms to scan 1 urls, producing 123 keys and 419 values 
-     [java] 15:31:55.255 [main] DEBUG org.reflections.Reflections - going to scan these urls:
+     [java] 22:56:15.260 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libjnind4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.260 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libjnind4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.260 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libgomp.so.1 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.261 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libgomp.so.1 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.261 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libgfortran.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.261 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libgfortran.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.261 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libopenblas.so.0 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.261 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libopenblas.so.0 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.261 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libnd4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.261 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libnd4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.262 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libiomp5.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.262 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libiomp5.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.263 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libjnind4j.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.263 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libjnind4j.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.263 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libnd4j.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.263 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libnd4j.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.263 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/jnind4j.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.263 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/jnind4j.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.264 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgcc_s_seh-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.264 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgcc_s_seh-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.264 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgfortran-3.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.264 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgfortran-3.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.265 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgomp-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.265 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgomp-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.265 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libnd4j.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.265 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libnd4j.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.265 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libopenblas.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.266 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libopenblas.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.266 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libquadmath-0.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.266 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libquadmath-0.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.267 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libstdc++-6.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.267 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libstdc++-6.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.267 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libwinpthread-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.267 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libwinpthread-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.268 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libnd4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.268 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libnd4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.268 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libblas.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.268 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libblas.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.269 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libjnind4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.269 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libjnind4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.269 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libgfortran.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.269 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libgfortran.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.269 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libgomp.so.1 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.270 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libgomp.so.1 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.274 [main] INFO  org.reflections.Reflections - Reflections took 115 ms to scan 1 urls, producing 123 keys and 419 values 
+     [java] 22:56:15.623 [main] DEBUG org.reflections.Reflections - going to scan these urls:
      [java] jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/
-     [java] 15:31:55.311 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libjnind4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:55.311 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libjnind4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:55.311 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libgomp.so.1 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:55.311 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libgomp.so.1 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:55.311 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libgfortran.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:55.311 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libgfortran.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:55.311 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libopenblas.so.0 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:55.311 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libopenblas.so.0 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:55.312 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libnd4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:55.312 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libnd4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:55.313 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libiomp5.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:55.313 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libiomp5.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:55.313 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libjnind4j.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:55.313 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libjnind4j.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:55.313 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libnd4j.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:55.313 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libnd4j.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:55.313 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/jnind4j.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:55.313 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/jnind4j.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:55.313 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgcc_s_seh-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:55.314 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgcc_s_seh-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:55.314 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgfortran-3.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:55.314 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgfortran-3.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:55.314 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgomp-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:55.314 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgomp-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:55.314 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libnd4j.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:55.314 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libnd4j.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:55.314 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libopenblas.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:55.314 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libopenblas.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:55.314 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libquadmath-0.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:55.315 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libquadmath-0.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:55.315 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libstdc++-6.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:55.315 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libstdc++-6.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:55.315 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libwinpthread-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:55.315 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libwinpthread-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:55.315 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libnd4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:55.315 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libnd4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:55.315 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libblas.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:55.315 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libblas.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:55.315 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libjnind4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:55.315 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libjnind4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:55.316 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libgfortran.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:55.316 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libgfortran.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:55.316 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libgomp.so.1 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:31:55.316 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libgomp.so.1 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:31:55.318 [main] INFO  org.reflections.Reflections - Reflections took 63 ms to scan 1 urls, producing 123 keys and 419 values 
+     [java] 22:56:15.684 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libjnind4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.684 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libjnind4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.684 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libgomp.so.1 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.684 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libgomp.so.1 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.684 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libgfortran.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.684 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libgfortran.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.684 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libopenblas.so.0 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.684 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libopenblas.so.0 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.684 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libnd4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.685 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libnd4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.686 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libiomp5.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.686 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libiomp5.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.686 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libjnind4j.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.686 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libjnind4j.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.686 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libnd4j.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.686 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libnd4j.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.686 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/jnind4j.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.686 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/jnind4j.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.686 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgcc_s_seh-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.686 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgcc_s_seh-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.687 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgfortran-3.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.687 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgfortran-3.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.687 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgomp-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.687 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgomp-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.687 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libnd4j.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.687 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libnd4j.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.687 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libopenblas.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.687 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libopenblas.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.687 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libquadmath-0.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.687 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libquadmath-0.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.687 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libstdc++-6.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.688 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libstdc++-6.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.688 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libwinpthread-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.688 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libwinpthread-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.688 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libnd4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.688 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libnd4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.688 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libblas.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.688 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libblas.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.688 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libjnind4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.688 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libjnind4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.689 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libgfortran.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.689 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libgfortran.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.689 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libgomp.so.1 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 22:56:15.689 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libgomp.so.1 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 22:56:15.691 [main] INFO  org.reflections.Reflections - Reflections took 68 ms to scan 1 urls, producing 123 keys and 419 values 
      [java] Reading file: 1 of 34 total: pp-with.sents.trng.xml.gz
      [java] New file: with
      [java] Reading file: 2 of 34 total: pp-towards.sents.trng.xml.gz
@@ -374,15 +329,15 @@ compile:
    [delete] Deleting directory /home/shashank/Preposition-Disambiguation/miac-p/build/classes
     [mkdir] Created dir: /home/shashank/Preposition-Disambiguation/miac-p/build/classes
     [javac] /home/shashank/Preposition-Disambiguation/miac-p/build/build_common.xml:43: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
-    [javac] Compiling 226 source files to /home/shashank/Preposition-Disambiguation/miac-p/build/classes
+    [javac] Compiling 229 source files to /home/shashank/Preposition-Disambiguation/miac-p/build/classes
     [javac] Note: Some input files use unchecked or unsafe operations.
     [javac] Note: Recompile with -Xlint:unchecked for details.
 
 PSD_feature_extract:
    [delete] Deleting directory /home/shashank/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest
-     [java] data/SemEval2007/working/parsedTest
      [java] Initializing corpus reader
      [java] Initializing annotator
+     [java] data/SemEval2007/working/parsedTest
      [java] Initializing end unit
      [java] SLF4J: Class path contains multiple SLF4J bindings.
      [java] SLF4J: Found binding in [jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/org/slf4j/impl/StaticLoggerBinder.class]
@@ -392,102 +347,102 @@ PSD_feature_extract:
      [java] SLF4J: Found binding in [jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/stanford-postagger-full-2015-12-09/lib/slf4j-simple.jar!/org/slf4j/impl/StaticLoggerBinder.class]
      [java] SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
      [java] SLF4J: Actual binding is of type [ch.qos.logback.classic.util.ContextSelectorStaticBinder]
-     [java] 15:37:04.530 [main] INFO  org.nd4j.nativeblas.NativeOps - Number of threads used for NativeOps: 4
-     [java] 15:37:04.537 [main] INFO  org.nd4j.nativeblas.Nd4jBlas - Number of threads used for BLAS: 4
-     [java] 15:37:04.562 [main] DEBUG org.reflections.Reflections - going to scan these urls:
+     [java] 23:01:30.151 [main] INFO  org.nd4j.nativeblas.NativeOps - Number of threads used for NativeOps: 4
+     [java] 23:01:30.160 [main] INFO  org.nd4j.nativeblas.Nd4jBlas - Number of threads used for BLAS: 4
+     [java] 23:01:30.186 [main] DEBUG org.reflections.Reflections - going to scan these urls:
      [java] jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/
-     [java] 15:37:04.663 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libjnind4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:04.663 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libjnind4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:04.664 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libgomp.so.1 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:04.664 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libgomp.so.1 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:04.664 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libgfortran.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:04.664 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libgfortran.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:04.664 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libopenblas.so.0 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:04.664 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libopenblas.so.0 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:04.664 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libnd4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:04.664 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libnd4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:04.665 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libiomp5.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:04.665 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libiomp5.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:04.665 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libjnind4j.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:04.666 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libjnind4j.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:04.666 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libnd4j.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:04.666 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libnd4j.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:04.666 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/jnind4j.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:04.666 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/jnind4j.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:04.666 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgcc_s_seh-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:04.666 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgcc_s_seh-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:04.666 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgfortran-3.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:04.666 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgfortran-3.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:04.666 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgomp-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:04.666 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgomp-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:04.667 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libnd4j.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:04.667 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libnd4j.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:04.667 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libopenblas.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:04.667 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libopenblas.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:04.667 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libquadmath-0.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:04.667 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libquadmath-0.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:04.667 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libstdc++-6.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:04.667 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libstdc++-6.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:04.667 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libwinpthread-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:04.667 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libwinpthread-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:04.668 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libnd4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:04.668 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libnd4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:04.668 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libblas.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:04.668 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libblas.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:04.668 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libjnind4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:04.668 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libjnind4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:04.668 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libgfortran.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:04.668 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libgfortran.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:04.668 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libgomp.so.1 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:04.668 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libgomp.so.1 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:04.673 [main] INFO  org.reflections.Reflections - Reflections took 109 ms to scan 1 urls, producing 123 keys and 419 values 
-     [java] 15:37:05.008 [main] DEBUG org.reflections.Reflections - going to scan these urls:
+     [java] 23:01:30.304 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libjnind4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.304 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libjnind4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.304 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libgomp.so.1 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.304 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libgomp.so.1 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.304 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libgfortran.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.304 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libgfortran.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.305 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libopenblas.so.0 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.305 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libopenblas.so.0 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.305 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libnd4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.305 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libnd4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.306 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libiomp5.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.306 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libiomp5.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.306 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libjnind4j.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.306 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libjnind4j.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.306 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libnd4j.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.306 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libnd4j.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.306 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/jnind4j.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.306 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/jnind4j.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.307 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgcc_s_seh-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.307 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgcc_s_seh-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.307 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgfortran-3.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.307 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgfortran-3.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.307 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgomp-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.307 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgomp-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.307 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libnd4j.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.307 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libnd4j.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.307 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libopenblas.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.307 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libopenblas.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.308 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libquadmath-0.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.308 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libquadmath-0.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.308 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libstdc++-6.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.308 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libstdc++-6.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.308 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libwinpthread-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.308 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libwinpthread-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.308 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libnd4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.308 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libnd4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.309 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libblas.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.309 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libblas.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.309 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libjnind4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.309 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libjnind4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.309 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libgfortran.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.309 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libgfortran.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.309 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libgomp.so.1 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.309 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libgomp.so.1 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.314 [main] INFO  org.reflections.Reflections - Reflections took 126 ms to scan 1 urls, producing 123 keys and 419 values 
+     [java] 23:01:30.698 [main] DEBUG org.reflections.Reflections - going to scan these urls:
      [java] jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/
-     [java] 15:37:05.071 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libjnind4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:05.071 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libjnind4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:05.071 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libgomp.so.1 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:05.071 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libgomp.so.1 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:05.071 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libgfortran.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:05.071 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libgfortran.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:05.071 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libopenblas.so.0 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:05.071 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libopenblas.so.0 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:05.072 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libnd4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:05.072 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libnd4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:05.073 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libiomp5.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:05.073 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libiomp5.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:05.073 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libjnind4j.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:05.073 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libjnind4j.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:05.073 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libnd4j.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:05.073 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libnd4j.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:05.074 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/jnind4j.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:05.074 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/jnind4j.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:05.074 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgcc_s_seh-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:05.074 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgcc_s_seh-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:05.074 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgfortran-3.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:05.074 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgfortran-3.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:05.074 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgomp-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:05.074 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgomp-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:05.074 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libnd4j.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:05.075 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libnd4j.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:05.075 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libopenblas.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:05.075 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libopenblas.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:05.075 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libquadmath-0.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:05.075 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libquadmath-0.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:05.075 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libstdc++-6.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:05.075 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libstdc++-6.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:05.075 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libwinpthread-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:05.075 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libwinpthread-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:05.075 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libnd4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:05.076 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libnd4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:05.076 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libblas.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:05.076 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libblas.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:05.076 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libjnind4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:05.076 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libjnind4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:05.076 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libgfortran.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:05.076 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libgfortran.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:05.076 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libgomp.so.1 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
-     [java] 15:37:05.076 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libgomp.so.1 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
-     [java] 15:37:05.079 [main] INFO  org.reflections.Reflections - Reflections took 71 ms to scan 1 urls, producing 123 keys and 419 values 
+     [java] 23:01:30.763 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libjnind4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.764 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libjnind4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.764 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libgomp.so.1 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.764 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libgomp.so.1 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.764 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libgfortran.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.764 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libgfortran.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.764 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libopenblas.so.0 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.764 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libopenblas.so.0 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.764 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libnd4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.764 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-x86_64/libnd4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.766 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libiomp5.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.766 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libiomp5.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.766 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libjnind4j.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.766 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libjnind4j.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.766 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libnd4j.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.766 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/macosx-x86_64/libnd4j.dylib in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.766 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/jnind4j.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.766 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/jnind4j.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.767 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgcc_s_seh-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.767 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgcc_s_seh-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.767 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgfortran-3.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.767 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgfortran-3.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.767 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgomp-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.767 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libgomp-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.767 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libnd4j.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.767 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libnd4j.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.767 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libopenblas.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.768 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libopenblas.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.768 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libquadmath-0.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.768 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libquadmath-0.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.768 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libstdc++-6.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.768 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libstdc++-6.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.768 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libwinpthread-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.768 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/windows-x86_64/libwinpthread-1.dll in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.768 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libnd4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.768 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libnd4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.768 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libblas.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.769 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libblas.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.769 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libjnind4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.769 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libjnind4j.so in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.769 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libgfortran.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.769 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libgfortran.so.3 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.769 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libgomp.so.1 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner TypeAnnotationsScanner
+     [java] 23:01:30.769 [main] DEBUG org.reflections.Reflections - could not scan file org/nd4j/nativeblas/linux-ppc64le/libgomp.so.1 in url jar:file:/home/shashank/Preposition-Disambiguation/miac-p/lib/DeepLearning4jWithDep.jar!/ with scanner SubTypesScanner
+     [java] 23:01:30.772 [main] INFO  org.reflections.Reflections - Reflections took 73 ms to scan 1 urls, producing 123 keys and 419 values 
      [java] Reading file: 1 of 34 total: pp-with.sents.test.xml.gz
      [java] New file: with
      [java] Reading file: 2 of 34 total: pp-towards.sents.test.xml.gz
@@ -569,7 +524,7 @@ compile:
    [delete] Deleting directory /home/shashank/Preposition-Disambiguation/miac-p/build/classes
     [mkdir] Created dir: /home/shashank/Preposition-Disambiguation/miac-p/build/classes
     [javac] /home/shashank/Preposition-Disambiguation/miac-p/build/build_common.xml:43: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
-    [javac] Compiling 226 source files to /home/shashank/Preposition-Disambiguation/miac-p/build/classes
+    [javac] Compiling 229 source files to /home/shashank/Preposition-Disambiguation/miac-p/build/classes
     [javac] Note: Some input files use unchecked or unsafe operations.
     [javac] Note: Recompile with -Xlint:unchecked for details.
 
@@ -786,7 +741,7 @@ compile:
    [delete] Deleting directory /home/shashank/Preposition-Disambiguation/miac-p/build/classes
     [mkdir] Created dir: /home/shashank/Preposition-Disambiguation/miac-p/build/classes
     [javac] /home/shashank/Preposition-Disambiguation/miac-p/build/build_common.xml:43: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
-    [javac] Compiling 226 source files to /home/shashank/Preposition-Disambiguation/miac-p/build/classes
+    [javac] Compiling 229 source files to /home/shashank/Preposition-Disambiguation/miac-p/build/classes
     [javac] Note: Some input files use unchecked or unsafe operations.
     [javac] Note: Recompile with -Xlint:unchecked for details.
 
@@ -870,7 +825,7 @@ compile:
    [delete] Deleting directory /home/shashank/Preposition-Disambiguation/miac-p/build/classes
     [mkdir] Created dir: /home/shashank/Preposition-Disambiguation/miac-p/build/classes
     [javac] /home/shashank/Preposition-Disambiguation/miac-p/build/build_common.xml:43: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
-    [javac] Compiling 226 source files to /home/shashank/Preposition-Disambiguation/miac-p/build/classes
+    [javac] Compiling 229 source files to /home/shashank/Preposition-Disambiguation/miac-p/build/classes
     [javac] Note: Some input files use unchecked or unsafe operations.
     [javac] Note: Recompile with -Xlint:unchecked for details.
 
@@ -952,7 +907,7 @@ compile:
    [delete] Deleting directory /home/shashank/Preposition-Disambiguation/miac-p/build/classes
     [mkdir] Created dir: /home/shashank/Preposition-Disambiguation/miac-p/build/classes
     [javac] /home/shashank/Preposition-Disambiguation/miac-p/build/build_common.xml:43: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
-    [javac] Compiling 226 source files to /home/shashank/Preposition-Disambiguation/miac-p/build/classes
+    [javac] Compiling 229 source files to /home/shashank/Preposition-Disambiguation/miac-p/build/classes
     [javac] Note: Some input files use unchecked or unsafe operations.
     [javac] Note: Recompile with -Xlint:unchecked for details.
 
@@ -1005,10 +960,10 @@ runSvmTester:
      [java] 102.0 0.0 1.0
      [java] Applying model to: /home/shashank/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/by
      [java] Loading: /home/shashank/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/by.model
-     [java] 212.0 36.0 0.8548387096774194
+     [java] 214.0 34.0 0.8629032258064516
      [java] Applying model to: /home/shashank/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/down
      [java] Loading: /home/shashank/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/down.model
-     [java] 121.0 22.0 0.8461538461538461
+     [java] 120.0 23.0 0.8391608391608392
      [java] Applying model to: /home/shashank/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/during
      [java] Loading: /home/shashank/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/during.model
      [java] 39.0 0.0 1.0
@@ -1017,7 +972,7 @@ runSvmTester:
      [java] 379.0 73.0 0.838495575221239
      [java] Applying model to: /home/shashank/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/from
      [java] Loading: /home/shashank/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/from.model
-     [java] 491.0 87.0 0.8494809688581315
+     [java] 493.0 85.0 0.8529411764705882
      [java] Applying model to: /home/shashank/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/in
      [java] Loading: /home/shashank/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/in.model
      [java] 539.0 142.0 0.7914831130690162
@@ -1026,13 +981,13 @@ runSvmTester:
      [java] 22.0 13.0 0.6285714285714286
      [java] Applying model to: /home/shashank/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/into
      [java] Loading: /home/shashank/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/into.model
-     [java] 268.0 29.0 0.9023569023569024
+     [java] 269.0 28.0 0.9057239057239057
      [java] Applying model to: /home/shashank/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/like
      [java] Loading: /home/shashank/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/like.model
      [java] 118.0 7.0 0.944
      [java] Applying model to: /home/shashank/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/of
      [java] Loading: /home/shashank/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/of.model
-     [java] 1319.0 159.0 0.8924221921515562
+     [java] 1320.0 158.0 0.8930987821380244
      [java] Applying model to: /home/shashank/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/off
      [java] Loading: /home/shashank/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/off.model
      [java] 48.0 8.0 0.8571428571428571
@@ -1053,16 +1008,16 @@ runSvmTester:
      [java] 202.0 6.0 0.9711538461538461
      [java] Applying model to: /home/shashank/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/to
      [java] Loading: /home/shashank/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/to.model
-     [java] 520.0 52.0 0.9090909090909091
+     [java] 519.0 53.0 0.9073426573426573
      [java] Applying model to: /home/shashank/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/towards
      [java] Loading: /home/shashank/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/towards.model
      [java] 99.0 3.0 0.9705882352941176
      [java] Applying model to: /home/shashank/Preposition-Disambiguation/miac-p/data/SemEval2007/working/featuresTest/with
      [java] Loading: /home/shashank/Preposition-Disambiguation/miac-p/data/SemEval2007/working/models/with.model
      [java] 529.0 49.0 0.9152249134948097
-     [java] 7090.0 876.0 0.8900326387145368
+     [java] 7094.0 872.0 0.8905347727843335
 
 PSD_full_experiment:
 
 BUILD SUCCESSFUL
-Total time: 13 minutes 48 seconds
+Total time: 14 minutes 3 seconds

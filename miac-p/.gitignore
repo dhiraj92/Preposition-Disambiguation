@@ -6,3 +6,4 @@ trainSVM
 lib
 /bin/
 src/miacp/ml/TrainSvmModels.java
+log.txt

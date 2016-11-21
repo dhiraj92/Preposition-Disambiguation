@@ -302,7 +302,8 @@ public class FeatureExtractorEndPoint extends EndPointImpl {
 						String annotText = annot.getText();
 						String type = annot.getPos();
 						if(type == null) {
-							System.err.println("Null type for: " + annotText);
+							// This is a numeric feature
+							// System.err.println("Null type for: " + annotText);
 						}
 						// Strip off ending periods
 						String[] parts = annotText.split("\\s+");

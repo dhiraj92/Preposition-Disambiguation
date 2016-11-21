@@ -16,4 +16,7 @@ c	PrepCompSyn	derived,brown,affix,glossterms,ruleitself,member,parts,substance,f
 # so	StanfordObj	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms,word2vecSimWords	miacp.featgen.wfr.StanfordObject
 # sp	GovernorParents	derived,brown,affix,glossterms,ruleitself,member,parts,substance,frames,suffix,lexname,word,pos,wordClass,lemma,isCapitalized,hypernyms,ahypernyms,synonyms,asynonyms,word2vecSimWords	miacp.featgen.wfr.StanfordGovernorParents
 
-pi	PrepIndex	numeric	miacp.featgen.wfr.PrepositionRelPositionRule
+pi	PrepPos	numeric	miacp.featgen.wfr.PrepositionRelPositionRule
+pc	Punctuation	word	miacp.featgen.wfr.SpecialPunctuationsRule
+# np	NumberOrPluralToLeft	word	miacp.featgen.wfr.NumberOrPluralToLeftRule
+# cl	Conjunction	word	miacp.featgen.wfr.ConjunctionToLeftRule
