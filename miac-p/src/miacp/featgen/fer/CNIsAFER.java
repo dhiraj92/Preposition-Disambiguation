@@ -48,7 +48,6 @@ public class CNIsAFER extends AbstractFeatureRule {
 			for (int i = 0, size = jsonArray.length(); i < size; i++) {
 				JSONObject objectInArray = (JSONObject) jsonArray.get(i);
 				String id = (String) objectInArray.get("@id");
-				System.out.println(type);
 				productions.addAll(ConceptNetUtil.getRelationWords(id, "IsA",input));
 			}
 		} catch (Exception ex) {
