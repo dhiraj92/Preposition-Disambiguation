@@ -23,7 +23,6 @@ package miacp.semantics;
 
 import java.util.List;
 
-import miacp.parse.types.Arc;
 import miacp.parse.types.Parse;
 import miacp.parse.types.Token;
 

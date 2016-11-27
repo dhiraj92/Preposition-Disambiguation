@@ -37,7 +37,6 @@ import miacp.cmdline.ParsedCommandLine;
 import miacp.jwni.WordNet;
 import miacp.parse.io.SentenceReader;
 import miacp.parse.types.Parse;
-import miacp.parse.types.Sentence;
 import miacp.parse.types.Token;
 import miacp.pos.featgen.PosFeatureGenerator;
 

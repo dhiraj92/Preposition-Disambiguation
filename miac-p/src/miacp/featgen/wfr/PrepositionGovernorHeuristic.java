@@ -21,17 +21,13 @@
 
 package miacp.featgen.wfr;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Properties;
 import java.util.Set;
 
 import miacp.parse.types.Parse;
 import miacp.parse.types.Token;
 import miacp.util.TreebankConstants;
-import miacp.util.stanfordClass;
-import edu.stanford.nlp.simple.*;
 
 /**
  * Word-finding rule for finding the first likely syntactic governor of a preposition

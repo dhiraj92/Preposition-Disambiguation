@@ -5,10 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import miacp.parse.types.Arc;
 import miacp.parse.types.Parse;
 import miacp.parse.types.Token;
-import miacp.parse.util.ParseConstants;
 import miacp.util.stanfordClass;
 
 public class StanfordGoverner extends AbstractWordFindingRule {

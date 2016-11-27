@@ -31,9 +31,9 @@ import java.util.Map;
 import miacp.parse.ml.TrainablePerceptron.Entry;
 import miacp.types.ByteArrayList;
 import miacp.types.ChecksumMap;
+import miacp.types.ChecksumMap.TwoPartKey;
 import miacp.types.IntArrayList;
 import miacp.types.ShortArrayList;
-import miacp.types.ChecksumMap.TwoPartKey;
 
 
 

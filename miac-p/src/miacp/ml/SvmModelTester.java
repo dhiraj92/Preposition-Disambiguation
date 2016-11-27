@@ -37,7 +37,6 @@ import java.util.zip.GZIPInputStream;
 import miacp.cmdline.CommandLineOptions;
 import miacp.cmdline.CommandLineOptionsParser;
 import miacp.cmdline.ParsedCommandLine;
-import miacp.ml.LinearClassificationModel;
 
 
 /**

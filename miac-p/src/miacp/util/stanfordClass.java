@@ -1,14 +1,18 @@
 package miacp.util;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Set;
 
 import edu.stanford.nlp.ling.IndexedWord;
 import edu.stanford.nlp.semgraph.SemanticGraph;
-import edu.stanford.nlp.simple.*;
-import edu.stanford.nlp.trees.GrammaticalRelation;
+import edu.stanford.nlp.simple.Sentence;
 import edu.stanford.nlp.trees.TypedDependency;
 
 public class stanfordClass {

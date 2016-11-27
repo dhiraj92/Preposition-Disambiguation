@@ -35,15 +35,15 @@ import java.util.Set;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import miacp.featgen.fer.FeatureExtractionRule;
-import miacp.featgen.wfr.WordFindingRule;
-
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
+
+import miacp.featgen.fer.FeatureExtractionRule;
+import miacp.featgen.wfr.WordFindingRule;
 
 
 

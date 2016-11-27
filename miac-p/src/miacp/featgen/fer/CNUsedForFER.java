@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.Set;
 
 import org.json.JSONArray;

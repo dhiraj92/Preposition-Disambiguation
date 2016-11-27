@@ -24,13 +24,11 @@ package miacp.runpipe.impl.corpusreader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.util.zip.GZIPInputStream;
 
 import miacp.runpipe.DocumentReadException;
 import miacp.runpipe.TextDocument;
-import miacp.runpipe.impl.TextDocumentImpl;
 
 
 /**

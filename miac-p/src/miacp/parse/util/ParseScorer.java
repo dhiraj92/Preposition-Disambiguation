@@ -37,7 +37,6 @@ import miacp.parse.io.SentenceReader;
 import miacp.parse.types.Arc;
 import miacp.parse.types.Parse;
 import miacp.parse.types.Token;
-import miacp.parse.util.NLParserUtils;
 
 
 /**

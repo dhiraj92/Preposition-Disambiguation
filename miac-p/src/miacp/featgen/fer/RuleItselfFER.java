@@ -23,8 +23,6 @@ package miacp.featgen.fer;
 
 import java.util.Set;
 
-import miacp.featgen.fer.AbstractFeatureRule;
-
 
 
 /**

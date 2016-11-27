@@ -23,8 +23,6 @@ package miacp.parse.types;
 
 import java.io.Serializable;
 
-import miacp.parse.types.Token;
-
 
 /**
  * Used as a node in linked lists

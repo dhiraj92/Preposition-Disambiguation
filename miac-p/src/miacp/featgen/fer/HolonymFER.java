@@ -30,8 +30,8 @@ import miacp.jwni.POS;
 import miacp.jwni.Pointer;
 import miacp.jwni.PointerType;
 import miacp.jwni.Sense;
-import miacp.jwni.WordNet;
 import miacp.jwni.Sense.Key;
+import miacp.jwni.WordNet;
 
 
 /**

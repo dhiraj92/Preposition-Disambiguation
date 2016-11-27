@@ -26,8 +26,8 @@ import java.util.Set;
 import miacp.jwni.IndexEntry;
 import miacp.jwni.POS;
 import miacp.jwni.Sense;
-import miacp.jwni.WordNet;
 import miacp.jwni.Sense.Key;
+import miacp.jwni.WordNet;
 
 
 

@@ -6,7 +6,6 @@ import java.util.Set;
 
 import miacp.parse.types.Parse;
 import miacp.parse.types.Token;
-import miacp.util.TreebankConstants;
 
 /**
  * Returns if the sentence had one of the punctuations from {,;!?}

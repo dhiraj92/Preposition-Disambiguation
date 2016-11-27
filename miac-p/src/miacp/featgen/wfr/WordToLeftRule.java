@@ -26,7 +26,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import miacp.parse.types.Arc;
 import miacp.parse.types.Parse;
 import miacp.parse.types.Token;
 

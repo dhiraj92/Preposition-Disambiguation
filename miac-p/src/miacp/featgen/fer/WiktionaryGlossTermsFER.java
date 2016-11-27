@@ -26,9 +26,9 @@ import java.util.Map;
 import java.util.Set;
 
 import miacp.jwikt.WEntry;
+import miacp.jwikt.WEntry.Definition;
 import miacp.jwikt.WPOS;
 import miacp.jwikt.Wiktionary;
-import miacp.jwikt.WEntry.Definition;
 
 
 
