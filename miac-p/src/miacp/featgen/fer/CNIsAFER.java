@@ -33,7 +33,7 @@ public class CNIsAFER extends AbstractFeatureRule {
 			} else {
 
 				// Pulling JSON from web
-				String url = "http://api.conceptnet.io/c/en/" + input + "?limit=80";
+				String url = "http://api.conceptnet.io/c/en/" + input + "?limit=20";
 				// jsonData = readJsonFromUrl(url);
 				String jsonString = Jsoup.connect(url).header("Accept", "text/javascript").get().body().text();
 				jsonData = new JSONObject(jsonString);
@@ -48,6 +48,7 @@ public class CNIsAFER extends AbstractFeatureRule {
 			for (int i = 0, size = jsonArray.length(); i < size; i++) {
 				JSONObject objectInArray = (JSONObject) jsonArray.get(i);
 				String id = (String) objectInArray.get("@id");
+				System.out.println(type);
 				productions.addAll(ConceptNetUtil.getRelationWords(id, "IsA",input));
 			}
 		} catch (Exception ex) {

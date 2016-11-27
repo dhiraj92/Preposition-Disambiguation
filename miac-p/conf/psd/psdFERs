@@ -33,5 +33,5 @@ CN_UsedFor	cnusd	miacp.featgen.fer.CNUsedForFER
 CN_IsA	cnisa	miacp.featgen.fer.CNIsAFER
 CN_FormOf	cnfrm	miacp.featgen.fer.CNFormOfFER
 CN_LocatedNear	cnlcn	miacp.featgen.fer.CNLocatedNearFER
-CN_AtLocation	cnalc	miacp.featgen.fer.CNAtLocationrFER
+CN_AtLocation	cnalc	miacp.featgen.fer.CNAtLocationFER
 CN_HasSubEvent	cnalc	miacp.featgen.fer.CNHasSubEventFER

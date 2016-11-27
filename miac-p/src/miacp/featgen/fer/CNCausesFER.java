@@ -33,7 +33,7 @@ public class CNCausesFER extends AbstractFeatureRule {
 			} else {
 
 				// Pulling JSON from web
-				String url = "http://api.conceptnet.io/c/en/" + input + "?limit=80";
+				String url = "http://api.conceptnet.io/c/en/" + input + "?limit=20";
 				// jsonData = readJsonFromUrl(url);
 				String jsonString = Jsoup.connect(url).header("Accept", "text/javascript").get().body().text();
 				jsonData = new JSONObject(jsonString);

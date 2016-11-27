@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.Set;
 
 import org.json.JSONArray;
@@ -35,7 +33,7 @@ public class CNLocatedNearFER extends AbstractFeatureRule {
 			} else {
 
 				// Pulling JSON from web
-				String url = "http://api.conceptnet.io/c/en/" + input + "?limit=80";
+				String url = "http://api.conceptnet.io/c/en/" + input + "?limit=20";
 				// jsonData = readJsonFromUrl(url);
 				String jsonString = Jsoup.connect(url).header("Accept", "text/javascript").get().body().text();
 				jsonData = new JSONObject(jsonString);

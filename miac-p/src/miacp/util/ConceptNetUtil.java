@@ -26,8 +26,8 @@ public class ConceptNetUtil {
 				}
 			}
 		}
-		if(words.size() > 0)
-			System.out.println(word + " " + relation + words);
+		//if(words.size() > 0)
+			//System.out.println(word + " " + relation + words);
 		
 		return words;
 	}
