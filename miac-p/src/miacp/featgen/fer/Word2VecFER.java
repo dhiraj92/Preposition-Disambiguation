@@ -64,8 +64,8 @@ public class Word2VecFER extends AbstractFeatureRule{
         if (count % 500 == 0){
             write();
         }
-
-		return new HashSet<String>(nearestWords);
+        feats.addAll(nearestWords);
+		return feats;
 	}
 
     private void write(){

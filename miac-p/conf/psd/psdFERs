@@ -23,6 +23,15 @@ lexname			ln	miacp.featgen.fer.LexNameFER
 
 ruleitself		ri	miacp.featgen.fer.RuleItselfFER
 
-word2vecSimWords	wv	miacp.featgen.fer.Word2VecFER
+# word2vecSimWords	wv	miacp.featgen.fer.Word2VecFER
 
-numeric	n	miacp.featgen.fer.NumericFER
+# numeric	n	miacp.featgen.fer.NumericFER
+
+CN_RelatedTo	cnrel	miacp.featgen.fer.CNRelatedToFER
+CN_Causes	cncau	miacp.featgen.fer.CNCausesFER
+CN_UsedFor	cnusd	miacp.featgen.fer.CNUsedForFER
+CN_IsA	cnisa	miacp.featgen.fer.CNIsAFER
+CN_FormOf	cnfrm	miacp.featgen.fer.CNFormOfFER
+CN_LocatedNear	cnlcn	miacp.featgen.fer.CNLocatedNearFER
+CN_AtLocation	cnalc	miacp.featgen.fer.CNAtLocationrFER
+CN_HasSubEvent	cnalc	miacp.featgen.fer.CNHasSubEventFER
