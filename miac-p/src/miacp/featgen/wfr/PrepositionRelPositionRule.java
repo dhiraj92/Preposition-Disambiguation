@@ -10,6 +10,11 @@ import miacp.parse.types.Token;
 public class PrepositionRelPositionRule extends AbstractWordFindingRule{
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * Kind of a hack. Ideally, should return a percentage showing relative position
 	 * of the preposition from the start. To take advantage of the configurability
 	 * and pipeline, currently return a string casted float

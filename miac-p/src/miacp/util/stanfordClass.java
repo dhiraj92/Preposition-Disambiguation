@@ -1,5 +1,5 @@
 package miacp.util;
-
+/*
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -96,11 +96,11 @@ public class stanfordClass {
 					//System.out.println(graph.relns(governer));
 					Govchildren = graph.getChildren(governer);
 					Govparents = graph.getParents(governer);
-/*					for(IndexedWord v : Govchildren){
+					for(IndexedWord v : Govchildren){
 						System.out.println(v.originalText());
 						System.out.println(v.index());
 						
-					}*/
+					}
 					break;
 
 				}
@@ -124,3 +124,4 @@ public class stanfordClass {
 	}
 
 }
+*/

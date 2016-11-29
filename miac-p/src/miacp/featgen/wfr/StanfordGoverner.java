@@ -1,5 +1,5 @@
 package miacp.featgen.wfr;
-
+/*
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -50,5 +50,5 @@ public class StanfordGoverner extends AbstractWordFindingRule {
 		return results;
 	}
 	
-}
+}*/
 

@@ -41,4 +41,13 @@ public class Sentence implements Serializable {
 		return mTokens;
 	}
 	
+	@Override
+	public String toString(){
+		String s = "";
+		for(Token token : mTokens){
+			s += token.getText() + " ";
+		}
+		return s;
+	}
+	
 }
