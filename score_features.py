@@ -1,7 +1,13 @@
 import os
 import math
+import sys
 from collections import Counter
-featureSelectionDir="featuresSelected"
+
+if len(sys.argv) < 2:
+    print("provide path to featureSelected directory as argument")
+    sys.exit(1)
+
+featureSelectionDir= sys.argv[1]
 
 files = []
 for dirname, dirnames, filenames in os.walk(featureSelectionDir):
@@ -10,7 +16,9 @@ for dirname, dirnames, filenames in os.walk(featureSelectionDir):
 
 feature_names = {'wv':'Word2Vec', 'w':'Word Itself', 'c':'Capitalized', 'l':'Lemma', 'pos':'Part-Of-Speech',\
         'wc': 'Word-Class', 'af':'Affix', 'h': 'Hypernyms', 'ah': 'Hypernyms', 's':'Synonyms',\
-        'as' : 'Synonyms', 'g': 'Gloss Terms', 'ln': 'LexName', 'ri': 'Rule Itself', 'n': 'Numeric'
+        'as' : 'Synonyms', 'g': 'Gloss Terms', 'ln': 'LexName', 'ri': 'Rule Itself', 'n': 'Numeric',\
+        'cnrel' : 'ConceptNet_RelatedTo', 'cncau' : 'ConceptNet_Causes', 'cnusd': 'ConceptNet_UsedFor',\
+        'cnisa' : 'ConceptNet_IsA', 'cnfrm' : 'ConceptNet_FormOf', 'cnlcn' : 'ConceptNet_AtLocation', 'cnalc': 'ConceptNet_AtLocation'
         }
 features = Counter()
 

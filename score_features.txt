@@ -1,0 +1,17 @@
+Synonyms	79778
+Hypernyms	51867
+Gloss Terms	45643
+Word2Vec	30694
+ConceptNet_RelatedTo	7831
+ConceptNet_IsA	7067
+Lemma	3396
+Word Itself	3104
+ConceptNet_FormOf	1745
+ConceptNet_AtLocation	1551
+LexName	1457
+Part-Of-Speech	751
+ConceptNet_UsedFor	669
+Word-Class	543
+ConceptNet_Causes	292
+Affix	232
+Capitalized	3
